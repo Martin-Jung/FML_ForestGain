@@ -2,6 +2,7 @@ library(raster)
 library(gdalUtils)
 library(ggplot2)
 library(ggthemes)
+library(dplyr)
 library(colorspace)
 library(here)
 here()
@@ -99,6 +100,46 @@ df <- data.frame(landarea = values(landarea),
 # Get statistics overall across datasets
 # Plot stacked bargraph with proportion 
 
+# TODO: Need to rerun with area estimates
+ex <- bind_rows(
+  # Hansen
+  read.csv('extracts/zones_Hansen_naturalforest.csv') %>% 
+    dplyr::mutate(type = 'natural', dataset = 'Hansen'),
+  read.csv('extracts/zones_Hansen_plantedforest.csv') %>% 
+    dplyr::mutate(type = 'planted', dataset = 'Hansen'),
+ #  ESA CCI
+ read.csv('extracts/zones_ESACCI_naturalforest.csv') %>% 
+   dplyr::mutate(type = 'natural', dataset = 'ESACCI'),
+ read.csv('extracts/zones_ESACCI_plantedforest.csv') %>% 
+   dplyr::mutate(type = 'planted', dataset = 'ESACCI'),
+ # MODIS
+ read.csv('extracts/zones_MODIS_naturalforest.csv') %>% 
+   dplyr::mutate(type = 'natural', dataset = 'MODIS'),
+ read.csv('extracts/zones_MODIS_plantedforest.csv') %>% 
+   dplyr::mutate(type = 'planted', dataset = 'MODIS') 
+) %>% dplyr::filter(zone == 1)
+
+# “replanted forest” - forest is managed and there
+# are signs that the forest has been planted in the
+# 100 m pixel. Rotation time is relatively long (>15 years).
+
+# Short rotation plantations for timber
+# Tree plantations: “woody plantations” - short rotation (15 years max) timber plantations.
+
+ex$type <- factor(ex$type, levels = c('Natural regrowth', 'Replanted or'))
+
+g <- ggplot(ex, aes(y = sum, x = dataset, group = type, fill = type)) +
+  theme_classic(base_size = 18) +
+  coord_flip() +
+  geom_bar(stat = 'identity',colour='black', position = position_dodge(.5)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_fill_brewer(palette = 'Dark2') +
+  guides(fill = guide_legend(title = '')) +
+  theme(legend.position = c(.9, .2),legend.text = element_text(size = 16))
+g
+
+
+# -------- #
 
 # -------- #
 # Second:
