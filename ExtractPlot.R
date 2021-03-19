@@ -2,12 +2,14 @@ library(raster)
 library(gdalUtils)
 library(ggplot2)
 library(ggthemes)
+library(data.table)
 library(dplyr)
 library(colorspace)
 library(here)
 here()
 source('../../naturemap/src/000_ConvenienceFunctions.R')
-rasterOptions(progress = 'text')
+rasterOptions(progress = 'text',tmpdir = 'E:/tmp/')
+raster::removeTmpFiles(.1)
 # --- #
 p_ll <- '+proj=longlat +datum=WGS84 +no_defs'
 e <- c(-180,180,-90,90)
@@ -82,18 +84,43 @@ writeGeoTiff(ras,'extracts/Hansen_forestgain.tif',dt = 'INT1U')
 #### Extract data ####
 # First load and extract
 
-fml_natural <- raster('extracts/FML_natural.tif')
-fml_planted <- raster('extracts/FML_planted.tif')
-landarea <- raster('extracts/landarea.tif')
 hansen_forestgain <- raster('extracts/Hansen_forestgain.tif')
 modis_forestgain <- raster::stack('extracts/MODIS_forestgain.tif')
+names(modis_forestgain) <- paste0('year',2001:2015)
 esacci_forestgain <- raster::stack('extracts/ESACCI_forestgain.tif')
+names(esacci_forestgain) <- paste0('year',1992:2015)
 
-df <- data.frame(landarea = values(landarea),
-                 fml_natural = values(fml_natural),
-                 fml_planted = values(fml_planted)
-                 ) %>% 
-  tidyr::drop_na()
+
+landarea <- raster('extracts/landarea.tif')
+fml_natural <- raster('extracts/FML_natural.tif')
+fml_aided <- raster('extracts/FML_aided.tif')
+fml_planted <- raster('extracts/FML_planted.tif')
+fml_consensus <- raster('extracts/consensus_forestgain.tif')
+#fml_consensus <- alignRasters(fml_consensus, fml_natural, method = 'ngb', func = raster::modal,cl = TRUE)
+#writeGeoTiff(fml_consensus, 'extracts/consensus_forestgain.tif')
+
+assertthat::assert_that(
+  compareRaster(fml_natural,fml_aided),
+  compareRaster(fml_natural,fml_planted),
+  compareRaster(fml_natural,fml_consensus),
+  compareRaster(fml_natural,landarea)
+)
+
+# Now crop to time series
+fml_natural <- raster::crop(fml_natural,hansen_forestgain)
+fml_aided <- raster::crop(fml_aided,hansen_forestgain)
+fml_planted <- raster::crop(fml_planted,hansen_forestgain)
+fml_consensus <- raster::crop(fml_consensus,hansen_forestgain)
+
+fml_natural[fml_natural==0] <- NA
+fml_aided[fml_aided==0] <- NA
+fml_planted[fml_planted==0] <- NA
+
+assertthat::assert_that(
+  compareRaster(fml_natural,hansen_forestgain),
+  compareRaster(esacci_forestgain,hansen_forestgain),
+  compareRaster(esacci_forestgain,modis_forestgain)
+)
 
 # -------- #
 # Idea:
@@ -143,13 +170,49 @@ g
 
 # -------- #
 # Second:
-# Time series of forest gain per year split by whether it is natural regrowth or planted
+# Time series of forest gain per year split by whether it is natural regrowth, aided planted or commerical planted
 # Show different lines per land cover dataset
+
+# Area gain
+esacci_area <- esacci_forestgain * landarea
+
+df <- data.frame()
+# Now simply mask and calculate cellStats
+esacci_area_nat <- raster::mask(esacci_area, fml_natural,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
+df <- dplyr::bind_rows(
+  data.frame(cellStats(esacci_area_nat,'sum'),dataset = 'ESACCI', type = 'natural' ),
+  df
+)
+removeTmpFiles(1)
+esacci_area_aid <- raster::mask(esacci_area, fml_aided,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
+df <- dplyr::bind_rows(
+  data.frame(cellStats(esacci_area_aid,'sum'),dataset = 'ESACCI', type = 'aided' ),
+  df
+)
+removeTmpFiles(1)
+esacci_area_pla <- raster::mask(esacci_area, fml_planted,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
+df <- dplyr::bind_rows(
+  data.frame(cellStats(esacci_area_pla,'sum'),dataset = 'ESACCI', type = 'planted' ),
+  df
+)
+
+# Then MODIS
+df <- dplyr::bind_rows(
+  df,
+  data.frame(fml_natural = values(fml_natural),
+             fml_aided = values(fml_aided),
+             fml_planted = values(fml_planted),
+             values(modis_forestgain * landarea),
+             dataset = 'MODIS')
+)
+# Finally Hansen separately
+
 
 
 # -------- #
 # Third:
 # Map of hotspots of plantion planting
+plot(fml_consensus)
 
 # -------- #
 # Combine all figures into one graph for publication

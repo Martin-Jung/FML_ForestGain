@@ -4,4 +4,10 @@
 .Ruserdata
 
 # Ignore extracts
-extracts/*
+extracts/*.tif
+
+# No Thumbs db
+*.db
+
+# No xml files
+*.aux.xml
