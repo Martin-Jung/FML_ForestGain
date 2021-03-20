@@ -4,15 +4,23 @@ library(ggplot2)
 library(ggthemes)
 library(data.table)
 library(dplyr)
+library(tmap)
+library(scales)
 library(colorspace)
 library(here)
 here()
 source('../../naturemap/src/000_ConvenienceFunctions.R')
-rasterOptions(progress = 'text',tmpdir = 'E:/tmp/')
+rasterOptions(progress = 'text',
+              tmpdir = 'E:/tmp/'
+              )
 raster::removeTmpFiles(.1)
 # --- #
 p_ll <- '+proj=longlat +datum=WGS84 +no_defs'
 e <- c(-180,180,-90,90)
+
+cols <- c("Unmanaged regrowth" = "#3B443C",
+          "Aided replanting" = '#6ECCBB',
+          "Plantations" = '#D2081D')
 
 # ---- #
 #### Format extracts
@@ -127,24 +135,32 @@ assertthat::assert_that(
 # Get statistics overall across datasets
 # Plot stacked bargraph with proportion 
 
-# TODO: Need to rerun with area estimates
 ex <- bind_rows(
   # Hansen
-  read.csv('extracts/zones_Hansen_naturalforest.csv') %>% 
+  read.csv('extracts/hansen_natural.csv') %>% rename(remapped = gain) %>% 
     dplyr::mutate(type = 'natural', dataset = 'Hansen'),
-  read.csv('extracts/zones_Hansen_plantedforest.csv') %>% 
+  read.csv('extracts/hansen_aided.csv') %>% rename(remapped = gain) %>% 
+    dplyr::mutate(type = 'aided', dataset = 'Hansen'),
+  read.csv('extracts/hansen_planted.csv') %>% rename(remapped = gain) %>% 
     dplyr::mutate(type = 'planted', dataset = 'Hansen'),
  #  ESA CCI
- read.csv('extracts/zones_ESACCI_naturalforest.csv') %>% 
+ read.csv('extracts/esacci_natural.csv') %>%
    dplyr::mutate(type = 'natural', dataset = 'ESACCI'),
- read.csv('extracts/zones_ESACCI_plantedforest.csv') %>% 
+ read.csv('extracts/esacci_aided.csv') %>%
+   dplyr::mutate(type = 'aided', dataset = 'ESACCI'),
+ read.csv('extracts/esacci_planted.csv') %>%
    dplyr::mutate(type = 'planted', dataset = 'ESACCI'),
  # MODIS
- read.csv('extracts/zones_MODIS_naturalforest.csv') %>% 
+ read.csv('extracts/modis_natural.csv') %>%
    dplyr::mutate(type = 'natural', dataset = 'MODIS'),
- read.csv('extracts/zones_MODIS_plantedforest.csv') %>% 
-   dplyr::mutate(type = 'planted', dataset = 'MODIS') 
-) %>% dplyr::filter(zone == 1)
+ read.csv('extracts/modis_aided.csv') %>%
+   dplyr::mutate(type = 'aided', dataset = 'MODIS'),
+ read.csv('extracts/modis_planted.csv') %>%
+   dplyr::mutate(type = 'planted', dataset = 'MODIS')
+)
+
+# Convert to million ha
+ex$remapped <- (ex$remapped / 1e6) / 0.0001
 
 # “replanted forest” - forest is managed and there
 # are signs that the forest has been planted in the
@@ -153,18 +169,50 @@ ex <- bind_rows(
 # Short rotation plantations for timber
 # Tree plantations: “woody plantations” - short rotation (15 years max) timber plantations.
 
-ex$type <- factor(ex$type, levels = c('Natural regrowth', 'Replanted or'))
+ex$type <- factor(ex$type, levels = c('natural','aided','planted'), labels = names(cols))
 
-g <- ggplot(ex, aes(y = sum, x = dataset, group = type, fill = type)) +
+scientific_10 <- function(x) {
+  parse(text=gsub("e", " %*% 10^", scales::scientific_format()(x)))
+}
+
+g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
   theme_classic(base_size = 18) +
   coord_flip() +
   geom_bar(stat = 'identity',colour='black', position = position_dodge(.5)) +
-  scale_y_continuous(expand = c(0,0)) +
-  scale_fill_brewer(palette = 'Dark2') +
+  scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5), labels = scientific_10 ) +
+  scale_fill_manual(values = cols) +
   guides(fill = guide_legend(title = '')) +
-  theme(legend.position = c(.9, .2),legend.text = element_text(size = 16))
+  theme(legend.position = c(.75, .35),legend.text = element_text(size = 16),legend.background = element_blank()) +
+  labs(x = '', y = 'Forest regrowth (in mill. ha)')
 g
+# Add mean estimate above the plot
+gs <- ggplot(ex, aes(y = remapped, x = type, colour = type)) +
+  theme_void() +
+  # theme_classic(base_size = 18) +
+  coord_flip() +
+  stat_summary(fun = mean,
+               fun.min = function(x) mean(x) - sd(x), 
+               fun.max = function(x) mean(x) + sd(x), 
+               geom = "pointrange",size = 1.5) +
+  scale_colour_manual(values = cols) + 
+  scale_x_discrete( expand=c(1, 1) ) +
+  theme(axis.line.y = element_blank(),axis.text.y = element_blank(),axis.ticks.y = element_blank()) +
+  guides(colour = 'none')
+gs  
 
+# gg <- cowplot::plot_grid(gs + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
+#                    g ,#+ theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
+#                    rel_heights = c(1,3),
+#                    align = 'hv',scale = TRUE, ncol = 1)
+# gg
+# cowplot::ggsave2(plot = gg,filename = 'Figure_bar.png',width = 10,height = 7,dpi = 400)
+
+# Alternative.
+# Annotate as grob
+g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf)
+
+ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf),
+       filename = 'Figure_bar.png',width = 10,height = 6,dpi = 400 )
 
 # -------- #
 
@@ -212,8 +260,35 @@ df <- dplyr::bind_rows(
 # -------- #
 # Third:
 # Map of hotspots of plantion planting
-plot(fml_consensus)
+fml_consensus <- raster('extracts/consensus_forestgain.tif')
+NAvalue(fml_consensus) <- 0
+# Max aggregate it for plotting
+fml_consensus <- raster::aggregate(fml_consensus, fact = 10, fun = raster::modal, na.rm = TRUE)
+# fml_consensus <- raster::focal(fml_consensus, w = matrix(1/25,nrow=5,ncol=5),
+#                                fun = function(x) max(x, na.rm = TRUE))
 
+# Tmap data
+library(sf)
+data(World)
+World <- World %>% dplyr::filter(continent != 'Antarctica')
+
+fml_consensus <- ratify(fml_consensus)
+rat <- levels(fml_consensus)[[1]]
+rat$cat <- names(cols)
+rat$ID <- c(1,2,3)
+levels(fml_consensus) <- rat
+
+tm <- tm_shape(fml_consensus, bbox = st_bbox(fml_consensus), projection = "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs") +
+  tm_raster("r_tmp_2021-03-20_222047_9896_58218.grd",  style = 'cat', labels = names(cols),
+            palette = cols, title = "Forest regrowth") +
+  tm_shape(World) +
+  tm_borders(col = "grey20",lwd = .1) +
+  tm_layout(scale = .65, 
+            legend.position = c("left","bottom"),
+            legend.bg.color = "white", legend.bg.alpha = .2, 
+            legend.frame = "gray50")
+
+tmap_save(tm,filename = 'Figure_map.png',width = 1400,height = 900,dpi = 400)
 # -------- #
 # Combine all figures into one graph for publication
 
