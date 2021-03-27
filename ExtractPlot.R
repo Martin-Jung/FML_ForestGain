@@ -131,6 +131,7 @@ assertthat::assert_that(
 )
 
 # -------- #
+#### Figure - part overall ####
 # Idea:
 # Get statistics overall across datasets
 # Plot stacked bargraph with proportion 
@@ -160,7 +161,7 @@ ex <- bind_rows(
 )
 
 # Convert to million ha
-ex$remapped <- (ex$remapped / 1e6) / 0.0001
+ex$remapped <- (ex$remapped * 0.0001) /1e6
 
 # “replanted forest” - forest is managed and there
 # are signs that the forest has been planted in the
@@ -179,11 +180,11 @@ g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
   theme_classic(base_size = 18) +
   coord_flip() +
   geom_bar(stat = 'identity',colour='black', position = position_dodge(.5)) +
-  scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5), labels = scientific_10 ) +
+  scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5)) + #, labels = scientific_10 ) +
   scale_fill_manual(values = cols) +
   guides(fill = guide_legend(title = '')) +
   theme(legend.position = c(.75, .35),legend.text = element_text(size = 16),legend.background = element_blank()) +
-  labs(x = '', y = 'Forest regrowth (in mill. ha)')
+  labs(x = '', y = 'Treecover gain (in mill. ha)')
 g
 # Add mean estimate above the plot
 gs <- ggplot(ex, aes(y = remapped, x = type, colour = type)) +
@@ -215,45 +216,76 @@ ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.
        filename = 'Figure_bar.png',width = 10,height = 6,dpi = 400 )
 
 # -------- #
-
-# -------- #
+#### Figure - time series ####
 # Second:
 # Time series of forest gain per year split by whether it is natural regrowth, aided planted or commerical planted
 # Show different lines per land cover dataset
+# Calculated and extracted via earth engine
 
-# Area gain
-esacci_area <- esacci_forestgain * landarea
+# Get extracted stats
+stats1 <- read.csv('extracts/stats_esacci_natural.csv') %>% dplyr::select(contains('remapped'))
+names(stats1) <- paste0('year', 1992:2015);stats1$type <- 'natural';stats1$dataset <- 'esacci'
+stats2 <- read.csv('extracts/stats_esacci_aided.csv') %>% dplyr::select(contains('remapped'))
+names(stats2) <- paste0('year', 1992:2015);stats2$type <- 'aided';stats2$dataset <- 'esacci'
+stats3 <- read.csv('extracts/stats_esacci_planted.csv') %>% dplyr::select(contains('remapped'))
+names(stats3) <- paste0('year', 1992:2015);stats3$type <- 'planted';stats3$dataset <- 'esacci'
 
-df <- data.frame()
-# Now simply mask and calculate cellStats
-esacci_area_nat <- raster::mask(esacci_area, fml_natural,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
-df <- dplyr::bind_rows(
-  data.frame(cellStats(esacci_area_nat,'sum'),dataset = 'ESACCI', type = 'natural' ),
-  df
-)
-removeTmpFiles(1)
-esacci_area_aid <- raster::mask(esacci_area, fml_aided,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
-df <- dplyr::bind_rows(
-  data.frame(cellStats(esacci_area_aid,'sum'),dataset = 'ESACCI', type = 'aided' ),
-  df
-)
-removeTmpFiles(1)
-esacci_area_pla <- raster::mask(esacci_area, fml_planted,datatype = 'INT2S',options=c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"))
-df <- dplyr::bind_rows(
-  data.frame(cellStats(esacci_area_pla,'sum'),dataset = 'ESACCI', type = 'planted' ),
-  df
-)
+stats4 <- read.csv('extracts/stats_modis_natural.csv') %>% dplyr::select(contains('remapped'))
+names(stats4) <- paste0('year', 2001:2015);stats4$type <- 'natural';stats4$dataset <- 'modis'
+stats5 <- read.csv('extracts/stats_modis_aided.csv') %>% dplyr::select(contains('remapped'))
+names(stats5) <- paste0('year', 2001:2015);stats5$type <- 'aided';stats5$dataset <- 'modis'
+stats6 <- read.csv('extracts/stats_modis_planted.csv') %>% dplyr::select(contains('remapped'))
+names(stats6) <- paste0('year', 2001:2015);stats6$type <- 'planted';stats6$dataset <- 'modis'
 
-# Then MODIS
-df <- dplyr::bind_rows(
-  df,
-  data.frame(fml_natural = values(fml_natural),
-             fml_aided = values(fml_aided),
-             fml_planted = values(fml_planted),
-             values(modis_forestgain * landarea),
-             dataset = 'MODIS')
-)
-# Finally Hansen separately
+# And hansen
+stats7 <- read.csv('extracts/hansen_natural.csv') %>% dplyr::select(contains('gain'))
+stats7 <- cbind(stats7, replicate(12,stats7))
+names(stats7) <- paste0('year', 2000:2012);stats7$type <- 'natural';stats7$dataset <- 'hansen'
+stats8 <- read.csv('extracts/hansen_aided.csv') %>% dplyr::select(contains('gain'))
+stats8 <- cbind(stats8, replicate(12,stats8))
+names(stats8) <- paste0('year', 2000:2012);stats8$type <- 'aided';stats8$dataset <- 'hansen'
+stats9 <- read.csv('extracts/hansen_planted.csv') %>% dplyr::select(contains('gain'))
+stats9 <- cbind(stats9, replicate(12,stats9))
+names(stats9) <- paste0('year', 2000:2012);stats9$type <- 'planted';stats9$dataset <- 'hansen'
+
+ts_stats <- bind_rows(
+  stats1,stats2,stats3,
+  stats4,stats5,stats6,
+  stats7,stats8,stats9
+) %>% 
+  tidyr::pivot_longer(cols = contains('year')) %>% 
+  dplyr::mutate(year = as.numeric(gsub('\\D','', name)) ) %>% 
+  # Convert to millha
+  dplyr::mutate(millha = (value * 0.0001)/1e6 )
+
+ts_stats$type <- factor(ts_stats$type,
+                        levels = c('natural','aided','planted'),
+                        labels = names(cols)
+                        )
+ts_stats$dataset <- factor(ts_stats$dataset,
+                           levels = c('hansen','modis','esacci'),
+                           labels = c('Hansen','ESA CCI', 'MODIS')
+                             )
+
+dd <- ts_stats %>% dplyr::filter(dataset %in% c('ESA CCI','MODIS'))
+ddh <- ts_stats %>% dplyr::filter(dataset %in% c('Hansen'))
+
+# Build time series plot
+g <- ggplot(dd,
+            aes(x = year, y = millha,
+                          colour = type, linetype = dataset)) +
+  theme_bw(base_size = 18) +
+  geom_line( size = 2) +
+  # Add Hansen as alpha line with point at the end
+  # annotate(geom = 'rect', y = ) +
+  # annotate(geom = 'rect', y = ) +
+  scale_colour_manual(values = cols) +
+  facet_wrap(~dataset,ncol = 2) +
+  # scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5), labels = scientific_10 ) +
+  guides(colour = guide_legend(title = '',nrow = 2)) +
+  theme(legend.position = 'bottom',legend.text = element_text(size = 16),legend.background = element_blank()) +
+  labs(x = '', y = 'Treecover gain (in mill. ha)')
+g
 
 
 
