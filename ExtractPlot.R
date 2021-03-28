@@ -11,16 +11,16 @@ library(here)
 here()
 source('../../naturemap/src/000_ConvenienceFunctions.R')
 rasterOptions(progress = 'text',
-              tmpdir = 'E:/tmp/'
+#              tmpdir = 'E:/tmp/'
               )
 raster::removeTmpFiles(.1)
 # --- #
 p_ll <- '+proj=longlat +datum=WGS84 +no_defs'
 e <- c(-180,180,-90,90)
 
-cols <- c("Unmanaged regrowth" = "#3B443C",
-          "Aided replanting" = '#6ECCBB',
-          "Plantations" = '#D2081D')
+cols <- c("Naturally regenerating forest" = "#3B443C",
+          "Planted forest" = '#6ECCBB',
+          "Plantation forest" = '#D2081D')
 
 # ---- #
 #### Format extracts
@@ -131,7 +131,7 @@ assertthat::assert_that(
 )
 
 # -------- #
-#### Figure - part overall ####
+#### Figure - part overall (old) ####
 # Idea:
 # Get statistics overall across datasets
 # Plot stacked bargraph with proportion 
@@ -176,6 +176,15 @@ scientific_10 <- function(x) {
   parse(text=gsub("e", " %*% 10^", scales::scientific_format()(x)))
 }
 
+# Some stats
+ex <- left_join(ex, ex %>% dplyr::group_by(dataset) %>% summarise(tot = sum(remapped)) )  # Total per dataset
+ex %>% group_by(type) %>% 
+  summarise(prop_avg = mean(remapped / tot),
+            sd_avg = sd(remapped / tot),
+            min = min( remapped / tot),
+            max = max( remapped / tot)
+            )
+
 g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
   theme_classic(base_size = 18) +
   coord_flip() +
@@ -210,7 +219,7 @@ gs
 
 # Alternative.
 # Annotate as grob
-g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf)
+g1 <- g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf)
 
 ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf),
        filename = 'Figure_bar.png',width = 10,height = 6,dpi = 400 )
@@ -224,18 +233,18 @@ ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.
 
 # Get extracted stats
 stats1 <- read.csv('extracts/stats_esacci_natural.csv') %>% dplyr::select(contains('remapped'))
-names(stats1) <- paste0('year', 1992:2015);stats1$type <- 'natural';stats1$dataset <- 'esacci'
+stats1 <- sort(stats1);names(stats1) <- paste0('year', 1992:2015);stats1$type <- 'natural';stats1$dataset <- 'esacci'
 stats2 <- read.csv('extracts/stats_esacci_aided.csv') %>% dplyr::select(contains('remapped'))
-names(stats2) <- paste0('year', 1992:2015);stats2$type <- 'aided';stats2$dataset <- 'esacci'
+stats2 <- sort(stats2);names(stats2) <- paste0('year', 1992:2015);stats2$type <- 'aided';stats2$dataset <- 'esacci'
 stats3 <- read.csv('extracts/stats_esacci_planted.csv') %>% dplyr::select(contains('remapped'))
-names(stats3) <- paste0('year', 1992:2015);stats3$type <- 'planted';stats3$dataset <- 'esacci'
+stats3 <- sort(stats3);names(stats3) <- paste0('year', 1992:2015);stats3$type <- 'planted';stats3$dataset <- 'esacci'
 
 stats4 <- read.csv('extracts/stats_modis_natural.csv') %>% dplyr::select(contains('remapped'))
-names(stats4) <- paste0('year', 2001:2015);stats4$type <- 'natural';stats4$dataset <- 'modis'
+stats4 <- sort(stats4);names(stats4) <- paste0('year', 2001:2015);stats4$type <- 'natural';stats4$dataset <- 'modis'
 stats5 <- read.csv('extracts/stats_modis_aided.csv') %>% dplyr::select(contains('remapped'))
-names(stats5) <- paste0('year', 2001:2015);stats5$type <- 'aided';stats5$dataset <- 'modis'
+stats5 <- sort(stats5);names(stats5) <- paste0('year', 2001:2015);stats5$type <- 'aided';stats5$dataset <- 'modis'
 stats6 <- read.csv('extracts/stats_modis_planted.csv') %>% dplyr::select(contains('remapped'))
-names(stats6) <- paste0('year', 2001:2015);stats6$type <- 'planted';stats6$dataset <- 'modis'
+stats6 <- sort(stats6);names(stats6) <- paste0('year', 2001:2015);stats6$type <- 'planted';stats6$dataset <- 'modis'
 
 # And hansen
 stats7 <- read.csv('extracts/hansen_natural.csv') %>% dplyr::select(contains('gain'))
@@ -264,38 +273,56 @@ ts_stats$type <- factor(ts_stats$type,
                         )
 ts_stats$dataset <- factor(ts_stats$dataset,
                            levels = c('hansen','modis','esacci'),
-                           labels = c('Hansen','ESA CCI', 'MODIS')
+                           labels = c('Hansen','MODIS','ESA CCI')
                              )
 
 dd <- ts_stats %>% dplyr::filter(dataset %in% c('ESA CCI','MODIS'))
 ddh <- ts_stats %>% dplyr::filter(dataset %in% c('Hansen'))
 
+
+gs <- ggplot(ts_stats %>% dplyr::filter(year>=2012), aes(y = millha, x = type, colour = type)) +
+  theme_void(base_size = 18) +
+  stat_summary(fun = mean,
+               fun.min = function(x) mean(x) - sd(x), 
+               fun.max = function(x) mean(x) + sd(x), 
+               geom = "pointrange",size = 1.5) +
+  scale_colour_manual(values = cols) + 
+  scale_x_discrete( expand=c(1, 1) ) +
+  theme(axis.line.y = element_blank(),axis.text.y = element_blank(),axis.ticks.y = element_blank()) +
+  guides(colour = 'none')
+gs  
+
 # Build time series plot
-g <- ggplot(dd,
+g2 <- ggplot(dd,
             aes(x = year, y = millha,
                           colour = type, linetype = dataset)) +
-  theme_bw(base_size = 18) +
-  geom_line( size = 2) +
+  theme_classic(base_size = 18) +
+  geom_line( size = 1.5) +
   # Add Hansen as alpha line with point at the end
+  geom_line(data = ddh,  alpha = .4, size = 2,show.legend = FALSE) + 
+    geom_point(data = ddh %>% dplyr::filter(year == 2012), size = 4,show.legend = FALSE) +
   # annotate(geom = 'rect', y = ) +
-  # annotate(geom = 'rect', y = ) +
-  scale_colour_manual(values = cols) +
-  facet_wrap(~dataset,ncol = 2) +
-  # scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5), labels = scientific_10 ) +
-  guides(colour = guide_legend(title = '',nrow = 2)) +
-  theme(legend.position = 'bottom',legend.text = element_text(size = 16),legend.background = element_blank()) +
+  scale_colour_manual(values = cols) + 
+  scale_linetype_stata() +
+  scale_y_continuous(breaks = pretty_breaks(5) ) +
+  annotation_custom(grob = ggplotGrob(gs), xmin = 2015, xmax = 2016.5, ymin = 0, ymax = Inf) +
+  guides(colour = 'none', alpha = 'none',
+         linetype = guide_legend(title = '',ncol = 1,keywidth = unit(1,'in'),label.position = 'bottom')) +
+  theme(legend.position = c(.1,.75),legend.text = element_text(size = 16),legend.background = element_blank()) +
   labs(x = '', y = 'Treecover gain (in mill. ha)')
-g
-
+g2
+ggsave(plot = g2,filename = 'Figure_ts.png',width = 12,height = 6,dpi = 400)
 
 
 # -------- #
-# Third:
+#### Figure - Map ####
 # Map of hotspots of plantion planting
-fml_consensus <- raster('extracts/consensus_forestgain.tif')
-NAvalue(fml_consensus) <- 0
-# Max aggregate it for plotting
-fml_consensus <- raster::aggregate(fml_consensus, fact = 10, fun = raster::modal, na.rm = TRUE)
+# fml_consensus <- raster('extracts/consensus_forestgain.tif')
+# NAvalue(fml_consensus) <- 0
+# # Max aggregate it for plotting
+# fml_consensus <- raster::aggregate(fml_consensus, fact = 10, fun = raster::modal, na.rm = TRUE)
+# writeGeoTiff(fml_consensus, 'extracts/consensus_forestgain_aggMode.tif',dt = 'INT2S')
+fml_consensus <- raster('extracts/consensus_forestgain_aggMode.tif')
 # fml_consensus <- raster::focal(fml_consensus, w = matrix(1/25,nrow=5,ncol=5),
 #                                fun = function(x) max(x, na.rm = TRUE))
 
@@ -307,21 +334,70 @@ World <- World %>% dplyr::filter(continent != 'Antarctica')
 fml_consensus <- ratify(fml_consensus)
 rat <- levels(fml_consensus)[[1]]
 rat$cat <- names(cols)
+rat$cat[1] <- "Naturally regenerating\nforest"
 rat$ID <- c(1,2,3)
 levels(fml_consensus) <- rat
 
-tm <- tm_shape(fml_consensus, bbox = st_bbox(fml_consensus), projection = "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs") +
-  tm_raster("r_tmp_2021-03-20_222047_9896_58218.grd",  style = 'cat', labels = names(cols),
-            palette = cols, title = "Forest regrowth") +
-  tm_shape(World) +
-  tm_borders(col = "grey20",lwd = .1) +
-  tm_layout(scale = .65, 
-            legend.position = c("left","bottom"),
-            legend.bg.color = "white", legend.bg.alpha = .2, 
-            legend.frame = "gray50")
+moll = "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 
+tm <- tm_shape(World,is.master = FALSE,projection = moll) +
+  tm_style(style = 'natural') +
+    tm_borders(col = "grey20",lwd = .1) + tm_fill(col = 'white',zindex = 1) +
+  tm_shape(fml_consensus, projection = moll) +
+    tm_raster("consensus_forestgain_aggMode",  style = 'cat', labels = names(cols),
+              palette = cols, title = "",legend.hist = FALSE) +
+  tm_layout(scale = .65,
+           # main.title = "Tree cover gain until 2015",main.title.position = 'center',main.title.size = .75,
+            earth.boundary = TRUE,earth.boundary.lwd = 1,
+            legend.position = c(.4,.15),#c("center",'bottom'),
+            legend.bg.color = "white", legend.bg.alpha = 0, legend.text.size = .6,
+            legend.frame = FALSE, #legend.frame = "gray50"
+            frame = FALSE, inner.margins = 0, outer.margins = 0, asp = 0, legend.width = 400
+            ) 
+# tm_legend(legend.outside=T, legend.outside.position="right")
 tmap_save(tm,filename = 'Figure_map.png',width = 1400,height = 900,dpi = 400)
-# -------- #
-# Combine all figures into one graph for publication
+
+#### Figure triangel -- ggtern ####
+# Idea:
+# Extract of each country the proportion restored/planted/plantation
+# Plot via tenary diagram
+# Then focus link on certain outliers and show them in insets
+
+library(exactextractr)
+data("World")
+fml_consensus <- raster('extracts/consensus_forestgain.tif')
+
+fml1 <- fml_consensus == 1
+ex1 <- exactextractr::exact_extract(fml1, World, fun = 'sum')
+fml2 <- fml_consensus == 2
+ex2 <- exactextractr::exact_extract(fml2, World, fun = 'sum')
+fml3 <- fml_consensus == 3
+ex3 <- exactextractr::exact_extract(fml3, World, fun = 'sum')
 
 
+ex <- bind_rows(
+  data.frame(name = World$name,continent = World$continent, economy = World$economy,
+             income_grp = World$income_grp,
+             value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+  data.frame(name = World$name,continent = World$continent, economy = World$economy,
+             income_grp = World$income_grp,
+             value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+  data.frame(name = World$name,continent = World$continent, economy = World$economy,
+             income_grp = World$income_grp,
+             value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+)
+
+dir.create('resSaves',showWarnings = FALSE)
+saveRDS(ex, 'resSaves/country_modalgain.rds')
+
+# --- #
+ex <- readRDS('resSaves/country_modalgain.rds')
+library(ggtern)
+
+df <- ex %>% dplyr::select(name,continent, type, prop) %>% 
+  tidyr::spread(key = type,value = prop) %>% 
+  tidyr::drop_na()
+
+ggtern::ggtern(df, aes(x = natural, y = aided, z = planted, colour = continent)) +
+  geom_point(size = 2) +
+  scale_colour_wsj()
