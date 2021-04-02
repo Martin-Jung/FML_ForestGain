@@ -18,77 +18,77 @@ raster::removeTmpFiles(.1)
 p_ll <- '+proj=longlat +datum=WGS84 +no_defs'
 e <- c(-180,180,-90,90)
 
-cols <- c("Naturally regenerating forest" = "#3B443C",
-          "Planted forest" = '#6ECCBB',
-          "Plantation forest" = '#D2081D')
+cols <- c("Naturally regenerating forest" = "#44EB7C",
+          "Planted forest" = '#9918DE',
+          "Plantations and agroforestry" = '#E8510C')
 
 # ---- #
-#### Format extracts
-# Natural as template
-fml_natural <- raster('extracts/FML_natural.tif')
-
-# Load landarea and build
-ll <- list.files('extracts/','landarea',full.names = TRUE)
-gdalbuildvrt(ll,output.vrt = 'extracts/out.vrt',
-                         resolution = 'highest',separate = FALSE)
-ras <- raster('extracts/out.vrt')
-proj4string(ras) <- p_ll
-writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
-ras <- raster('extracts/landarea.tif')
-ras <- raster::crop(ras, e )
-# Align
-ras <- alignRasters(ras, fml_natural,method = 'bilinear',func = mean,cl = TRUE)
-writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
-file.remove('extracts/out.vrt')
-
-# Load ESACCI and build
-ll <- list.files('extracts/','ESACCI_forestgain',full.names = TRUE)
-gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
-             resolution = 'highest',separate = FALSE)
-gdal_translate(src_dataset = 'extracts/out.vrt',
-               dst_dataset = 'extracts/ESACCI_forestgain.tif',
-               r = 'nearest',
-               co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-               ot = 'Byte')
-ras <- raster::stack('extracts/ESACCI_forestgain.tif')
-names(ras) <- paste0('year',1992:2015)
-proj4string(ras) <- p_ll
-ras <- raster::crop(ras, e )
-# Align
-gdalwarp(srcfile = 'extracts/MODIS_forestgain.tif',
-         dstfile = 'extracts/MODIS_forestgain2.tif',
-         co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-         te = c(xmin(fml_natural),ymin(fml_natural),xmax(fml_natural),ymax(fml_natural)),
-         tr = res(fml_natural),
-         r = 'near',
-         multi = TRUE
-         )
-writeGeoTiff(ras,'extracts/ESACCI_forestgain.tif',dt = 'INT1U')
-file.remove('extracts/out.vrt')
-
-# Load MODIS forestgain
-ll <- list.files('extracts/','MODIS_forestgain',full.names = TRUE)
-gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
-             resolution = 'highest',separate = FALSE)
-gdal_translate(src_dataset = 'extracts/out.vrt',
-               dst_dataset = 'extracts/MODIS_forestgain.tif',
-               r = 'nearest',
-               co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-               ot = 'Byte')
-ras <- raster::stack('extracts/MODIS_forestgain.tif')
-names(ras) <- paste0('year',2001:2015)
-proj4string(ras) <- p_ll
-ras <- raster::crop(ras, e )
-writeGeoTiff(ras,'extracts/MODIS_forestgain2.tif',dt = 'INT1U')
-file.remove('extracts/out.vrt')
-
-# Hansen Forest gain
-ras <- raster('extracts/Hansen_forestgain.tif')
-proj4string(ras) <- p_ll
-ras <- raster::crop(ras, e )
-writeGeoTiff(ras,'extracts/Hansen_forestgain.tif',dt = 'INT1U')
-
-
+# #### Format extracts ####
+# # Natural as template
+# fml_natural <- raster('extracts/FML_natural.tif')
+# 
+# # Load landarea and build
+# ll <- list.files('extracts/','landarea',full.names = TRUE)
+# gdalbuildvrt(ll,output.vrt = 'extracts/out.vrt',
+#                          resolution = 'highest',separate = FALSE)
+# ras <- raster('extracts/out.vrt')
+# proj4string(ras) <- p_ll
+# writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
+# ras <- raster('extracts/landarea.tif')
+# ras <- raster::crop(ras, e )
+# # Align
+# ras <- alignRasters(ras, fml_natural,method = 'bilinear',func = mean,cl = TRUE)
+# writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
+# file.remove('extracts/out.vrt')
+# 
+# # Load ESACCI and build
+# ll <- list.files('extracts/','ESACCI_forestgain',full.names = TRUE)
+# gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
+#              resolution = 'highest',separate = FALSE)
+# gdal_translate(src_dataset = 'extracts/out.vrt',
+#                dst_dataset = 'extracts/ESACCI_forestgain.tif',
+#                r = 'nearest',
+#                co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
+#                ot = 'Byte')
+# ras <- raster::stack('extracts/ESACCI_forestgain.tif')
+# names(ras) <- paste0('year',1992:2015)
+# proj4string(ras) <- p_ll
+# ras <- raster::crop(ras, e )
+# # Align
+# gdalwarp(srcfile = 'extracts/MODIS_forestgain.tif',
+#          dstfile = 'extracts/MODIS_forestgain2.tif',
+#          co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
+#          te = c(xmin(fml_natural),ymin(fml_natural),xmax(fml_natural),ymax(fml_natural)),
+#          tr = res(fml_natural),
+#          r = 'near',
+#          multi = TRUE
+#          )
+# writeGeoTiff(ras,'extracts/ESACCI_forestgain.tif',dt = 'INT1U')
+# file.remove('extracts/out.vrt')
+# 
+# # Load MODIS forestgain
+# ll <- list.files('extracts/','MODIS_forestgain',full.names = TRUE)
+# gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
+#              resolution = 'highest',separate = FALSE)
+# gdal_translate(src_dataset = 'extracts/out.vrt',
+#                dst_dataset = 'extracts/MODIS_forestgain.tif',
+#                r = 'nearest',
+#                co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
+#                ot = 'Byte')
+# ras <- raster::stack('extracts/MODIS_forestgain.tif')
+# names(ras) <- paste0('year',2001:2015)
+# proj4string(ras) <- p_ll
+# ras <- raster::crop(ras, e )
+# writeGeoTiff(ras,'extracts/MODIS_forestgain2.tif',dt = 'INT1U')
+# file.remove('extracts/out.vrt')
+# 
+# # Hansen Forest gain
+# ras <- raster('extracts/Hansen_forestgain.tif')
+# proj4string(ras) <- p_ll
+# ras <- raster::crop(ras, e )
+# writeGeoTiff(ras,'extracts/Hansen_forestgain.tif',dt = 'INT1U')
+# 
+# 
 #### Extract data ####
 # First load and extract
 
@@ -366,14 +366,15 @@ tmap_save(tm,filename = 'Figure_map.png',width = 1400,height = 900,dpi = 400)
 library(exactextractr)
 data("World")
 fml_consensus <- raster('extracts/consensus_forestgain.tif')
+fml_area <- raster::area(fml_consensus) # km2
+fml_area <- fml_area * 100 # Convert to ha
 
 fml1 <- fml_consensus == 1
-ex1 <- exactextractr::exact_extract(fml1, World, fun = 'sum')
+ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
 fml2 <- fml_consensus == 2
-ex2 <- exactextractr::exact_extract(fml2, World, fun = 'sum')
+ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
 fml3 <- fml_consensus == 3
-ex3 <- exactextractr::exact_extract(fml3, World, fun = 'sum')
-
+ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
 
 ex <- bind_rows(
   data.frame(name = World$name,continent = World$continent, economy = World$economy,
@@ -392,12 +393,46 @@ saveRDS(ex, 'resSaves/country_modalgain.rds')
 
 # --- #
 ex <- readRDS('resSaves/country_modalgain.rds')
-library(ggtern)
+
+# Join in Bonn pledges
+pledge <- readxl::read_xlsx('pledges.xlsx')
+# Manual reformating
+pledge$country[pledge$country=='Scotland'] <- 'United Kingdom'
+pledge$country[pledge$country=='United States of America'] <- 'United States'
+pledge$country[pledge$country=="Côte d'Ivoire"] <- 'Cote d\'Ivoire'
+pledge$country[pledge$country=='Central African Republic'] <- 'Central African Rep.'
+pledge$country[pledge$country=="Republic of the Congo"] <- 'Dem. Rep. Congo'
+pledge$country[pledge$country=="Democratic Republic of the Congo"] <- 'Congo'
+pledge$country[pledge$country=="Dominican Republic"] <- 'Dominican Rep.'
+pledge$country[pledge$country=="Eswatini"] <- "Swaziland"
+pledge$country[pledge$country=="Republic of Sudan"] <- "Sudan"
+
+assertthat::assert_that(
+  length(pledge$country[which(!(pledge$country %in% ex$name))]) == 0
+)
+#sort(ex$name)
+
+# Join in 
+ex <- dplyr::left_join(ex, pledge, by = c('name' = 'country'))
+
+# --- #
+
+# 
+ex$pledge_fulfilled <- ex$value / ex$pledge_ha
 
 df <- ex %>% dplyr::select(name,continent, type, prop) %>% 
   tidyr::spread(key = type,value = prop) %>% 
   tidyr::drop_na()
 
+df %>% arrange(desc(natural)) %>% head(20)
+
+ggplot(ex, aes(x = type, y = value)) +
+  theme_classic() +
+  geom_bar(stat = 'identity') +
+  facet_wrap(~continent)
+
+library(ggtern)
 ggtern::ggtern(df, aes(x = natural, y = aided, z = planted, colour = continent)) +
   geom_point(size = 2) +
   scale_colour_wsj()
+
