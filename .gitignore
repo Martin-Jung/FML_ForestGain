@@ -11,3 +11,5 @@ extracts/*.tif
 
 # No xml files
 *.aux.xml
+
+GLASS-GLC/

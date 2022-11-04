@@ -6,13 +6,7 @@ library(data.table)
 library(dplyr)
 library(tmap)
 library(scales)
-library(colorspace)
-library(here)
-here()
-source('../../naturemap/src/000_ConvenienceFunctions.R')
-rasterOptions(progress = 'text',
-#              tmpdir = 'E:/tmp/'
-              )
+rasterOptions(progress = 'text')
 raster::removeTmpFiles(.1)
 # --- #
 p_ll <- '+proj=longlat +datum=WGS84 +no_defs'
@@ -23,75 +17,9 @@ cols <- c("Naturally regenerating forest" = "#44EB7C",
           "Plantations and agroforestry" = '#E8510C')
 
 # ---- #
-# #### Format extracts ####
-# # Natural as template
-# fml_natural <- raster('extracts/FML_natural.tif')
-# 
-# # Load landarea and build
-# ll <- list.files('extracts/','landarea',full.names = TRUE)
-# gdalbuildvrt(ll,output.vrt = 'extracts/out.vrt',
-#                          resolution = 'highest',separate = FALSE)
-# ras <- raster('extracts/out.vrt')
-# proj4string(ras) <- p_ll
-# writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
-# ras <- raster('extracts/landarea.tif')
-# ras <- raster::crop(ras, e )
-# # Align
-# ras <- alignRasters(ras, fml_natural,method = 'bilinear',func = mean,cl = TRUE)
-# writeGeoTiff(ras,'extracts/landarea.tif',dt = 'INT4U')
-# file.remove('extracts/out.vrt')
-# 
-# # Load ESACCI and build
-# ll <- list.files('extracts/','ESACCI_forestgain',full.names = TRUE)
-# gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
-#              resolution = 'highest',separate = FALSE)
-# gdal_translate(src_dataset = 'extracts/out.vrt',
-#                dst_dataset = 'extracts/ESACCI_forestgain.tif',
-#                r = 'nearest',
-#                co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-#                ot = 'Byte')
-# ras <- raster::stack('extracts/ESACCI_forestgain.tif')
-# names(ras) <- paste0('year',1992:2015)
-# proj4string(ras) <- p_ll
-# ras <- raster::crop(ras, e )
-# # Align
-# gdalwarp(srcfile = 'extracts/MODIS_forestgain.tif',
-#          dstfile = 'extracts/MODIS_forestgain2.tif',
-#          co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-#          te = c(xmin(fml_natural),ymin(fml_natural),xmax(fml_natural),ymax(fml_natural)),
-#          tr = res(fml_natural),
-#          r = 'near',
-#          multi = TRUE
-#          )
-# writeGeoTiff(ras,'extracts/ESACCI_forestgain.tif',dt = 'INT1U')
-# file.remove('extracts/out.vrt')
-# 
-# # Load MODIS forestgain
-# ll <- list.files('extracts/','MODIS_forestgain',full.names = TRUE)
-# gdalbuildvrt(ll, output.vrt = 'extracts/out.vrt',
-#              resolution = 'highest',separate = FALSE)
-# gdal_translate(src_dataset = 'extracts/out.vrt',
-#                dst_dataset = 'extracts/MODIS_forestgain.tif',
-#                r = 'nearest',
-#                co = c("COMPRESS=DEFLATE","PREDICTOR=2","ZLEVEL=9"),
-#                ot = 'Byte')
-# ras <- raster::stack('extracts/MODIS_forestgain.tif')
-# names(ras) <- paste0('year',2001:2015)
-# proj4string(ras) <- p_ll
-# ras <- raster::crop(ras, e )
-# writeGeoTiff(ras,'extracts/MODIS_forestgain2.tif',dt = 'INT1U')
-# file.remove('extracts/out.vrt')
-# 
-# # Hansen Forest gain
-# ras <- raster('extracts/Hansen_forestgain.tif')
-# proj4string(ras) <- p_ll
-# ras <- raster::crop(ras, e )
-# writeGeoTiff(ras,'extracts/Hansen_forestgain.tif',dt = 'INT1U')
-# 
-# 
 #### Extract data ####
-# First load and extract
 
+# First load and extract
 hansen_forestgain <- raster('extracts/Hansen_forestgain.tif')
 modis_forestgain <- raster::stack('extracts/MODIS_forestgain.tif')
 names(modis_forestgain) <- paste0('year',2001:2015)
@@ -357,41 +285,93 @@ tm <- tm_shape(World,is.master = FALSE,projection = moll) +
 # tm_legend(legend.outside=T, legend.outside.position="right")
 tmap_save(tm,filename = 'Figure_map.png',width = 1400,height = 900,dpi = 400)
 
-#### Figure triangel -- ggtern ####
+#### Figure country analyses ####
 # Idea:
 # Extract of each country the proportion restored/planted/plantation
 # Plot via tenary diagram
 # Then focus link on certain outliers and show them in insets
-
 library(exactextractr)
-data("World")
-fml_consensus <- raster('extracts/consensus_forestgain.tif')
-fml_area <- raster::area(fml_consensus) # km2
-fml_area <- fml_area * 100 # Convert to ha
+data("World",package = 'tmap')
 
-fml1 <- fml_consensus == 1
-ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
-fml2 <- fml_consensus == 2
-ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
-fml3 <- fml_consensus == 3
-ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
-
-ex <- bind_rows(
-  data.frame(name = World$name,continent = World$continent, economy = World$economy,
-             income_grp = World$income_grp,
-             value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
-  data.frame(name = World$name,continent = World$continent, economy = World$economy,
-             income_grp = World$income_grp,
-             value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
-  data.frame(name = World$name,continent = World$continent, economy = World$economy,
-             income_grp = World$income_grp,
-             value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
-)
-
-dir.create('resSaves',showWarnings = FALSE)
-saveRDS(ex, 'resSaves/country_modalgain.rds')
+if(!file.exists('resSaves/country_modalgain.rds')){
+  # Instead of consensus, extract per type and zone a new layer from GEE
+  # Thus averaging the individual area estimates
+  # fml_consensus <- raster('extracts/consensus_forestgain.tif')
+  fml_modis <- raster('extracts/modisgain_zones.tif')
+  fml_area <- raster::area(fml_modis) # km2
+  fml_area <- fml_area * 100 # Convert to ha
+  fml1 <- fml_modis == 1
+  ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+  fml2 <- fml_modis == 2
+  ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+  fml3 <- fml_modis == 3
+  ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+  ex_modis <- bind_rows(
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+  ) %>% dplyr::mutate(dataset = 'modis')
+  
+  # ESA CCI
+  fml_esacci <- raster('extracts/esaccigain_zones.tif')
+  fml_area <- raster::area(fml_esacci) # km2
+  fml_area <- fml_area * 100 # Convert to ha
+  fml1 <- fml_esacci == 1
+  ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+  fml2 <- fml_esacci == 2
+  ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+  fml3 <- fml_esacci == 3
+  ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+  ex_esacci <- bind_rows(
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+  ) %>% dplyr::mutate(dataset = 'esacci')
+  
+  # Hansen
+  fml_hansen <- raster('extracts/hansengain_zones.tif')
+  fml_area <- raster::area(fml_hansen) # km2
+  fml_area <- fml_area * 100 # Convert to ha
+  fml1 <- fml_hansen == 1
+  ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+  fml2 <- fml_hansen == 2
+  ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+  fml3 <- fml_hansen == 3
+  ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+  ex_hansen <- bind_rows(
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+    data.frame(name = World$name,continent = World$continent, economy = World$economy,
+               income_grp = World$income_grp,
+               value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+  ) %>% dplyr::mutate(dataset = 'hansen')
+  
+  # Combine all
+  ex <- bind_rows(ex_modis, ex_esacci, ex_hansen)
+  
+  gc();raster::removeTmpFiles(.1)
+  dir.create('resSaves',showWarnings = FALSE)
+  saveRDS(ex, 'resSaves/country_modalgain.rds')
+}
 
 # --- #
+data("World")
 ex <- readRDS('resSaves/country_modalgain.rds')
 
 # Join in Bonn pledges
@@ -414,25 +394,131 @@ assertthat::assert_that(
 
 # Join in 
 ex <- dplyr::left_join(ex, pledge, by = c('name' = 'country'))
+# Join in code
+ex <- dplyr::left_join(ex, World %>% sf::st_drop_geometry() %>% select(name, iso_a3))
 
 # --- #
+# Summary stats
+# Overall:
+ex %>% dplyr::group_by(dataset) %>%
+  dplyr::summarise(tot = sum(value)) %>% 
+  dplyr::summarise(m = mean(tot / 1e6),
+                   sd = sd( tot / 1e6))
+  
+# Pledges fullfilled per dataset
 
-# 
-ex$pledge_fulfilled <- ex$value / ex$pledge_ha
+pf <- ex %>% 
+  # Get only pledging countries
+  tidyr::drop_na(pledge_ha) %>% 
+  dplyr::mutate(pledge_fulfilled = value / pledge_ha ) %>% 
+  dplyr::group_by(name, economy, income_grp, dataset,type) %>% 
+  dplyr::summarise(pfprop = mean(min(1, pledge_fulfilled,na.rm = TRUE)))
 
-df <- ex %>% dplyr::select(name,continent, type, prop) %>% 
-  tidyr::spread(key = type,value = prop) %>% 
-  tidyr::drop_na()
+# Spread and check which ones are fullfilled
+pf_check <- pf %>% tidyr::spread(key = type,value = pfprop) %>% 
+  dplyr::mutate(check = sum(aided,natural,planted) >= 1)
+
+ggplot(pf_check, aes(x = income_grp, y = check) ) +
+  geom_bar(stat = 'identity')
+
 
 df %>% arrange(desc(natural)) %>% head(20)
-
 ggplot(ex, aes(x = type, y = value)) +
   theme_classic() +
   geom_bar(stat = 'identity') +
   facet_wrap(~continent)
 
-library(ggtern)
-ggtern::ggtern(df, aes(x = natural, y = aided, z = planted, colour = continent)) +
-  geom_point(size = 2) +
-  scale_colour_wsj()
+# ---------- #
+# Figure Idea:
+# For each country in bonn pledge
+#   Bar plot with average gain across datasets
+#   Split by colours and type
+#   Names using AT
 
+# Average value per type across datasets
+avg_area <- ex %>% dplyr::mutate(prop = if_else(is.nan(prop), 0, prop),
+                     value = if_else(is.na(value), 0 , value)) %>%
+  # Get only countries that pledged
+  dplyr::filter(pledge_ha > 0, dataset %in% c('modis','esacci')) %>% 
+  group_by(name, type) %>% 
+  dplyr::summarise(
+    mean = mean(value),
+    sd = sd(value)
+  ) %>% ungroup() %>% 
+  # Join in pledges again
+  dplyr::left_join(., pledge, by = c('name' = 'country') )
+
+# Check for each countries and summarize as follows
+# If the combined natural and aided vegetation has reached bonn pledge, set to new status 'reached'
+# otherwise show as
+# avg_area <-
+#   dplyr::left_join(
+#     avg_area, avg_area %>% 
+#     dplyr::group_by(name) %>% 
+#     dplyr::summarise(
+#       reached = sum(mean[type=='natural'], mean[type=='aided']) >= pledge_ha,
+#       reached_artif = sum(mean) >= pledge_ha
+#     ) %>% distinct() %>% ungroup()
+# )
+
+# Split up for formatting
+avg_area <- avg_area %>% dplyr::select(-sd) %>% 
+  tidyr::pivot_wider(names_from = type, values_from = mean)
+
+# Now build new relative estimate
+for(r in 1:nrow(avg_area)){
+  if(sum(avg_area[r, c('natural','aided')] ) >= avg_area$pledge_ha[r] ){
+    # Goal reached
+    avg_area$natural[r] <- min(1, avg_area$natural[r] / avg_area$pledge_ha[r])
+    avg_area$aided[r] <- (1 - avg_area$natural[r])
+    avg_area$planted[r] <- 0
+  } else if(sum(avg_area[r, c('natural','aided','planted')]) >= avg_area$pledge_ha[r] ){
+    avg_area[r, c('natural','aided')] <- (avg_area[r, c('natural','aided')] / avg_area$pledge_ha[r])
+    avg_area$planted[r] <- (1 - sum(avg_area[r, c('natural','aided')]) )
+  } else {
+    avg_area[r, c('natural','aided','planted')] <- (avg_area[r, c('natural','aided','planted')] / avg_area$pledge_ha[r])
+  }
+}
+assertthat::assert_that(all(avg_area$natural<=1),all(avg_area$planted<=1))
+# To longer
+avg_area <- tidyr::pivot_longer(avg_area, cols = aided:planted, names_to = 'type',values_to = 'rel_area')
+
+# Relabel
+avg_area$type <- factor(avg_area$type,
+                        levels = c('natural','aided','planted'),
+                        labels = names(cols)
+)
+# Join in codes
+avg_area <- dplyr::left_join(avg_area, ex %>% dplyr::select(name, iso_a3) %>% distinct())
+
+# Rank order
+ord <- avg_area %>% group_by(iso_a3) %>% dplyr::summarise(ord = sum(rel_area)) %>% 
+  arrange(desc(ord)) %>% 
+  dplyr::filter(ord > 0)
+# Move those with only natural regeneration to top
+ord$iso_a3 <- factor(ord$iso_a3,
+                     levels = unique(
+                       c(as.character(avg_area$iso_a3[which(avg_area$rel_area==1)]),
+                         as.character(ord$iso_a3))
+                        )
+                      )
+
+# Make plot
+g3 <- ggplot(avg_area, 
+            aes(x = factor(iso_a3, levels = rev(levels(ord$iso_a3))), y = rel_area, fill = type)) +
+  theme_classic(base_size = 18) +
+  geom_bar(stat = 'identity', position = 'stack') +
+  coord_flip() +
+  # Pledge line
+  geom_hline(yintercept = 1,linetype = 'dotted', size = 1.25) +
+  scale_fill_manual(values = cols) + 
+  scale_y_continuous(breaks = pretty_breaks(5),expand = c(0,0) ) + 
+  # Switch axes labels
+  scale_x_discrete(position = 'top') +
+  # Remove axis labels
+  #theme(axis.text.x.bottom = element_blank(), axis.ticks.x.bottom = element_blank()) +
+  guides(fill = 'none', alpha = 'none') +
+  labs(x = '', y = 'Bonn restoration target reached') + theme(axis.title = element_text(size = 24))
+g3
+
+ggsave(plot = g3,filename = 'Figure_ranks.png',width = 6,height = 15,dpi = 400)
