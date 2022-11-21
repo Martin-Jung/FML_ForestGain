@@ -522,3 +522,26 @@ g3 <- ggplot(avg_area,
 g3
 
 ggsave(plot = g3,filename = 'Figure_ranks.png',width = 6,height = 15,dpi = 400)
+
+# -------------------- #
+#### SI Figure 1 ####
+# Aggregate and visualize the different forest gain estimates to 
+# highlight agreement and disagreement among datasets
+# Aggregation was done in Google Earth Engine
+library(terra)
+library(RStoolbox)
+
+ras1 <- rast("extracts/ESACCI_forestsum.tif")
+ras2 <- rast("extracts/Hansen_forestgain.tif")
+ras3 <- rast("extracts/MODIS_forestsum.tif")
+ras1[ras1>0] <- 1
+ras2[ras2>0] <- 1
+ras3[ras3>0] <- 1
+ras2 <- terra::resample(ras2, ras1, method = "near")
+ras3 <- terra::resample(ras3, ras1, method = "near")
+
+# Now sum them all
+o <- ras1+ras2+ras3
+o[o==0] <- NA
+o2 <- terra::aggregate(o,fact=10,fun = "modal")
+terra::writeRaster(o2,"resSaves/SIFigure1_ModeAgg.tif")
