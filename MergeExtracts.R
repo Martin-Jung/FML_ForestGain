@@ -44,12 +44,23 @@ ll_hansen <- ll[grep("Hansen_forestgain",ll)]
 makeFiles(ll_hansen, "extracts/Hansen_forestgain.tif")
 sapply(ll_hansen, function(z) file.remove(z))
 
-# Hansen Forest gain
+# ESACCI Forest gain
 ll_esacci <- ll[grep("ESACCI_forestgain-", ll)]
 makeFiles(ll_esacci, "extracts/ESACCI_forestgain.tif")
 sapply(ll_esacci, function(z) file.remove(z))
 
-# Hansen forest gain sum
+# ESACCI forest gain sum
 ll_esacci <- ll[grep("ESACCI_forestgainsum", ll)]
 makeFiles(ll_esacci, "extracts/ESACCI_forestgainsum.tif")
 sapply(ll_esacci, function(z) file.remove(z))
+
+# MODIS Forest gain
+ll_modis <- ll[grep("MODIS_forestgain-", ll)]
+makeFiles(ll_modis, "extracts/modis_forestgain.tif")
+sapply(ll_modis, function(z) file.remove(z))
+
+# ESACCI forest gain sum
+ll_modis <- ll[grep("MODIS_forestgainsum", ll)]
+makeFiles(ll_modis, "extracts/modis_forestgainsum.tif")
+sapply(ll_modis, function(z) file.remove(z))
+

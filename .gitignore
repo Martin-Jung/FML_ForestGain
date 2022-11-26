@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 
-# Ignore extracts
+# Ignore extracts geoTIFFs. Too large to be stored.
 extracts/*.tif
 
 # No Thumbs db
