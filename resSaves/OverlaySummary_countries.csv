@@ -1,0 +1,1477 @@
+"layer","type","country_sov","country","country_iso","total_area_millha"
+"modis_forestgainsum","natural","Indonesia","Indonesia","IDN",13.8624073728
+"modis_forestgainsum","natural","Malaysia","Malaysia","MYS",3.0355429376
+"modis_forestgainsum","natural","Chile","Chile","CHL",12.5014867968
+"modis_forestgainsum","natural","Bolivia","Bolivia","BOL",10.54388224
+"modis_forestgainsum","natural","Peru","Peru","PER",9.675231232
+"modis_forestgainsum","natural","Argentina","Argentina","ARG",30.0402475008
+"modis_forestgainsum","natural","United Kingdom","Dhekelia Cantonment","-99",0
+"modis_forestgainsum","natural","Cyprus","Cyprus","CYP",0.2154153216
+"modis_forestgainsum","natural","India","India","IND",34.2146875392
+"modis_forestgainsum","natural","China","People's Republic of China","CHN",78.7142803456
+"modis_forestgainsum","natural","Israel","Israel","ISR",0.0410072096
+"modis_forestgainsum","natural","Israel","Palestine","PSE",0.000246528625
+"modis_forestgainsum","natural","Lebanon","Lebanon","LBN",0.1488730624
+"modis_forestgainsum","natural","Ethiopia","Ethiopia","ETH",8.5702156288
+"modis_forestgainsum","natural","South Sudan","South Sudan","SSD",22.6139570176
+"modis_forestgainsum","natural","Somalia","Somalia","SOM",0.8413262848
+"modis_forestgainsum","natural","Kenya","Kenya","KEN",3.6862365696
+"modis_forestgainsum","natural","Malawi","Malawi","MWI",0.8604771328
+"modis_forestgainsum","natural","United Republic of Tanzania","Tanzania","TZA",9.0642014208
+"modis_forestgainsum","natural","Syria","Syria","SYR",0.1822058112
+"modis_forestgainsum","natural","Somaliland","Somaliland","-99",0.0557892736
+"modis_forestgainsum","natural","France","France","-99",7.474253824
+"modis_forestgainsum","natural","Suriname","Suriname","SUR",0.5465619968
+"modis_forestgainsum","natural","Guyana","Guyana","GUY",0.8403770368
+"modis_forestgainsum","natural","South Korea","South Korea","KOR",0.498800128
+"modis_forestgainsum","natural","North Korea","North Korea","PRK",2.5633036288
+"modis_forestgainsum","natural","Morocco","Morocco","MAR",3.4000564224
+"modis_forestgainsum","natural","Western Sahara","Western Sahara","ESH",0
+"modis_forestgainsum","natural","Costa Rica","Costa Rica","CRI",0.41636544
+"modis_forestgainsum","natural","Nicaragua","Nicaragua","NIC",1.4786864128
+"modis_forestgainsum","natural","Republic of the Congo","Republic of the Congo","COG",3.9382048768
+"modis_forestgainsum","natural","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",8.6331367424
+"modis_forestgainsum","natural","Bhutan","Bhutan","BTN",0.5618725376
+"modis_forestgainsum","natural","Namibia","Namibia","NAM",0.0285330528
+"modis_forestgainsum","natural","South Africa","South Africa","ZAF",9.5886483456
+"modis_forestgainsum","natural","France","Saint Martin","MAF",0.0031703526
+"modis_forestgainsum","natural","Netherlands","Sint Maarten","SXM",0.000348177625
+"modis_forestgainsum","natural","Oman","Oman","OMN",2.8076103125e-05
+"modis_forestgainsum","natural","Uzbekistan","Uzbekistan","UZB",0.0524065312
+"modis_forestgainsum","natural","Kazakhstan","Kazakhstan","KAZ",2.5192968192
+"modis_forestgainsum","natural","Tajikistan","Tajikistan","TJK",0.0830425856
+"modis_forestgainsum","natural","Lithuania","Lithuania","LTU",1.1763863552
+"modis_forestgainsum","natural","Brazil","Brazil","BRA",111.425093632
+"modis_forestgainsum","natural","Uruguay","Uruguay","URY",1.588570112
+"modis_forestgainsum","natural","Mongolia","Mongolia","MNG",9.7106690048
+"modis_forestgainsum","natural","Czechia","Czech Republic","CZE",1.0946619392
+"modis_forestgainsum","natural","Germany","Germany","DEU",4.4587409408
+"modis_forestgainsum","natural","Estonia","Estonia","EST",1.0029278208
+"modis_forestgainsum","natural","Latvia","Latvia","LVA",1.1995224064
+"modis_forestgainsum","natural","Sweden","Sweden","SWE",2.4449062912
+"modis_forestgainsum","natural","Finland","Finland","FIN",2.1555838976
+"modis_forestgainsum","natural","Vietnam","Vietnam","VNM",2.1911345152
+"modis_forestgainsum","natural","Cambodia","Cambodia","KHM",0.1762255232
+"modis_forestgainsum","natural","Luxembourg","Luxembourg","LUX",0.0424582208
+"modis_forestgainsum","natural","United Arab Emirates","United Arab Emirates","ARE",8.94967e-05
+"modis_forestgainsum","natural","Belgium","Belgium","BEL",0.215841408
+"modis_forestgainsum","natural","Georgia","Georgia","GEO",0.7226850816
+"modis_forestgainsum","natural","Azerbaijan","Azerbaijan","AZE",0.8688525312
+"modis_forestgainsum","natural","Turkey","Turkey","TUR",14.09896448
+"modis_forestgainsum","natural","Spain","Spain","ESP",15.8662934528
+"modis_forestgainsum","natural","Laos","Laos","LAO",0.485675776
+"modis_forestgainsum","natural","Kyrgyzstan","Kyrgyzstan","KGZ",0.4310577152
+"modis_forestgainsum","natural","Armenia","Armenia","ARM",0.317401344
+"modis_forestgainsum","natural","Denmark","Denmark","DNK",0.271778304
+"modis_forestgainsum","natural","Libya","Libya","LBY",0.0075443256
+"modis_forestgainsum","natural","Tunisia","Tunisia","TUN",0.5120521728
+"modis_forestgainsum","natural","Romania","Romania","ROU",2.127680512
+"modis_forestgainsum","natural","Hungary","Hungary","HUN",1.2964857856
+"modis_forestgainsum","natural","Slovakia","Slovakia","SVK",0.4900180992
+"modis_forestgainsum","natural","Poland","Poland","POL",3.4900987904
+"modis_forestgainsum","natural","Ireland","Ireland","IRL",0.4580395008
+"modis_forestgainsum","natural","United Kingdom","United Kingdom","GBR",1.075963392
+"modis_forestgainsum","natural","Greece","Greece","GRC",7.2659140608
+"modis_forestgainsum","natural","Zambia","Zambia","ZMB",13.0523512832
+"modis_forestgainsum","natural","Sierra Leone","Sierra Leone","SLE",1.2143919104
+"modis_forestgainsum","natural","Guinea","Guinea","GIN",6.0963581952
+"modis_forestgainsum","natural","Liberia","Liberia","LBR",0.1411236736
+"modis_forestgainsum","natural","Central African Republic","Central African Republic","CAF",3.5117686784
+"modis_forestgainsum","natural","Sudan","Sudan","SDN",1.4842107904
+"modis_forestgainsum","natural","Djibouti","Djibouti","DJI",0
+"modis_forestgainsum","natural","Eritrea","Eritrea","ERI",0.027283152
+"modis_forestgainsum","natural","Austria","Austria","AUT",0.9642457088
+"modis_forestgainsum","natural","Iraq","Iraq","IRQ",0.0505027584
+"modis_forestgainsum","natural","Italy","Italy","ITA",4.651309056
+"modis_forestgainsum","natural","Iran","Iran","IRN",0.4623023104
+"modis_forestgainsum","natural","Netherlands","Netherlands","NLD",0.5558140416
+"modis_forestgainsum","natural","Liechtenstein","Liechtenstein","LIE",0.0081698456
+"modis_forestgainsum","natural","Ivory Coast","Ivory Coast","CIV",1.1325770752
+"modis_forestgainsum","natural","Mali","Mali","MLI",2.1185052672
+"modis_forestgainsum","natural","Senegal","Senegal","SEN",2.7004557312
+"modis_forestgainsum","natural","Nigeria","Nigeria","NGA",9.1199684608
+"modis_forestgainsum","natural","Benin","Benin","BEN",1.4897133568
+"modis_forestgainsum","natural","Angola","Angola","AGO",17.5591555072
+"modis_forestgainsum","natural","Croatia","Croatia","HRV",1.5079216128
+"modis_forestgainsum","natural","Slovenia","Slovenia","SVN",0.1696409984
+"modis_forestgainsum","natural","Qatar","Qatar","QAT",0
+"modis_forestgainsum","natural","Saudi Arabia","Saudi Arabia","SAU",0.0158800928
+"modis_forestgainsum","natural","Botswana","Botswana","BWA",0.2315022336
+"modis_forestgainsum","natural","Zimbabwe","Zimbabwe","ZWE",10.036027392
+"modis_forestgainsum","natural","Pakistan","Pakistan","PAK",5.5516372992
+"modis_forestgainsum","natural","Bulgaria","Bulgaria","BGR",3.7107597312
+"modis_forestgainsum","natural","Thailand","Thailand","THA",3.984361472
+"modis_forestgainsum","natural","San Marino","San Marino","SMR",0.0016078772
+"modis_forestgainsum","natural","Haiti","Haiti","HTI",0.1904695168
+"modis_forestgainsum","natural","Dominican Republic","Dominican Republic","DOM",0.6770453504
+"modis_forestgainsum","natural","Chad","Chad","TCD",2.0270651392
+"modis_forestgainsum","natural","Kuwait","Kuwait","KWT",0
+"modis_forestgainsum","natural","El Salvador","El Salvador","SLV",0.3659913216
+"modis_forestgainsum","natural","Guatemala","Guatemala","GTM",1.0619751424
+"modis_forestgainsum","natural","East Timor","East Timor","TLS",0.1776929664
+"modis_forestgainsum","natural","Brunei","Brunei","BRN",0.0400897632
+"modis_forestgainsum","natural","Monaco","Monaco","MCO",1.42861962890625e-06
+"modis_forestgainsum","natural","Algeria","Algeria","DZA",3.6898287616
+"modis_forestgainsum","natural","Mozambique","Mozambique","MOZ",8.02992128
+"modis_forestgainsum","natural","eSwatini","Eswatini","SWZ",1.2759324672
+"modis_forestgainsum","natural","Burundi","Burundi","BDI",0.405631872
+"modis_forestgainsum","natural","Rwanda","Rwanda","RWA",0.2248099584
+"modis_forestgainsum","natural","Myanmar","Myanmar","MMR",3.356259328
+"modis_forestgainsum","natural","Bangladesh","Bangladesh","BGD",0.0924923456
+"modis_forestgainsum","natural","Andorra","Andorra","AND",0.0089175976
+"modis_forestgainsum","natural","Afghanistan","Afghanistan","AFG",1.0570120192
+"modis_forestgainsum","natural","Uganda","Uganda","UGA",2.4099944448
+"modis_forestgainsum","natural","Cuba","Guantanamo Bay Naval Base","-99",0.0034460384
+"modis_forestgainsum","natural","Cuba","Cuba","CUB",3.3823901696
+"modis_forestgainsum","natural","Honduras","Honduras","HND",0.9276996608
+"modis_forestgainsum","natural","Ecuador","Ecuador","ECU",9.6768032768
+"modis_forestgainsum","natural","Colombia","Colombia","COL",13.1922477056
+"modis_forestgainsum","natural","Paraguay","Paraguay","PRY",1.9658051584
+"modis_forestgainsum","natural","Brazilian Island","Brazilian Island","-99",9.45083e-05
+"modis_forestgainsum","natural","Portugal","Portugal","PRT",2.507421696
+"modis_forestgainsum","natural","Turkmenistan","Turkmenistan","TKM",0.0013435848
+"modis_forestgainsum","natural","Jordan","Jordan","JOR",0.0012808194
+"modis_forestgainsum","natural","Nepal","Nepal","NPL",2.260197376
+"modis_forestgainsum","natural","Lesotho","Lesotho","LSO",0.0252224784
+"modis_forestgainsum","natural","Cameroon","Cameroon","CMR",4.0446492672
+"modis_forestgainsum","natural","Gabon","Gabon","GAB",0.7631518208
+"modis_forestgainsum","natural","Niger","Niger","NER",0.0015286355
+"modis_forestgainsum","natural","Burkina Faso","Burkina Faso","BFA",0.0008060491
+"modis_forestgainsum","natural","Togo","Togo","TGO",0.4494541312
+"modis_forestgainsum","natural","Ghana","Ghana","GHA",1.6585638912
+"modis_forestgainsum","natural","Guinea-Bissau","Guinea-Bissau","GNB",0.5437110272
+"modis_forestgainsum","natural","United Kingdom","Gibraltar","GIB",0.000335482175
+"modis_forestgainsum","natural","United States of America","United States of America","USA",135.8825914368
+"modis_forestgainsum","natural","Canada","Canada","CAN",143.782969344
+"modis_forestgainsum","natural","Mexico","Mexico","MEX",37.3813051392
+"modis_forestgainsum","natural","Belize","Belize","BLZ",0.3209445888
+"modis_forestgainsum","natural","Panama","Panama","PAN",0.4735753216
+"modis_forestgainsum","natural","Venezuela","Venezuela","VEN",16.7870857216
+"modis_forestgainsum","natural","Papua New Guinea","Papua New Guinea","PNG",2.6328543232
+"modis_forestgainsum","natural","Egypt","Egypt","EGY",0.059494112
+"modis_forestgainsum","natural","Yemen","Yemen","YEM",0.1268062336
+"modis_forestgainsum","natural","Mauritania","Mauritania","MRT",0.00062066055
+"modis_forestgainsum","natural","Equatorial Guinea","Equatorial Guinea","GNQ",0.168069952
+"modis_forestgainsum","natural","Gambia","The Gambia","GMB",0.0276646432
+"modis_forestgainsum","natural","China","Hong Kong","HKG",0.008210196
+"modis_forestgainsum","natural","Vatican","Vatican City","VAT",0
+"modis_forestgainsum","natural","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",0.0255978064
+"modis_forestgainsum","natural","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",0.0020391322
+"modis_forestgainsum","natural","Kashmir","Siachen Glacier","-99",0
+"modis_forestgainsum","natural","Kazakhstan","Baikonur","-99",0
+"modis_forestgainsum","natural","United Kingdom","Akrotiri Sovereign Base Area","-99",0.0005210936
+"modis_forestgainsum","natural","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0.0010593777
+"modis_forestgainsum","natural","Bir Tawil","Bir Tawil","-99",0
+"modis_forestgainsum","natural","Antarctica","Antarctica","ATA",0
+"modis_forestgainsum","natural","Australia","Australia","AUS",132.5804683264
+"modis_forestgainsum","natural","Denmark","Greenland","GRL",0.0151738528
+"modis_forestgainsum","natural","Fiji","Fiji","FJI",0.5538151936
+"modis_forestgainsum","natural","New Zealand","New Zealand","NZL",8.2535538688
+"modis_forestgainsum","natural","France","New Caledonia","NCL",0.1605791104
+"modis_forestgainsum","natural","Madagascar","Madagascar","MDG",6.093887488
+"modis_forestgainsum","natural","Philippines","Philippines","PHL",1.9793408
+"modis_forestgainsum","natural","Sri Lanka","Sri Lanka","LKA",0.1717955328
+"modis_forestgainsum","natural","Netherlands","Curaçao","CUW",0.0065094544
+"modis_forestgainsum","natural","Netherlands","Aruba","ABW",0
+"modis_forestgainsum","natural","The Bahamas","The Bahamas","BHS",0.0950645952
+"modis_forestgainsum","natural","United Kingdom","Turks and Caicos Islands","TCA",0.0085516392
+"modis_forestgainsum","natural","Taiwan","Taiwan","TWN",0.0177523536
+"modis_forestgainsum","natural","Japan","Japan","JPN",0.9772038144
+"modis_forestgainsum","natural","France","Saint Pierre and Miquelon","SPM",0.0016527676
+"modis_forestgainsum","natural","Iceland","Iceland","ISL",0.0112146128
+"modis_forestgainsum","natural","United Kingdom","Pitcairn Islands","PCN",0
+"modis_forestgainsum","natural","France","French Polynesia","PYF",0
+"modis_forestgainsum","natural","France","French Southern and Antarctic Lands","ATF",0.0009878768
+"modis_forestgainsum","natural","Seychelles","Seychelles","SYC",0.000364390675
+"modis_forestgainsum","natural","Kiribati","Kiribati","KIR",0
+"modis_forestgainsum","natural","Marshall Islands","Marshall Islands","MHL",0
+"modis_forestgainsum","natural","Trinidad and Tobago","Trinidad and Tobago","TTO",0.0998680704
+"modis_forestgainsum","natural","Grenada","Grenada","GRD",0.0122438784
+"modis_forestgainsum","natural","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",0.0084590024
+"modis_forestgainsum","natural","Barbados","Barbados","BRB",0.0093815656
+"modis_forestgainsum","natural","Saint Lucia","Saint Lucia","LCA",0.019271664
+"modis_forestgainsum","natural","Dominica","Dominica","DMA",0.003504208
+"modis_forestgainsum","natural","United States of America","United States Minor Outlying Islands","UMI",0.0001565348375
+"modis_forestgainsum","natural","United Kingdom","Montserrat","MSR",0.0122911456
+"modis_forestgainsum","natural","Antigua and Barbuda","Antigua and Barbuda","ATG",0.0201608816
+"modis_forestgainsum","natural","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",0.0198340128
+"modis_forestgainsum","natural","United States of America","United States Virgin Islands","VIR",0.0290800288
+"modis_forestgainsum","natural","France","Saint Barthélemy","BLM",0.0017273234
+"modis_forestgainsum","natural","United States of America","Puerto Rico","PRI",0.242226176
+"modis_forestgainsum","natural","United Kingdom","Anguilla","AIA",0.0038230836
+"modis_forestgainsum","natural","United Kingdom","British Virgin Islands","VGB",0.0055757104
+"modis_forestgainsum","natural","Jamaica","Jamaica","JAM",0.1149791744
+"modis_forestgainsum","natural","United Kingdom","Cayman Islands","CYM",0.023215816
+"modis_forestgainsum","natural","United Kingdom","Bermuda","BMU",0
+"modis_forestgainsum","natural","Australia","Heard Island and McDonald Islands","HMD",0
+"modis_forestgainsum","natural","United Kingdom","Saint Helena","SHN",0
+"modis_forestgainsum","natural","Mauritius","Mauritius","MUS",0.0245148544
+"modis_forestgainsum","natural","Comoros","Comoros","COM",0.0285195168
+"modis_forestgainsum","natural","São Tomé and Principe","São Tomé and Príncipe","STP",0.0269437696
+"modis_forestgainsum","natural","Cabo Verde","Cape Verde","CPV",0.000160791
+"modis_forestgainsum","natural","Malta","Malta","MLT",0
+"modis_forestgainsum","natural","United Kingdom","Jersey","JEY",0.0010986108
+"modis_forestgainsum","natural","United Kingdom","Guernsey","GGY",0.0006810317
+"modis_forestgainsum","natural","United Kingdom","Isle of Man","IMN",0.0100073736
+"modis_forestgainsum","natural","Finland","Åland","ALA",0.004090644
+"modis_forestgainsum","natural","Denmark","Faroe Islands","FRO",0
+"modis_forestgainsum","natural","Australia","Australian Indian Ocean Territories","-99",0
+"modis_forestgainsum","natural","United Kingdom","British Indian Ocean Territory","IOT",0
+"modis_forestgainsum","natural","Singapore","Singapore","SGP",0.0066039276
+"modis_forestgainsum","natural","Australia","Norfolk Island","NFK",0
+"modis_forestgainsum","natural","New Zealand","Cook Islands","COK",0
+"modis_forestgainsum","natural","Tonga","Tonga","TON",0.020732464
+"modis_forestgainsum","natural","France","Wallis and Futuna","WLF",0
+"modis_forestgainsum","natural","Samoa","Samoa","WSM",0
+"modis_forestgainsum","natural","Solomon Islands","Solomon Islands","SLB",0.1379451264
+"modis_forestgainsum","natural","Tuvalu","Tuvalu","TUV",0
+"modis_forestgainsum","natural","Maldives","Maldives","MDV",0
+"modis_forestgainsum","natural","Nauru","Nauru","NRU",0
+"modis_forestgainsum","natural","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"modis_forestgainsum","natural","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"modis_forestgainsum","natural","United Kingdom","Falkland Islands","FLK",0.225955584
+"modis_forestgainsum","natural","Vanuatu","Vanuatu","VUT",0.079821984
+"modis_forestgainsum","natural","New Zealand","Niue","NIU",0
+"modis_forestgainsum","natural","United States of America","American Samoa","ASM",0
+"modis_forestgainsum","natural","Palau","Palau","PLW",0.0038780248
+"modis_forestgainsum","natural","United States of America","Guam","GUM",0
+"modis_forestgainsum","natural","United States of America","Northern Mariana Islands","MNP",0
+"modis_forestgainsum","natural","Bahrain","Bahrain","BHR",0
+"modis_forestgainsum","natural","Australia","Coral Sea Islands","-99",0
+"modis_forestgainsum","natural","Spratly Islands","Wake Island","-99",0
+"modis_forestgainsum","natural","France","Clipperton Island","-99",0
+"modis_forestgainsum","natural","China","Macau","MAC",0
+"modis_forestgainsum","natural","Australia","Ashmore and Cartier Islands","-99",0
+"modis_forestgainsum","natural","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"modis_forestgainsum","natural","Serranilla Bank","Serranilla Bank","-99",0
+"modis_forestgainsum","natural","Scarborough Reef","Scarborough Shoal","-99",0
+"modis_forestgainsum","planted","Indonesia","Indonesia","IDN",25.6694910976
+"modis_forestgainsum","planted","Malaysia","Malaysia","MYS",5.6877309952
+"modis_forestgainsum","planted","Chile","Chile","CHL",3.742633984
+"modis_forestgainsum","planted","Bolivia","Bolivia","BOL",0.4772804096
+"modis_forestgainsum","planted","Peru","Peru","PER",0.7149235712
+"modis_forestgainsum","planted","Argentina","Argentina","ARG",3.3349804032
+"modis_forestgainsum","planted","United Kingdom","Dhekelia Cantonment","-99",0
+"modis_forestgainsum","planted","Cyprus","Cyprus","CYP",0.0321039104
+"modis_forestgainsum","planted","India","India","IND",15.7577609216
+"modis_forestgainsum","planted","China","People's Republic of China","CHN",68.0181628928
+"modis_forestgainsum","planted","Israel","Israel","ISR",0.1249240832
+"modis_forestgainsum","planted","Israel","Palestine","PSE",0.0064382432
+"modis_forestgainsum","planted","Lebanon","Lebanon","LBN",0.1211302272
+"modis_forestgainsum","planted","Ethiopia","Ethiopia","ETH",5.5549431808
+"modis_forestgainsum","planted","South Sudan","South Sudan","SSD",1.1615064064
+"modis_forestgainsum","planted","Somalia","Somalia","SOM",0.0293132704
+"modis_forestgainsum","planted","Kenya","Kenya","KEN",1.6719041536
+"modis_forestgainsum","planted","Malawi","Malawi","MWI",0.3636132352
+"modis_forestgainsum","planted","United Republic of Tanzania","Tanzania","TZA",4.136470528
+"modis_forestgainsum","planted","Syria","Syria","SYR",0.3404285184
+"modis_forestgainsum","planted","Somaliland","Somaliland","-99",0
+"modis_forestgainsum","planted","France","France","-99",2.7892631552
+"modis_forestgainsum","planted","Suriname","Suriname","SUR",0.0605314496
+"modis_forestgainsum","planted","Guyana","Guyana","GUY",0.0570306624
+"modis_forestgainsum","planted","South Korea","South Korea","KOR",0.9970289664
+"modis_forestgainsum","planted","North Korea","North Korea","PRK",0.36143872
+"modis_forestgainsum","planted","Morocco","Morocco","MAR",0.2317259008
+"modis_forestgainsum","planted","Western Sahara","Western Sahara","ESH",0
+"modis_forestgainsum","planted","Costa Rica","Costa Rica","CRI",0.8987758592
+"modis_forestgainsum","planted","Nicaragua","Nicaragua","NIC",2.7325888512
+"modis_forestgainsum","planted","Republic of the Congo","Republic of the Congo","COG",7.6684238848
+"modis_forestgainsum","planted","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",4.8392781824
+"modis_forestgainsum","planted","Bhutan","Bhutan","BTN",0.021288312
+"modis_forestgainsum","planted","Namibia","Namibia","NAM",0.0017286768
+"modis_forestgainsum","planted","South Africa","South Africa","ZAF",3.8963761152
+"modis_forestgainsum","planted","France","Saint Martin","MAF",5.99e-08
+"modis_forestgainsum","planted","Netherlands","Sint Maarten","SXM",0
+"modis_forestgainsum","planted","Oman","Oman","OMN",0.018185008
+"modis_forestgainsum","planted","Uzbekistan","Uzbekistan","UZB",0.0066378168
+"modis_forestgainsum","planted","Kazakhstan","Kazakhstan","KAZ",0.6441612288
+"modis_forestgainsum","planted","Tajikistan","Tajikistan","TJK",0.0022237746
+"modis_forestgainsum","planted","Lithuania","Lithuania","LTU",0.0786132608
+"modis_forestgainsum","planted","Brazil","Brazil","BRA",84.3971035136
+"modis_forestgainsum","planted","Uruguay","Uruguay","URY",6.6963001344
+"modis_forestgainsum","planted","Mongolia","Mongolia","MNG",0.0241537872
+"modis_forestgainsum","planted","Czechia","Czech Republic","CZE",0.5181838848
+"modis_forestgainsum","planted","Germany","Germany","DEU",2.8562700288
+"modis_forestgainsum","planted","Estonia","Estonia","EST",0.0133273008
+"modis_forestgainsum","planted","Latvia","Latvia","LVA",0.0149014864
+"modis_forestgainsum","planted","Sweden","Sweden","SWE",0.5406084608
+"modis_forestgainsum","planted","Finland","Finland","FIN",0.3360719616
+"modis_forestgainsum","planted","Vietnam","Vietnam","VNM",8.9676324864
+"modis_forestgainsum","planted","Cambodia","Cambodia","KHM",1.4934546432
+"modis_forestgainsum","planted","Luxembourg","Luxembourg","LUX",0.008129728
+"modis_forestgainsum","planted","United Arab Emirates","United Arab Emirates","ARE",0.00067785125
+"modis_forestgainsum","planted","Belgium","Belgium","BEL",0.1139220992
+"modis_forestgainsum","planted","Georgia","Georgia","GEO",0.670996992
+"modis_forestgainsum","planted","Azerbaijan","Azerbaijan","AZE",0.5785794048
+"modis_forestgainsum","planted","Turkey","Turkey","TUR",7.363305472
+"modis_forestgainsum","planted","Spain","Spain","ESP",9.3089964032
+"modis_forestgainsum","planted","Laos","Laos","LAO",0.4715318272
+"modis_forestgainsum","planted","Kyrgyzstan","Kyrgyzstan","KGZ",0.0084643632
+"modis_forestgainsum","planted","Armenia","Armenia","ARM",0.0071329504
+"modis_forestgainsum","planted","Denmark","Denmark","DNK",0.2854293248
+"modis_forestgainsum","planted","Libya","Libya","LBY",0
+"modis_forestgainsum","planted","Tunisia","Tunisia","TUN",0.1073224256
+"modis_forestgainsum","planted","Romania","Romania","ROU",1.343108608
+"modis_forestgainsum","planted","Hungary","Hungary","HUN",0.7269366272
+"modis_forestgainsum","planted","Slovakia","Slovakia","SVK",0.2059382528
+"modis_forestgainsum","planted","Poland","Poland","POL",3.4500972544
+"modis_forestgainsum","planted","Ireland","Ireland","IRL",1.4581907456
+"modis_forestgainsum","planted","United Kingdom","United Kingdom","GBR",2.4514809856
+"modis_forestgainsum","planted","Greece","Greece","GRC",1.9697481728
+"modis_forestgainsum","planted","Zambia","Zambia","ZMB",1.7376745472
+"modis_forestgainsum","planted","Sierra Leone","Sierra Leone","SLE",0.8267929088
+"modis_forestgainsum","planted","Guinea","Guinea","GIN",1.7954326528
+"modis_forestgainsum","planted","Liberia","Liberia","LBR",0.0830833728
+"modis_forestgainsum","planted","Central African Republic","Central African Republic","CAF",0.0944356096
+"modis_forestgainsum","planted","Sudan","Sudan","SDN",0.0352648192
+"modis_forestgainsum","planted","Djibouti","Djibouti","DJI",0
+"modis_forestgainsum","planted","Eritrea","Eritrea","ERI",0
+"modis_forestgainsum","planted","Austria","Austria","AUT",0.202779072
+"modis_forestgainsum","planted","Iraq","Iraq","IRQ",0.4469197824
+"modis_forestgainsum","planted","Italy","Italy","ITA",5.7993216
+"modis_forestgainsum","planted","Iran","Iran","IRN",0.6912245248
+"modis_forestgainsum","planted","Netherlands","Netherlands","NLD",0.273965952
+"modis_forestgainsum","planted","Liechtenstein","Liechtenstein","LIE",0.00052296045
+"modis_forestgainsum","planted","Ivory Coast","Ivory Coast","CIV",8.6113492992
+"modis_forestgainsum","planted","Mali","Mali","MLI",0.2235052288
+"modis_forestgainsum","planted","Senegal","Senegal","SEN",0.2489840128
+"modis_forestgainsum","planted","Nigeria","Nigeria","NGA",14.8394573824
+"modis_forestgainsum","planted","Benin","Benin","BEN",2.1050867712
+"modis_forestgainsum","planted","Angola","Angola","AGO",3.22186752
+"modis_forestgainsum","planted","Croatia","Croatia","HRV",0.6441408512
+"modis_forestgainsum","planted","Slovenia","Slovenia","SVN",0.0885478144
+"modis_forestgainsum","planted","Qatar","Qatar","QAT",0
+"modis_forestgainsum","planted","Saudi Arabia","Saudi Arabia","SAU",0.0050724896
+"modis_forestgainsum","planted","Botswana","Botswana","BWA",0.0020243516
+"modis_forestgainsum","planted","Zimbabwe","Zimbabwe","ZWE",0.2967926016
+"modis_forestgainsum","planted","Pakistan","Pakistan","PAK",0.7798516224
+"modis_forestgainsum","planted","Bulgaria","Bulgaria","BGR",1.0066481152
+"modis_forestgainsum","planted","Thailand","Thailand","THA",10.4999682048
+"modis_forestgainsum","planted","San Marino","San Marino","SMR",0.0056245392
+"modis_forestgainsum","planted","Haiti","Haiti","HTI",1.1836791808
+"modis_forestgainsum","planted","Dominican Republic","Dominican Republic","DOM",1.4328900608
+"modis_forestgainsum","planted","Chad","Chad","TCD",1.241304576
+"modis_forestgainsum","planted","Kuwait","Kuwait","KWT",0
+"modis_forestgainsum","planted","El Salvador","El Salvador","SLV",0.3503767552
+"modis_forestgainsum","planted","Guatemala","Guatemala","GTM",1.2899853312
+"modis_forestgainsum","planted","East Timor","East Timor","TLS",0.3777461248
+"modis_forestgainsum","planted","Brunei","Brunei","BRN",0.0524587008
+"modis_forestgainsum","planted","Monaco","Monaco","MCO",0
+"modis_forestgainsum","planted","Algeria","Algeria","DZA",0.5228997632
+"modis_forestgainsum","planted","Mozambique","Mozambique","MOZ",4.0937877504
+"modis_forestgainsum","planted","eSwatini","Eswatini","SWZ",0.2227872768
+"modis_forestgainsum","planted","Burundi","Burundi","BDI",0.4159264
+"modis_forestgainsum","planted","Rwanda","Rwanda","RWA",0.4480494592
+"modis_forestgainsum","planted","Myanmar","Myanmar","MMR",1.2555491328
+"modis_forestgainsum","planted","Bangladesh","Bangladesh","BGD",4.556576768
+"modis_forestgainsum","planted","Andorra","Andorra","AND",0
+"modis_forestgainsum","planted","Afghanistan","Afghanistan","AFG",0.0107330176
+"modis_forestgainsum","planted","Uganda","Uganda","UGA",3.9057276928
+"modis_forestgainsum","planted","Cuba","Guantanamo Bay Naval Base","-99",0
+"modis_forestgainsum","planted","Cuba","Cuba","CUB",3.3654751232
+"modis_forestgainsum","planted","Honduras","Honduras","HND",1.3070442496
+"modis_forestgainsum","planted","Ecuador","Ecuador","ECU",2.8512579584
+"modis_forestgainsum","planted","Colombia","Colombia","COL",9.9503767552
+"modis_forestgainsum","planted","Paraguay","Paraguay","PRY",2.1024948224
+"modis_forestgainsum","planted","Brazilian Island","Brazilian Island","-99",0
+"modis_forestgainsum","planted","Portugal","Portugal","PRT",2.524969984
+"modis_forestgainsum","planted","Turkmenistan","Turkmenistan","TKM",0.0003757577
+"modis_forestgainsum","planted","Jordan","Jordan","JOR",0.0111247704
+"modis_forestgainsum","planted","Nepal","Nepal","NPL",1.1869476864
+"modis_forestgainsum","planted","Lesotho","Lesotho","LSO",0
+"modis_forestgainsum","planted","Cameroon","Cameroon","CMR",2.2781247488
+"modis_forestgainsum","planted","Gabon","Gabon","GAB",1.1133377536
+"modis_forestgainsum","planted","Niger","Niger","NER",0.0008575423
+"modis_forestgainsum","planted","Burkina Faso","Burkina Faso","BFA",0.000364249675
+"modis_forestgainsum","planted","Togo","Togo","TGO",1.2201654272
+"modis_forestgainsum","planted","Ghana","Ghana","GHA",5.2330655744
+"modis_forestgainsum","planted","Guinea-Bissau","Guinea-Bissau","GNB",0.1459173888
+"modis_forestgainsum","planted","United Kingdom","Gibraltar","GIB",0
+"modis_forestgainsum","planted","United States of America","United States of America","USA",7.9177293824
+"modis_forestgainsum","planted","Canada","Canada","CAN",0.4904208384
+"modis_forestgainsum","planted","Mexico","Mexico","MEX",8.3554951168
+"modis_forestgainsum","planted","Belize","Belize","BLZ",0.1174886016
+"modis_forestgainsum","planted","Panama","Panama","PAN",0.746727168
+"modis_forestgainsum","planted","Venezuela","Venezuela","VEN",11.999502336
+"modis_forestgainsum","planted","Papua New Guinea","Papua New Guinea","PNG",1.980635136
+"modis_forestgainsum","planted","Egypt","Egypt","EGY",0.473947136
+"modis_forestgainsum","planted","Yemen","Yemen","YEM",0.1672036736
+"modis_forestgainsum","planted","Mauritania","Mauritania","MRT",0.000150057775
+"modis_forestgainsum","planted","Equatorial Guinea","Equatorial Guinea","GNQ",0.0102485008
+"modis_forestgainsum","planted","Gambia","The Gambia","GMB",0.0110999088
+"modis_forestgainsum","planted","China","Hong Kong","HKG",0.0276149536
+"modis_forestgainsum","planted","Vatican","Vatican City","VAT",0
+"modis_forestgainsum","planted","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",0.0015633906
+"modis_forestgainsum","planted","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",0.0002000820875
+"modis_forestgainsum","planted","Kashmir","Siachen Glacier","-99",0
+"modis_forestgainsum","planted","Kazakhstan","Baikonur","-99",0
+"modis_forestgainsum","planted","United Kingdom","Akrotiri Sovereign Base Area","-99",0.00056486115
+"modis_forestgainsum","planted","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0
+"modis_forestgainsum","planted","Bir Tawil","Bir Tawil","-99",0
+"modis_forestgainsum","planted","Antarctica","Antarctica","ATA",0
+"modis_forestgainsum","planted","Australia","Australia","AUS",7.0686400512
+"modis_forestgainsum","planted","Denmark","Greenland","GRL",0
+"modis_forestgainsum","planted","Fiji","Fiji","FJI",0.2693130752
+"modis_forestgainsum","planted","New Zealand","New Zealand","NZL",1.201169408
+"modis_forestgainsum","planted","France","New Caledonia","NCL",0.0474583456
+"modis_forestgainsum","planted","Madagascar","Madagascar","MDG",0.2880776448
+"modis_forestgainsum","planted","Philippines","Philippines","PHL",12.6287970304
+"modis_forestgainsum","planted","Sri Lanka","Sri Lanka","LKA",1.3453888512
+"modis_forestgainsum","planted","Netherlands","Curaçao","CUW",0.000106551675
+"modis_forestgainsum","planted","Netherlands","Aruba","ABW",0
+"modis_forestgainsum","planted","The Bahamas","The Bahamas","BHS",0.1045923392
+"modis_forestgainsum","planted","United Kingdom","Turks and Caicos Islands","TCA",0.008826756
+"modis_forestgainsum","planted","Taiwan","Taiwan","TWN",0.6652585472
+"modis_forestgainsum","planted","Japan","Japan","JPN",2.2846978048
+"modis_forestgainsum","planted","France","Saint Pierre and Miquelon","SPM",0
+"modis_forestgainsum","planted","Iceland","Iceland","ISL",0
+"modis_forestgainsum","planted","United Kingdom","Pitcairn Islands","PCN",0
+"modis_forestgainsum","planted","France","French Polynesia","PYF",0
+"modis_forestgainsum","planted","France","French Southern and Antarctic Lands","ATF",0
+"modis_forestgainsum","planted","Seychelles","Seychelles","SYC",0
+"modis_forestgainsum","planted","Kiribati","Kiribati","KIR",0
+"modis_forestgainsum","planted","Marshall Islands","Marshall Islands","MHL",0
+"modis_forestgainsum","planted","Trinidad and Tobago","Trinidad and Tobago","TTO",0.3436975616
+"modis_forestgainsum","planted","Grenada","Grenada","GRD",0.0081827448
+"modis_forestgainsum","planted","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",0.0090038712
+"modis_forestgainsum","planted","Barbados","Barbados","BRB",0.0288219104
+"modis_forestgainsum","planted","Saint Lucia","Saint Lucia","LCA",0.0139128384
+"modis_forestgainsum","planted","Dominica","Dominica","DMA",0.0001413027
+"modis_forestgainsum","planted","United States of America","United States Minor Outlying Islands","UMI",0
+"modis_forestgainsum","planted","United Kingdom","Montserrat","MSR",0.0018777986
+"modis_forestgainsum","planted","Antigua and Barbuda","Antigua and Barbuda","ATG",0.0447852192
+"modis_forestgainsum","planted","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",0.0290347168
+"modis_forestgainsum","planted","United States of America","United States Virgin Islands","VIR",0.0215208704
+"modis_forestgainsum","planted","France","Saint Barthélemy","BLM",0
+"modis_forestgainsum","planted","United States of America","Puerto Rico","PRI",0.6145304576
+"modis_forestgainsum","planted","United Kingdom","Anguilla","AIA",0.0012036333
+"modis_forestgainsum","planted","United Kingdom","British Virgin Islands","VGB",0.0016934262
+"modis_forestgainsum","planted","Jamaica","Jamaica","JAM",0.21820864
+"modis_forestgainsum","planted","United Kingdom","Cayman Islands","CYM",0.0018259902
+"modis_forestgainsum","planted","United Kingdom","Bermuda","BMU",0
+"modis_forestgainsum","planted","Australia","Heard Island and McDonald Islands","HMD",0
+"modis_forestgainsum","planted","United Kingdom","Saint Helena","SHN",0
+"modis_forestgainsum","planted","Mauritius","Mauritius","MUS",0.0714076608
+"modis_forestgainsum","planted","Comoros","Comoros","COM",0.039491872
+"modis_forestgainsum","planted","São Tomé and Principe","São Tomé and Príncipe","STP",0.0001045068
+"modis_forestgainsum","planted","Cabo Verde","Cape Verde","CPV",0.0030768838
+"modis_forestgainsum","planted","Malta","Malta","MLT",0
+"modis_forestgainsum","planted","United Kingdom","Jersey","JEY",4.6109346875e-05
+"modis_forestgainsum","planted","United Kingdom","Guernsey","GGY",0.0012009907
+"modis_forestgainsum","planted","United Kingdom","Isle of Man","IMN",0.0065162876
+"modis_forestgainsum","planted","Finland","Åland","ALA",0.0063082408
+"modis_forestgainsum","planted","Denmark","Faroe Islands","FRO",0.0001636494125
+"modis_forestgainsum","planted","Australia","Australian Indian Ocean Territories","-99",0
+"modis_forestgainsum","planted","United Kingdom","British Indian Ocean Territory","IOT",0
+"modis_forestgainsum","planted","Singapore","Singapore","SGP",0.0189635456
+"modis_forestgainsum","planted","Australia","Norfolk Island","NFK",0
+"modis_forestgainsum","planted","New Zealand","Cook Islands","COK",0
+"modis_forestgainsum","planted","Tonga","Tonga","TON",0.0226389056
+"modis_forestgainsum","planted","France","Wallis and Futuna","WLF",0
+"modis_forestgainsum","planted","Samoa","Samoa","WSM",0
+"modis_forestgainsum","planted","Solomon Islands","Solomon Islands","SLB",0.0329525056
+"modis_forestgainsum","planted","Tuvalu","Tuvalu","TUV",0
+"modis_forestgainsum","planted","Maldives","Maldives","MDV",0
+"modis_forestgainsum","planted","Nauru","Nauru","NRU",0
+"modis_forestgainsum","planted","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"modis_forestgainsum","planted","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"modis_forestgainsum","planted","United Kingdom","Falkland Islands","FLK",0
+"modis_forestgainsum","planted","Vanuatu","Vanuatu","VUT",0.0479038208
+"modis_forestgainsum","planted","New Zealand","Niue","NIU",0
+"modis_forestgainsum","planted","United States of America","American Samoa","ASM",0
+"modis_forestgainsum","planted","Palau","Palau","PLW",0.0014482564
+"modis_forestgainsum","planted","United States of America","Guam","GUM",0
+"modis_forestgainsum","planted","United States of America","Northern Mariana Islands","MNP",0
+"modis_forestgainsum","planted","Bahrain","Bahrain","BHR",0.0002683818
+"modis_forestgainsum","planted","Australia","Coral Sea Islands","-99",0
+"modis_forestgainsum","planted","Spratly Islands","Wake Island","-99",0
+"modis_forestgainsum","planted","France","Clipperton Island","-99",0
+"modis_forestgainsum","planted","China","Macau","MAC",0.000230964925
+"modis_forestgainsum","planted","Australia","Ashmore and Cartier Islands","-99",0
+"modis_forestgainsum","planted","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"modis_forestgainsum","planted","Serranilla Bank","Serranilla Bank","-99",0
+"modis_forestgainsum","planted","Scarborough Reef","Scarborough Shoal","-99",0
+"Hansen_forestgain","natural","Indonesia","Indonesia","IDN",3.5320229888
+"Hansen_forestgain","natural","Malaysia","Malaysia","MYS",0.8977851392
+"Hansen_forestgain","natural","Chile","Chile","CHL",0.094411584
+"Hansen_forestgain","natural","Bolivia","Bolivia","BOL",0.1608088448
+"Hansen_forestgain","natural","Peru","Peru","PER",0.1810475648
+"Hansen_forestgain","natural","Argentina","Argentina","ARG",0.2145957888
+"Hansen_forestgain","natural","United Kingdom","Dhekelia Cantonment","-99",0
+"Hansen_forestgain","natural","Cyprus","Cyprus","CYP",8.471655e-05
+"Hansen_forestgain","natural","India","India","IND",0.215060224
+"Hansen_forestgain","natural","China","People's Republic of China","CHN",0.7555999744
+"Hansen_forestgain","natural","Israel","Israel","ISR",0.0001378772125
+"Hansen_forestgain","natural","Israel","Palestine","PSE",8.45730859375e-06
+"Hansen_forestgain","natural","Lebanon","Lebanon","LBN",0.0008586417
+"Hansen_forestgain","natural","Ethiopia","Ethiopia","ETH",0.026417832
+"Hansen_forestgain","natural","South Sudan","South Sudan","SSD",0.0032594642
+"Hansen_forestgain","natural","Somalia","Somalia","SOM",0.00022272495
+"Hansen_forestgain","natural","Kenya","Kenya","KEN",0.0552022144
+"Hansen_forestgain","natural","Malawi","Malawi","MWI",0.007251728
+"Hansen_forestgain","natural","United Republic of Tanzania","Tanzania","TZA",0.2190955008
+"Hansen_forestgain","natural","Syria","Syria","SYR",0.0006157791
+"Hansen_forestgain","natural","Somaliland","Somaliland","-99",8.9968e-06
+"Hansen_forestgain","natural","France","France","-99",0.2324217856
+"Hansen_forestgain","natural","Suriname","Suriname","SUR",0.0067844896
+"Hansen_forestgain","natural","Guyana","Guyana","GUY",0.01111834
+"Hansen_forestgain","natural","South Korea","South Korea","KOR",0.0147477552
+"Hansen_forestgain","natural","North Korea","North Korea","PRK",0.0116900544
+"Hansen_forestgain","natural","Morocco","Morocco","MAR",0.012818468
+"Hansen_forestgain","natural","Western Sahara","Western Sahara","ESH",0
+"Hansen_forestgain","natural","Costa Rica","Costa Rica","CRI",0.0151761808
+"Hansen_forestgain","natural","Nicaragua","Nicaragua","NIC",0.02490892
+"Hansen_forestgain","natural","Republic of the Congo","Republic of the Congo","COG",0.0361161152
+"Hansen_forestgain","natural","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",1.3387117568
+"Hansen_forestgain","natural","Bhutan","Bhutan","BTN",0.0021170116
+"Hansen_forestgain","natural","Namibia","Namibia","NAM",4.78095625e-05
+"Hansen_forestgain","natural","South Africa","South Africa","ZAF",0.2870609408
+"Hansen_forestgain","natural","France","Saint Martin","MAF",3.4737265625e-05
+"Hansen_forestgain","natural","Netherlands","Sint Maarten","SXM",2.88839609375e-06
+"Hansen_forestgain","natural","Oman","Oman","OMN",0
+"Hansen_forestgain","natural","Uzbekistan","Uzbekistan","UZB",0.000171491375
+"Hansen_forestgain","natural","Kazakhstan","Kazakhstan","KAZ",0.00649848
+"Hansen_forestgain","natural","Tajikistan","Tajikistan","TJK",4.0888340625e-05
+"Hansen_forestgain","natural","Lithuania","Lithuania","LTU",0.0928900288
+"Hansen_forestgain","natural","Brazil","Brazil","BRA",3.3508841472
+"Hansen_forestgain","natural","Uruguay","Uruguay","URY",0.0221785696
+"Hansen_forestgain","natural","Mongolia","Mongolia","MNG",0.0097902112
+"Hansen_forestgain","natural","Czechia","Czech Republic","CZE",0.056623296
+"Hansen_forestgain","natural","Germany","Germany","DEU",0.0896212416
+"Hansen_forestgain","natural","Estonia","Estonia","EST",0.0805357824
+"Hansen_forestgain","natural","Latvia","Latvia","LVA",0.1671024512
+"Hansen_forestgain","natural","Sweden","Sweden","SWE",0.7731137536
+"Hansen_forestgain","natural","Finland","Finland","FIN",0.7140955136
+"Hansen_forestgain","natural","Vietnam","Vietnam","VNM",0.2423266048
+"Hansen_forestgain","natural","Cambodia","Cambodia","KHM",0.0391733664
+"Hansen_forestgain","natural","Luxembourg","Luxembourg","LUX",0.0017660454
+"Hansen_forestgain","natural","United Arab Emirates","United Arab Emirates","ARE",0
+"Hansen_forestgain","natural","Belgium","Belgium","BEL",0.011249608
+"Hansen_forestgain","natural","Georgia","Georgia","GEO",0.0038277012
+"Hansen_forestgain","natural","Azerbaijan","Azerbaijan","AZE",0.000397537525
+"Hansen_forestgain","natural","Turkey","Turkey","TUR",0.1105734528
+"Hansen_forestgain","natural","Spain","Spain","ESP",0.2730025216
+"Hansen_forestgain","natural","Laos","Laos","LAO",0.2945933824
+"Hansen_forestgain","natural","Kyrgyzstan","Kyrgyzstan","KGZ",0.000277406225
+"Hansen_forestgain","natural","Armenia","Armenia","ARM",0.0011895172
+"Hansen_forestgain","natural","Denmark","Denmark","DNK",0.0074546248
+"Hansen_forestgain","natural","Libya","Libya","LBY",3.6839409375e-05
+"Hansen_forestgain","natural","Tunisia","Tunisia","TUN",0.0077302136
+"Hansen_forestgain","natural","Romania","Romania","ROU",0.1110323968
+"Hansen_forestgain","natural","Hungary","Hungary","HUN",0.0881325568
+"Hansen_forestgain","natural","Slovakia","Slovakia","SVK",0.0387450144
+"Hansen_forestgain","natural","Poland","Poland","POL",0.1183315968
+"Hansen_forestgain","natural","Ireland","Ireland","IRL",0.0020393316
+"Hansen_forestgain","natural","United Kingdom","United Kingdom","GBR",0.0070037672
+"Hansen_forestgain","natural","Greece","Greece","GRC",0.0278775712
+"Hansen_forestgain","natural","Zambia","Zambia","ZMB",0.0105126616
+"Hansen_forestgain","natural","Sierra Leone","Sierra Leone","SLE",0.0304704544
+"Hansen_forestgain","natural","Guinea","Guinea","GIN",0.0211801264
+"Hansen_forestgain","natural","Liberia","Liberia","LBR",0.0947497216
+"Hansen_forestgain","natural","Central African Republic","Central African Republic","CAF",0.0381798752
+"Hansen_forestgain","natural","Sudan","Sudan","SDN",6.79602421875e-06
+"Hansen_forestgain","natural","Djibouti","Djibouti","DJI",0
+"Hansen_forestgain","natural","Eritrea","Eritrea","ERI",5.7909e-06
+"Hansen_forestgain","natural","Austria","Austria","AUT",0.0402257056
+"Hansen_forestgain","natural","Iraq","Iraq","IRQ",0.0001226918375
+"Hansen_forestgain","natural","Italy","Italy","ITA",0.0595095168
+"Hansen_forestgain","natural","Iran","Iran","IRN",0.0005993463
+"Hansen_forestgain","natural","Netherlands","Netherlands","NLD",0.0030018818
+"Hansen_forestgain","natural","Liechtenstein","Liechtenstein","LIE",2.34796078125e-05
+"Hansen_forestgain","natural","Ivory Coast","Ivory Coast","CIV",0.0630972608
+"Hansen_forestgain","natural","Mali","Mali","MLI",3.806335546875e-06
+"Hansen_forestgain","natural","Senegal","Senegal","SEN",0.000136185225
+"Hansen_forestgain","natural","Nigeria","Nigeria","NGA",0.0245099408
+"Hansen_forestgain","natural","Benin","Benin","BEN",6.492435e-05
+"Hansen_forestgain","natural","Angola","Angola","AGO",0.0533805568
+"Hansen_forestgain","natural","Croatia","Croatia","HRV",0.0213521696
+"Hansen_forestgain","natural","Slovenia","Slovenia","SVN",0.0029050162
+"Hansen_forestgain","natural","Qatar","Qatar","QAT",0
+"Hansen_forestgain","natural","Saudi Arabia","Saudi Arabia","SAU",0
+"Hansen_forestgain","natural","Botswana","Botswana","BWA",9.0744425e-05
+"Hansen_forestgain","natural","Zimbabwe","Zimbabwe","ZWE",0.030690304
+"Hansen_forestgain","natural","Pakistan","Pakistan","PAK",0.00061033905
+"Hansen_forestgain","natural","Bulgaria","Bulgaria","BGR",0.0530096224
+"Hansen_forestgain","natural","Thailand","Thailand","THA",0.0978485568
+"Hansen_forestgain","natural","San Marino","San Marino","SMR",3.897096484375e-06
+"Hansen_forestgain","natural","Haiti","Haiti","HTI",0.000867182
+"Hansen_forestgain","natural","Dominican Republic","Dominican Republic","DOM",0.018045944
+"Hansen_forestgain","natural","Chad","Chad","TCD",4.663773125e-05
+"Hansen_forestgain","natural","Kuwait","Kuwait","KWT",0
+"Hansen_forestgain","natural","El Salvador","El Salvador","SLV",0.0053194452
+"Hansen_forestgain","natural","Guatemala","Guatemala","GTM",0.0637471168
+"Hansen_forestgain","natural","East Timor","East Timor","TLS",0.0041874384
+"Hansen_forestgain","natural","Brunei","Brunei","BRN",0.0074152376
+"Hansen_forestgain","natural","Monaco","Monaco","MCO",1.52388484375e-05
+"Hansen_forestgain","natural","Algeria","Algeria","DZA",0.0278769696
+"Hansen_forestgain","natural","Mozambique","Mozambique","MOZ",0.1022357376
+"Hansen_forestgain","natural","eSwatini","Eswatini","SWZ",0.0144639616
+"Hansen_forestgain","natural","Burundi","Burundi","BDI",0.001719973
+"Hansen_forestgain","natural","Rwanda","Rwanda","RWA",0.001737465
+"Hansen_forestgain","natural","Myanmar","Myanmar","MMR",0.2839499776
+"Hansen_forestgain","natural","Bangladesh","Bangladesh","BGD",0.0031873012
+"Hansen_forestgain","natural","Andorra","Andorra","AND",1.74835125e-05
+"Hansen_forestgain","natural","Afghanistan","Afghanistan","AFG",9.413541875e-05
+"Hansen_forestgain","natural","Uganda","Uganda","UGA",0.0219562224
+"Hansen_forestgain","natural","Cuba","Guantanamo Bay Naval Base","-99",5.701244140625e-07
+"Hansen_forestgain","natural","Cuba","Cuba","CUB",0.164360128
+"Hansen_forestgain","natural","Honduras","Honduras","HND",0.03070384
+"Hansen_forestgain","natural","Ecuador","Ecuador","ECU",0.0792280384
+"Hansen_forestgain","natural","Colombia","Colombia","COL",0.330600832
+"Hansen_forestgain","natural","Paraguay","Paraguay","PRY",0.03424912
+"Hansen_forestgain","natural","Brazilian Island","Brazilian Island","-99",4.19696563720703e-08
+"Hansen_forestgain","natural","Portugal","Portugal","PRT",0.0778260288
+"Hansen_forestgain","natural","Turkmenistan","Turkmenistan","TKM",6.10241875e-05
+"Hansen_forestgain","natural","Jordan","Jordan","JOR",1.41060927734375e-06
+"Hansen_forestgain","natural","Nepal","Nepal","NPL",0.0097536912
+"Hansen_forestgain","natural","Lesotho","Lesotho","LSO",0.000126646375
+"Hansen_forestgain","natural","Cameroon","Cameroon","CMR",0.0558499904
+"Hansen_forestgain","natural","Gabon","Gabon","GAB",0.0332543136
+"Hansen_forestgain","natural","Niger","Niger","NER",0
+"Hansen_forestgain","natural","Burkina Faso","Burkina Faso","BFA",1.0408935546875e-07
+"Hansen_forestgain","natural","Togo","Togo","TGO",0.0004682742
+"Hansen_forestgain","natural","Ghana","Ghana","GHA",0.0363802304
+"Hansen_forestgain","natural","Guinea-Bissau","Guinea-Bissau","GNB",0.0056476868
+"Hansen_forestgain","natural","United Kingdom","Gibraltar","GIB",0
+"Hansen_forestgain","natural","United States of America","United States of America","USA",6.5224302592
+"Hansen_forestgain","natural","Canada","Canada","CAN",8.7864590336
+"Hansen_forestgain","natural","Mexico","Mexico","MEX",0.5072842752
+"Hansen_forestgain","natural","Belize","Belize","BLZ",0.0107528296
+"Hansen_forestgain","natural","Panama","Panama","PAN",0.0140028016
+"Hansen_forestgain","natural","Venezuela","Venezuela","VEN",0.1329647872
+"Hansen_forestgain","natural","Papua New Guinea","Papua New Guinea","PNG",0.1551467392
+"Hansen_forestgain","natural","Egypt","Egypt","EGY",3.82865625e-05
+"Hansen_forestgain","natural","Yemen","Yemen","YEM",3.6705e-06
+"Hansen_forestgain","natural","Mauritania","Mauritania","MRT",2.229e-07
+"Hansen_forestgain","natural","Equatorial Guinea","Equatorial Guinea","GNQ",0.005208108
+"Hansen_forestgain","natural","Gambia","The Gambia","GMB",1.478800625e-05
+"Hansen_forestgain","natural","China","Hong Kong","HKG",1.89852e-05
+"Hansen_forestgain","natural","Vatican","Vatican City","VAT",0
+"Hansen_forestgain","natural","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",6.591573125e-05
+"Hansen_forestgain","natural","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",1.60526142578125e-06
+"Hansen_forestgain","natural","Kashmir","Siachen Glacier","-99",0
+"Hansen_forestgain","natural","Kazakhstan","Baikonur","-99",0
+"Hansen_forestgain","natural","United Kingdom","Akrotiri Sovereign Base Area","-99",1.2300291015625e-06
+"Hansen_forestgain","natural","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0
+"Hansen_forestgain","natural","Bir Tawil","Bir Tawil","-99",0
+"Hansen_forestgain","natural","Antarctica","Antarctica","ATA",0
+"Hansen_forestgain","natural","Australia","Australia","AUS",0.755410432
+"Hansen_forestgain","natural","Denmark","Greenland","GRL",0
+"Hansen_forestgain","natural","Fiji","Fiji","FJI",0.0101500928
+"Hansen_forestgain","natural","New Zealand","New Zealand","NZL",0.2273005056
+"Hansen_forestgain","natural","France","New Caledonia","NCL",0.0052147352
+"Hansen_forestgain","natural","Madagascar","Madagascar","MDG",0.376344192
+"Hansen_forestgain","natural","Philippines","Philippines","PHL",0.0969266496
+"Hansen_forestgain","natural","Sri Lanka","Sri Lanka","LKA",0.0075713568
+"Hansen_forestgain","natural","Netherlands","Curaçao","CUW",2.3602115625e-05
+"Hansen_forestgain","natural","Netherlands","Aruba","ABW",5.70550634765625e-07
+"Hansen_forestgain","natural","The Bahamas","The Bahamas","BHS",0.00070034655
+"Hansen_forestgain","natural","United Kingdom","Turks and Caicos Islands","TCA",1.084114296875e-05
+"Hansen_forestgain","natural","Taiwan","Taiwan","TWN",0.0017510732
+"Hansen_forestgain","natural","Japan","Japan","JPN",0.0912082368
+"Hansen_forestgain","natural","France","Saint Pierre and Miquelon","SPM",1.061e-07
+"Hansen_forestgain","natural","Iceland","Iceland","ISL",0
+"Hansen_forestgain","natural","United Kingdom","Pitcairn Islands","PCN",0
+"Hansen_forestgain","natural","France","French Polynesia","PYF",0
+"Hansen_forestgain","natural","France","French Southern and Antarctic Lands","ATF",0
+"Hansen_forestgain","natural","Seychelles","Seychelles","SYC",0
+"Hansen_forestgain","natural","Kiribati","Kiribati","KIR",0
+"Hansen_forestgain","natural","Marshall Islands","Marshall Islands","MHL",0
+"Hansen_forestgain","natural","Trinidad and Tobago","Trinidad and Tobago","TTO",0.0010119374
+"Hansen_forestgain","natural","Grenada","Grenada","GRD",6.04653625e-05
+"Hansen_forestgain","natural","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",1.31544625e-05
+"Hansen_forestgain","natural","Barbados","Barbados","BRB",4.0029403125e-05
+"Hansen_forestgain","natural","Saint Lucia","Saint Lucia","LCA",2.0155265625e-05
+"Hansen_forestgain","natural","Dominica","Dominica","DMA",1.246523359375e-05
+"Hansen_forestgain","natural","United States of America","United States Minor Outlying Islands","UMI",1.2115072265625e-06
+"Hansen_forestgain","natural","United Kingdom","Montserrat","MSR",6.395373046875e-06
+"Hansen_forestgain","natural","Antigua and Barbuda","Antigua and Barbuda","ATG",0.0001776088125
+"Hansen_forestgain","natural","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",5.7522925e-05
+"Hansen_forestgain","natural","United States of America","United States Virgin Islands","VIR",0.00025035255
+"Hansen_forestgain","natural","France","Saint Barthélemy","BLM",1.09762802734375e-06
+"Hansen_forestgain","natural","United States of America","Puerto Rico","PRI",0.0035117268
+"Hansen_forestgain","natural","United Kingdom","Anguilla","AIA",1.117646640625e-05
+"Hansen_forestgain","natural","United Kingdom","British Virgin Islands","VGB",9.90821484375e-06
+"Hansen_forestgain","natural","Jamaica","Jamaica","JAM",0.0037226956
+"Hansen_forestgain","natural","United Kingdom","Cayman Islands","CYM",3.659414375e-05
+"Hansen_forestgain","natural","United Kingdom","Bermuda","BMU",0
+"Hansen_forestgain","natural","Australia","Heard Island and McDonald Islands","HMD",0
+"Hansen_forestgain","natural","United Kingdom","Saint Helena","SHN",0
+"Hansen_forestgain","natural","Mauritius","Mauritius","MUS",0.00035366135
+"Hansen_forestgain","natural","Comoros","Comoros","COM",0.00032079745
+"Hansen_forestgain","natural","São Tomé and Principe","São Tomé and Príncipe","STP",1.439345625e-05
+"Hansen_forestgain","natural","Cabo Verde","Cape Verde","CPV",0.0010894131
+"Hansen_forestgain","natural","Malta","Malta","MLT",8.28958206176758e-09
+"Hansen_forestgain","natural","United Kingdom","Jersey","JEY",2.205799375e-05
+"Hansen_forestgain","natural","United Kingdom","Guernsey","GGY",6.194819921875e-06
+"Hansen_forestgain","natural","United Kingdom","Isle of Man","IMN",5.1616875e-05
+"Hansen_forestgain","natural","Finland","Åland","ALA",0.000341229275
+"Hansen_forestgain","natural","Denmark","Faroe Islands","FRO",0
+"Hansen_forestgain","natural","Australia","Australian Indian Ocean Territories","-99",0
+"Hansen_forestgain","natural","United Kingdom","British Indian Ocean Territory","IOT",0
+"Hansen_forestgain","natural","Singapore","Singapore","SGP",0.000164910125
+"Hansen_forestgain","natural","Australia","Norfolk Island","NFK",0
+"Hansen_forestgain","natural","New Zealand","Cook Islands","COK",0
+"Hansen_forestgain","natural","Tonga","Tonga","TON",0
+"Hansen_forestgain","natural","France","Wallis and Futuna","WLF",0
+"Hansen_forestgain","natural","Samoa","Samoa","WSM",0
+"Hansen_forestgain","natural","Solomon Islands","Solomon Islands","SLB",0.0140495504
+"Hansen_forestgain","natural","Tuvalu","Tuvalu","TUV",0
+"Hansen_forestgain","natural","Maldives","Maldives","MDV",0
+"Hansen_forestgain","natural","Nauru","Nauru","NRU",0
+"Hansen_forestgain","natural","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"Hansen_forestgain","natural","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"Hansen_forestgain","natural","United Kingdom","Falkland Islands","FLK",6.08919921875e-06
+"Hansen_forestgain","natural","Vanuatu","Vanuatu","VUT",0.00083703525
+"Hansen_forestgain","natural","New Zealand","Niue","NIU",0
+"Hansen_forestgain","natural","United States of America","American Samoa","ASM",0
+"Hansen_forestgain","natural","Palau","Palau","PLW",0.0001315339375
+"Hansen_forestgain","natural","United States of America","Guam","GUM",0
+"Hansen_forestgain","natural","United States of America","Northern Mariana Islands","MNP",0
+"Hansen_forestgain","natural","Bahrain","Bahrain","BHR",0
+"Hansen_forestgain","natural","Australia","Coral Sea Islands","-99",0
+"Hansen_forestgain","natural","Spratly Islands","Wake Island","-99",0
+"Hansen_forestgain","natural","France","Clipperton Island","-99",0
+"Hansen_forestgain","natural","China","Macau","MAC",0
+"Hansen_forestgain","natural","Australia","Ashmore and Cartier Islands","-99",0
+"Hansen_forestgain","natural","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"Hansen_forestgain","natural","Serranilla Bank","Serranilla Bank","-99",0
+"Hansen_forestgain","natural","Scarborough Reef","Scarborough Shoal","-99",0
+"Hansen_forestgain","planted","Indonesia","Indonesia","IDN",3.3832085504
+"Hansen_forestgain","planted","Malaysia","Malaysia","MYS",1.6784932864
+"Hansen_forestgain","planted","Chile","Chile","CHL",1.362886656
+"Hansen_forestgain","planted","Bolivia","Bolivia","BOL",0.010189588
+"Hansen_forestgain","planted","Peru","Peru","PER",0.0084559824
+"Hansen_forestgain","planted","Argentina","Argentina","ARG",0.4061520128
+"Hansen_forestgain","planted","United Kingdom","Dhekelia Cantonment","-99",1.02233636474609e-07
+"Hansen_forestgain","planted","Cyprus","Cyprus","CYP",2.6349040625e-05
+"Hansen_forestgain","planted","India","India","IND",0.0361370304
+"Hansen_forestgain","planted","China","People's Republic of China","CHN",1.4750384128
+"Hansen_forestgain","planted","Israel","Israel","ISR",0.001726169
+"Hansen_forestgain","planted","Israel","Palestine","PSE",0.0001218510125
+"Hansen_forestgain","planted","Lebanon","Lebanon","LBN",0.0009176726
+"Hansen_forestgain","planted","Ethiopia","Ethiopia","ETH",0.0357392448
+"Hansen_forestgain","planted","South Sudan","South Sudan","SSD",0.00056586105
+"Hansen_forestgain","planted","Somalia","Somalia","SOM",4.803373125e-05
+"Hansen_forestgain","planted","Kenya","Kenya","KEN",0.0465079328
+"Hansen_forestgain","planted","Malawi","Malawi","MWI",0.0031659818
+"Hansen_forestgain","planted","United Republic of Tanzania","Tanzania","TZA",0.082680288
+"Hansen_forestgain","planted","Syria","Syria","SYR",0.0009255375
+"Hansen_forestgain","planted","Somaliland","Somaliland","-99",0
+"Hansen_forestgain","planted","France","France","-99",0.277886848
+"Hansen_forestgain","planted","Suriname","Suriname","SUR",5.552083125e-05
+"Hansen_forestgain","planted","Guyana","Guyana","GUY",6.329615e-05
+"Hansen_forestgain","planted","South Korea","South Korea","KOR",0.0121934264
+"Hansen_forestgain","planted","North Korea","North Korea","PRK",0.0018038846
+"Hansen_forestgain","planted","Morocco","Morocco","MAR",0.0066491456
+"Hansen_forestgain","planted","Western Sahara","Western Sahara","ESH",0
+"Hansen_forestgain","planted","Costa Rica","Costa Rica","CRI",0.022615336
+"Hansen_forestgain","planted","Nicaragua","Nicaragua","NIC",0.0407532736
+"Hansen_forestgain","planted","Republic of the Congo","Republic of the Congo","COG",0.0102702816
+"Hansen_forestgain","planted","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",0.0532991648
+"Hansen_forestgain","planted","Bhutan","Bhutan","BTN",8.89515e-05
+"Hansen_forestgain","planted","Namibia","Namibia","NAM",3.238856640625e-06
+"Hansen_forestgain","planted","South Africa","South Africa","ZAF",0.5339559936
+"Hansen_forestgain","planted","France","Saint Martin","MAF",2.1479e-06
+"Hansen_forestgain","planted","Netherlands","Sint Maarten","SXM",1.64193496704102e-08
+"Hansen_forestgain","planted","Oman","Oman","OMN",2.811e-07
+"Hansen_forestgain","planted","Uzbekistan","Uzbekistan","UZB",0.0002594457
+"Hansen_forestgain","planted","Kazakhstan","Kazakhstan","KAZ",0.0135326144
+"Hansen_forestgain","planted","Tajikistan","Tajikistan","TJK",3.4738996875e-05
+"Hansen_forestgain","planted","Lithuania","Lithuania","LTU",0.0282069472
+"Hansen_forestgain","planted","Brazil","Brazil","BRA",4.2084425728
+"Hansen_forestgain","planted","Uruguay","Uruguay","URY",0.4743868416
+"Hansen_forestgain","planted","Mongolia","Mongolia","MNG",0.000210543325
+"Hansen_forestgain","planted","Czechia","Czech Republic","CZE",0.0747806336
+"Hansen_forestgain","planted","Germany","Germany","DEU",0.1675143552
+"Hansen_forestgain","planted","Estonia","Estonia","EST",0.0095825512
+"Hansen_forestgain","planted","Latvia","Latvia","LVA",0.0164317616
+"Hansen_forestgain","planted","Sweden","Sweden","SWE",0.7511445504
+"Hansen_forestgain","planted","Finland","Finland","FIN",0.3593681152
+"Hansen_forestgain","planted","Vietnam","Vietnam","VNM",0.3176590848
+"Hansen_forestgain","planted","Cambodia","Cambodia","KHM",0.0683102016
+"Hansen_forestgain","planted","Luxembourg","Luxembourg","LUX",0.0011735215
+"Hansen_forestgain","planted","United Arab Emirates","United Arab Emirates","ARE",0
+"Hansen_forestgain","planted","Belgium","Belgium","BEL",0.025367192
+"Hansen_forestgain","planted","Georgia","Georgia","GEO",0.0008789069
+"Hansen_forestgain","planted","Azerbaijan","Azerbaijan","AZE",0.000405954525
+"Hansen_forestgain","planted","Turkey","Turkey","TUR",0.0663056448
+"Hansen_forestgain","planted","Spain","Spain","ESP",0.1737946752
+"Hansen_forestgain","planted","Laos","Laos","LAO",0.042554512
+"Hansen_forestgain","planted","Kyrgyzstan","Kyrgyzstan","KGZ",0.00010997765
+"Hansen_forestgain","planted","Armenia","Armenia","ARM",1.6591709375e-05
+"Hansen_forestgain","planted","Denmark","Denmark","DNK",0.024165184
+"Hansen_forestgain","planted","Libya","Libya","LBY",0.00036818845
+"Hansen_forestgain","planted","Tunisia","Tunisia","TUN",0.0040522684
+"Hansen_forestgain","planted","Romania","Romania","ROU",0.040959552
+"Hansen_forestgain","planted","Hungary","Hungary","HUN",0.0463219456
+"Hansen_forestgain","planted","Slovakia","Slovakia","SVK",0.0128331456
+"Hansen_forestgain","planted","Poland","Poland","POL",0.3818795008
+"Hansen_forestgain","planted","Ireland","Ireland","IRL",0.1159681792
+"Hansen_forestgain","planted","United Kingdom","United Kingdom","GBR",0.177431168
+"Hansen_forestgain","planted","Greece","Greece","GRC",0.0073843856
+"Hansen_forestgain","planted","Zambia","Zambia","ZMB",0.0073432552
+"Hansen_forestgain","planted","Sierra Leone","Sierra Leone","SLE",0.0140702944
+"Hansen_forestgain","planted","Guinea","Guinea","GIN",0.0087932904
+"Hansen_forestgain","planted","Liberia","Liberia","LBR",0.0132088112
+"Hansen_forestgain","planted","Central African Republic","Central African Republic","CAF",0.0012350735
+"Hansen_forestgain","planted","Sudan","Sudan","SDN",1.5985947265625e-06
+"Hansen_forestgain","planted","Djibouti","Djibouti","DJI",0
+"Hansen_forestgain","planted","Eritrea","Eritrea","ERI",0
+"Hansen_forestgain","planted","Austria","Austria","AUT",0.025410216
+"Hansen_forestgain","planted","Iraq","Iraq","IRQ",0.0001165718875
+"Hansen_forestgain","planted","Italy","Italy","ITA",0.0298002816
+"Hansen_forestgain","planted","Iran","Iran","IRN",0.00030581815
+"Hansen_forestgain","planted","Netherlands","Netherlands","NLD",0.0038131724
+"Hansen_forestgain","planted","Liechtenstein","Liechtenstein","LIE",1.21127705078125e-06
+"Hansen_forestgain","planted","Ivory Coast","Ivory Coast","CIV",0.1655967744
+"Hansen_forestgain","planted","Mali","Mali","MLI",7.57e-08
+"Hansen_forestgain","planted","Senegal","Senegal","SEN",7.23800125e-05
+"Hansen_forestgain","planted","Nigeria","Nigeria","NGA",0.0358163264
+"Hansen_forestgain","planted","Benin","Benin","BEN",0.0068122368
+"Hansen_forestgain","planted","Angola","Angola","AGO",0.0098859392
+"Hansen_forestgain","planted","Croatia","Croatia","HRV",0.0045121548
+"Hansen_forestgain","planted","Slovenia","Slovenia","SVN",0.00064385435
+"Hansen_forestgain","planted","Qatar","Qatar","QAT",0
+"Hansen_forestgain","planted","Saudi Arabia","Saudi Arabia","SAU",0
+"Hansen_forestgain","planted","Botswana","Botswana","BWA",0
+"Hansen_forestgain","planted","Zimbabwe","Zimbabwe","ZWE",0.0162929856
+"Hansen_forestgain","planted","Pakistan","Pakistan","PAK",4.2321759375e-05
+"Hansen_forestgain","planted","Bulgaria","Bulgaria","BGR",0.0146820656
+"Hansen_forestgain","planted","Thailand","Thailand","THA",0.3988117248
+"Hansen_forestgain","planted","San Marino","San Marino","SMR",1.32812171875e-05
+"Hansen_forestgain","planted","Haiti","Haiti","HTI",0.003584576
+"Hansen_forestgain","planted","Dominican Republic","Dominican Republic","DOM",0.021023784
+"Hansen_forestgain","planted","Chad","Chad","TCD",2.73495375e-05
+"Hansen_forestgain","planted","Kuwait","Kuwait","KWT",6.73e-08
+"Hansen_forestgain","planted","El Salvador","El Salvador","SLV",0.0032072002
+"Hansen_forestgain","planted","Guatemala","Guatemala","GTM",0.045612192
+"Hansen_forestgain","planted","East Timor","East Timor","TLS",0.0019305362
+"Hansen_forestgain","planted","Brunei","Brunei","BRN",0.0023731008
+"Hansen_forestgain","planted","Monaco","Monaco","MCO",3.26896997070312e-07
+"Hansen_forestgain","planted","Algeria","Algeria","DZA",0.0041688944
+"Hansen_forestgain","planted","Mozambique","Mozambique","MOZ",0.043312416
+"Hansen_forestgain","planted","eSwatini","Eswatini","SWZ",0.0471446336
+"Hansen_forestgain","planted","Burundi","Burundi","BDI",0.0018051282
+"Hansen_forestgain","planted","Rwanda","Rwanda","RWA",0.005236812
+"Hansen_forestgain","planted","Myanmar","Myanmar","MMR",0.0286365472
+"Hansen_forestgain","planted","Bangladesh","Bangladesh","BGD",0.0031366316
+"Hansen_forestgain","planted","Andorra","Andorra","AND",7.44917114257812e-08
+"Hansen_forestgain","planted","Afghanistan","Afghanistan","AFG",3.6224159375e-05
+"Hansen_forestgain","planted","Uganda","Uganda","UGA",0.0464952288
+"Hansen_forestgain","planted","Cuba","Guantanamo Bay Naval Base","-99",0
+"Hansen_forestgain","planted","Cuba","Cuba","CUB",0.0624181376
+"Hansen_forestgain","planted","Honduras","Honduras","HND",0.0269551904
+"Hansen_forestgain","planted","Ecuador","Ecuador","ECU",0.023339024
+"Hansen_forestgain","planted","Colombia","Colombia","COL",0.2177683968
+"Hansen_forestgain","planted","Paraguay","Paraguay","PRY",0.0173254736
+"Hansen_forestgain","planted","Brazilian Island","Brazilian Island","-99",0
+"Hansen_forestgain","planted","Portugal","Portugal","PRT",0.205450304
+"Hansen_forestgain","planted","Turkmenistan","Turkmenistan","TKM",4.8032340625e-05
+"Hansen_forestgain","planted","Jordan","Jordan","JOR",6.64814453125e-06
+"Hansen_forestgain","planted","Nepal","Nepal","NPL",0.003770106
+"Hansen_forestgain","planted","Lesotho","Lesotho","LSO",5.83977265625e-06
+"Hansen_forestgain","planted","Cameroon","Cameroon","CMR",0.0088911096
+"Hansen_forestgain","planted","Gabon","Gabon","GAB",0.005193088
+"Hansen_forestgain","planted","Niger","Niger","NER",7.40180603027344e-08
+"Hansen_forestgain","planted","Burkina Faso","Burkina Faso","BFA",9.21e-08
+"Hansen_forestgain","planted","Togo","Togo","TGO",0.0019039458
+"Hansen_forestgain","planted","Ghana","Ghana","GHA",0.098578784
+"Hansen_forestgain","planted","Guinea-Bissau","Guinea-Bissau","GNB",0.0004217644
+"Hansen_forestgain","planted","United Kingdom","Gibraltar","GIB",5.7169677734375e-08
+"Hansen_forestgain","planted","United States of America","United States of America","USA",7.2523931648
+"Hansen_forestgain","planted","Canada","Canada","CAN",0.2965138944
+"Hansen_forestgain","planted","Mexico","Mexico","MEX",0.1229851008
+"Hansen_forestgain","planted","Belize","Belize","BLZ",0.0022169904
+"Hansen_forestgain","planted","Panama","Panama","PAN",0.0175333216
+"Hansen_forestgain","planted","Venezuela","Venezuela","VEN",0.0546229312
+"Hansen_forestgain","planted","Papua New Guinea","Papua New Guinea","PNG",0.0689439872
+"Hansen_forestgain","planted","Egypt","Egypt","EGY",0.0045765648
+"Hansen_forestgain","planted","Yemen","Yemen","YEM",5.231e-07
+"Hansen_forestgain","planted","Mauritania","Mauritania","MRT",0
+"Hansen_forestgain","planted","Equatorial Guinea","Equatorial Guinea","GNQ",0.000221422
+"Hansen_forestgain","planted","Gambia","The Gambia","GMB",9.88137578125e-06
+"Hansen_forestgain","planted","China","Hong Kong","HKG",0.000200514075
+"Hansen_forestgain","planted","Vatican","Vatican City","VAT",0
+"Hansen_forestgain","planted","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",1.45232921875e-05
+"Hansen_forestgain","planted","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",2.68484609375e-06
+"Hansen_forestgain","planted","Kashmir","Siachen Glacier","-99",0
+"Hansen_forestgain","planted","Kazakhstan","Baikonur","-99",5.42e-08
+"Hansen_forestgain","planted","United Kingdom","Akrotiri Sovereign Base Area","-99",1.837836328125e-06
+"Hansen_forestgain","planted","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0
+"Hansen_forestgain","planted","Bir Tawil","Bir Tawil","-99",0
+"Hansen_forestgain","planted","Antarctica","Antarctica","ATA",0
+"Hansen_forestgain","planted","Australia","Australia","AUS",0.5575529984
+"Hansen_forestgain","planted","Denmark","Greenland","GRL",0
+"Hansen_forestgain","planted","Fiji","Fiji","FJI",0.0008115019
+"Hansen_forestgain","planted","New Zealand","New Zealand","NZL",0.4569769472
+"Hansen_forestgain","planted","France","New Caledonia","NCL",0.0003924017
+"Hansen_forestgain","planted","Madagascar","Madagascar","MDG",0.0248613104
+"Hansen_forestgain","planted","Philippines","Philippines","PHL",0.1662118656
+"Hansen_forestgain","planted","Sri Lanka","Sri Lanka","LKA",0.0188486624
+"Hansen_forestgain","planted","Netherlands","Curaçao","CUW",1.45064912109375e-06
+"Hansen_forestgain","planted","Netherlands","Aruba","ABW",0
+"Hansen_forestgain","planted","The Bahamas","The Bahamas","BHS",2.531574375e-05
+"Hansen_forestgain","planted","United Kingdom","Turks and Caicos Islands","TCA",2.7817650390625e-06
+"Hansen_forestgain","planted","Taiwan","Taiwan","TWN",0.0041539584
+"Hansen_forestgain","planted","Japan","Japan","JPN",0.1644436864
+"Hansen_forestgain","planted","France","Saint Pierre and Miquelon","SPM",0
+"Hansen_forestgain","planted","Iceland","Iceland","ISL",0
+"Hansen_forestgain","planted","United Kingdom","Pitcairn Islands","PCN",0
+"Hansen_forestgain","planted","France","French Polynesia","PYF",0
+"Hansen_forestgain","planted","France","French Southern and Antarctic Lands","ATF",0
+"Hansen_forestgain","planted","Seychelles","Seychelles","SYC",0
+"Hansen_forestgain","planted","Kiribati","Kiribati","KIR",0
+"Hansen_forestgain","planted","Marshall Islands","Marshall Islands","MHL",0
+"Hansen_forestgain","planted","Trinidad and Tobago","Trinidad and Tobago","TTO",0.0005466902
+"Hansen_forestgain","planted","Grenada","Grenada","GRD",6.01998125e-06
+"Hansen_forestgain","planted","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",3.146712890625e-06
+"Hansen_forestgain","planted","Barbados","Barbados","BRB",0.000154548625
+"Hansen_forestgain","planted","Saint Lucia","Saint Lucia","LCA",1.219201171875e-05
+"Hansen_forestgain","planted","Dominica","Dominica","DMA",7.26452392578125e-08
+"Hansen_forestgain","planted","United States of America","United States Minor Outlying Islands","UMI",0
+"Hansen_forestgain","planted","United Kingdom","Montserrat","MSR",7.376e-07
+"Hansen_forestgain","planted","Antigua and Barbuda","Antigua and Barbuda","ATG",5.50169125e-05
+"Hansen_forestgain","planted","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",3.2705846875e-05
+"Hansen_forestgain","planted","United States of America","United States Virgin Islands","VIR",0.0001294917
+"Hansen_forestgain","planted","France","Saint Barthélemy","BLM",0
+"Hansen_forestgain","planted","United States of America","Puerto Rico","PRI",0.0028035672
+"Hansen_forestgain","planted","United Kingdom","Anguilla","AIA",1.48367796875e-05
+"Hansen_forestgain","planted","United Kingdom","British Virgin Islands","VGB",1.7173e-06
+"Hansen_forestgain","planted","Jamaica","Jamaica","JAM",0.0028924914
+"Hansen_forestgain","planted","United Kingdom","Cayman Islands","CYM",2.90526953125e-06
+"Hansen_forestgain","planted","United Kingdom","Bermuda","BMU",0
+"Hansen_forestgain","planted","Australia","Heard Island and McDonald Islands","HMD",0
+"Hansen_forestgain","planted","United Kingdom","Saint Helena","SHN",0
+"Hansen_forestgain","planted","Mauritius","Mauritius","MUS",0.0026026662
+"Hansen_forestgain","planted","Comoros","Comoros","COM",0.00010324824375
+"Hansen_forestgain","planted","São Tomé and Principe","São Tomé and Príncipe","STP",0
+"Hansen_forestgain","planted","Cabo Verde","Cape Verde","CPV",0.0008745098
+"Hansen_forestgain","planted","Malta","Malta","MLT",1.178380546875e-05
+"Hansen_forestgain","planted","United Kingdom","Jersey","JEY",2.2035765625e-06
+"Hansen_forestgain","planted","United Kingdom","Guernsey","GGY",6.29050859375e-06
+"Hansen_forestgain","planted","United Kingdom","Isle of Man","IMN",0.00021668805
+"Hansen_forestgain","planted","Finland","Åland","ALA",0.0014379695
+"Hansen_forestgain","planted","Denmark","Faroe Islands","FRO",0
+"Hansen_forestgain","planted","Australia","Australian Indian Ocean Territories","-99",0
+"Hansen_forestgain","planted","United Kingdom","British Indian Ocean Territory","IOT",0
+"Hansen_forestgain","planted","Singapore","Singapore","SGP",0.000384723775
+"Hansen_forestgain","planted","Australia","Norfolk Island","NFK",0
+"Hansen_forestgain","planted","New Zealand","Cook Islands","COK",0
+"Hansen_forestgain","planted","Tonga","Tonga","TON",0
+"Hansen_forestgain","planted","France","Wallis and Futuna","WLF",0
+"Hansen_forestgain","planted","Samoa","Samoa","WSM",0
+"Hansen_forestgain","planted","Solomon Islands","Solomon Islands","SLB",0.0033639492
+"Hansen_forestgain","planted","Tuvalu","Tuvalu","TUV",0
+"Hansen_forestgain","planted","Maldives","Maldives","MDV",0
+"Hansen_forestgain","planted","Nauru","Nauru","NRU",0
+"Hansen_forestgain","planted","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"Hansen_forestgain","planted","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"Hansen_forestgain","planted","United Kingdom","Falkland Islands","FLK",0
+"Hansen_forestgain","planted","Vanuatu","Vanuatu","VUT",0.000358487675
+"Hansen_forestgain","planted","New Zealand","Niue","NIU",0
+"Hansen_forestgain","planted","United States of America","American Samoa","ASM",0
+"Hansen_forestgain","planted","Palau","Palau","PLW",5.998248125e-05
+"Hansen_forestgain","planted","United States of America","Guam","GUM",0
+"Hansen_forestgain","planted","United States of America","Northern Mariana Islands","MNP",0
+"Hansen_forestgain","planted","Bahrain","Bahrain","BHR",0
+"Hansen_forestgain","planted","Australia","Coral Sea Islands","-99",0
+"Hansen_forestgain","planted","Spratly Islands","Wake Island","-99",0
+"Hansen_forestgain","planted","France","Clipperton Island","-99",0
+"Hansen_forestgain","planted","China","Macau","MAC",2.7264810546875e-06
+"Hansen_forestgain","planted","Australia","Ashmore and Cartier Islands","-99",0
+"Hansen_forestgain","planted","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"Hansen_forestgain","planted","Serranilla Bank","Serranilla Bank","-99",0
+"Hansen_forestgain","planted","Scarborough Reef","Scarborough Shoal","-99",0
+"gain_esacci","natural","Indonesia","Indonesia","IDN",44.7594266624
+"gain_esacci","natural","Malaysia","Malaysia","MYS",16.7476903936
+"gain_esacci","natural","Chile","Chile","CHL",2.9363146752
+"gain_esacci","natural","Bolivia","Bolivia","BOL",16.1509720064
+"gain_esacci","natural","Peru","Peru","PER",2.5205413888
+"gain_esacci","natural","Argentina","Argentina","ARG",11.4593333248
+"gain_esacci","natural","United Kingdom","Dhekelia Cantonment","-99",0
+"gain_esacci","natural","Cyprus","Cyprus","CYP",0.109367168
+"gain_esacci","natural","India","India","IND",30.3065628672
+"gain_esacci","natural","China","People's Republic of China","CHN",65.84336384
+"gain_esacci","natural","Israel","Israel","ISR",0.0138915936
+"gain_esacci","natural","Israel","Palestine","PSE",0
+"gain_esacci","natural","Lebanon","Lebanon","LBN",0.0138283312
+"gain_esacci","natural","Ethiopia","Ethiopia","ETH",19.9865106432
+"gain_esacci","natural","South Sudan","South Sudan","SSD",39.2789590016
+"gain_esacci","natural","Somalia","Somalia","SOM",1.5134357504
+"gain_esacci","natural","Kenya","Kenya","KEN",3.4747666432
+"gain_esacci","natural","Malawi","Malawi","MWI",2.6290518016
+"gain_esacci","natural","United Republic of Tanzania","Tanzania","TZA",34.026717184
+"gain_esacci","natural","Syria","Syria","SYR",0.0651998016
+"gain_esacci","natural","Somaliland","Somaliland","-99",0.3971668224
+"gain_esacci","natural","France","France","-99",6.299899904
+"gain_esacci","natural","Suriname","Suriname","SUR",0.2993915136
+"gain_esacci","natural","Guyana","Guyana","GUY",0.3229060096
+"gain_esacci","natural","South Korea","South Korea","KOR",1.096644608
+"gain_esacci","natural","North Korea","North Korea","PRK",1.2089247744
+"gain_esacci","natural","Morocco","Morocco","MAR",2.149465088
+"gain_esacci","natural","Western Sahara","Western Sahara","ESH",0
+"gain_esacci","natural","Costa Rica","Costa Rica","CRI",2.5977327616
+"gain_esacci","natural","Nicaragua","Nicaragua","NIC",1.4972710912
+"gain_esacci","natural","Republic of the Congo","Republic of the Congo","COG",12.8124256256
+"gain_esacci","natural","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",57.1418738688
+"gain_esacci","natural","Bhutan","Bhutan","BTN",2.6333114368
+"gain_esacci","natural","Namibia","Namibia","NAM",2.7089647616
+"gain_esacci","natural","South Africa","South Africa","ZAF",4.1479499776
+"gain_esacci","natural","France","Saint Martin","MAF",0.0098627544
+"gain_esacci","natural","Netherlands","Sint Maarten","SXM",0.0011802925
+"gain_esacci","natural","Oman","Oman","OMN",0.0169049632
+"gain_esacci","natural","Uzbekistan","Uzbekistan","UZB",0.3522666496
+"gain_esacci","natural","Kazakhstan","Kazakhstan","KAZ",5.2810330112
+"gain_esacci","natural","Tajikistan","Tajikistan","TJK",0.1339813632
+"gain_esacci","natural","Lithuania","Lithuania","LTU",2.8904271872
+"gain_esacci","natural","Brazil","Brazil","BRA",114.1372485632
+"gain_esacci","natural","Uruguay","Uruguay","URY",1.4263512064
+"gain_esacci","natural","Mongolia","Mongolia","MNG",5.7635373056
+"gain_esacci","natural","Czechia","Czech Republic","CZE",1.4110585856
+"gain_esacci","natural","Germany","Germany","DEU",3.5011211264
+"gain_esacci","natural","Estonia","Estonia","EST",0.3069481216
+"gain_esacci","natural","Latvia","Latvia","LVA",0.639641344
+"gain_esacci","natural","Sweden","Sweden","SWE",5.1795554304
+"gain_esacci","natural","Finland","Finland","FIN",13.2321050624
+"gain_esacci","natural","Vietnam","Vietnam","VNM",3.2544622592
+"gain_esacci","natural","Cambodia","Cambodia","KHM",0.1734733312
+"gain_esacci","natural","Luxembourg","Luxembourg","LUX",0.0379759392
+"gain_esacci","natural","United Arab Emirates","United Arab Emirates","ARE",0.0001991249
+"gain_esacci","natural","Belgium","Belgium","BEL",0.077712672
+"gain_esacci","natural","Georgia","Georgia","GEO",1.0663196672
+"gain_esacci","natural","Azerbaijan","Azerbaijan","AZE",0.3530095616
+"gain_esacci","natural","Turkey","Turkey","TUR",18.9397417984
+"gain_esacci","natural","Spain","Spain","ESP",8.67837952
+"gain_esacci","natural","Laos","Laos","LAO",14.9720711168
+"gain_esacci","natural","Kyrgyzstan","Kyrgyzstan","KGZ",2.548443136
+"gain_esacci","natural","Armenia","Armenia","ARM",0.3385016064
+"gain_esacci","natural","Denmark","Denmark","DNK",0.074749056
+"gain_esacci","natural","Libya","Libya","LBY",0
+"gain_esacci","natural","Tunisia","Tunisia","TUN",0.414120064
+"gain_esacci","natural","Romania","Romania","ROU",6.3565037568
+"gain_esacci","natural","Hungary","Hungary","HUN",2.1444765696
+"gain_esacci","natural","Slovakia","Slovakia","SVK",1.1192283136
+"gain_esacci","natural","Poland","Poland","POL",3.3813618688
+"gain_esacci","natural","Ireland","Ireland","IRL",0.0206047824
+"gain_esacci","natural","United Kingdom","United Kingdom","GBR",0.0434815648
+"gain_esacci","natural","Greece","Greece","GRC",5.2275441664
+"gain_esacci","natural","Zambia","Zambia","ZMB",12.0313290752
+"gain_esacci","natural","Sierra Leone","Sierra Leone","SLE",1.7258756096
+"gain_esacci","natural","Guinea","Guinea","GIN",9.2554297344
+"gain_esacci","natural","Liberia","Liberia","LBR",1.1714648064
+"gain_esacci","natural","Central African Republic","Central African Republic","CAF",5.1859877888
+"gain_esacci","natural","Sudan","Sudan","SDN",2.9261514752
+"gain_esacci","natural","Djibouti","Djibouti","DJI",0
+"gain_esacci","natural","Eritrea","Eritrea","ERI",0.0578143424
+"gain_esacci","natural","Austria","Austria","AUT",0.9350893568
+"gain_esacci","natural","Iraq","Iraq","IRQ",0.0337911104
+"gain_esacci","natural","Italy","Italy","ITA",5.2464418816
+"gain_esacci","natural","Iran","Iran","IRN",0.4204196608
+"gain_esacci","natural","Netherlands","Netherlands","NLD",0.0956353536
+"gain_esacci","natural","Liechtenstein","Liechtenstein","LIE",0.0004858606
+"gain_esacci","natural","Ivory Coast","Ivory Coast","CIV",3.7935710208
+"gain_esacci","natural","Mali","Mali","MLI",4.4673490944
+"gain_esacci","natural","Senegal","Senegal","SEN",4.021403648
+"gain_esacci","natural","Nigeria","Nigeria","NGA",16.2484830208
+"gain_esacci","natural","Benin","Benin","BEN",5.2415455232
+"gain_esacci","natural","Angola","Angola","AGO",32.4581654528
+"gain_esacci","natural","Croatia","Croatia","HRV",1.1031087104
+"gain_esacci","natural","Slovenia","Slovenia","SVN",0.1285087104
+"gain_esacci","natural","Qatar","Qatar","QAT",0.0001372592
+"gain_esacci","natural","Saudi Arabia","Saudi Arabia","SAU",0.037859248
+"gain_esacci","natural","Botswana","Botswana","BWA",6.9934424064
+"gain_esacci","natural","Zimbabwe","Zimbabwe","ZWE",12.7414771712
+"gain_esacci","natural","Pakistan","Pakistan","PAK",0.4956657664
+"gain_esacci","natural","Bulgaria","Bulgaria","BGR",3.755184128
+"gain_esacci","natural","Thailand","Thailand","THA",7.001288704
+"gain_esacci","natural","San Marino","San Marino","SMR",0
+"gain_esacci","natural","Haiti","Haiti","HTI",0.2605441536
+"gain_esacci","natural","Dominican Republic","Dominican Republic","DOM",3.6221865984
+"gain_esacci","natural","Chad","Chad","TCD",0.6847577088
+"gain_esacci","natural","Kuwait","Kuwait","KWT",0
+"gain_esacci","natural","El Salvador","El Salvador","SLV",2.421476352
+"gain_esacci","natural","Guatemala","Guatemala","GTM",3.2695615488
+"gain_esacci","natural","East Timor","East Timor","TLS",0.284360832
+"gain_esacci","natural","Brunei","Brunei","BRN",0.1683793792
+"gain_esacci","natural","Monaco","Monaco","MCO",6.48986328125e-08
+"gain_esacci","natural","Algeria","Algeria","DZA",2.2726928384
+"gain_esacci","natural","Mozambique","Mozambique","MOZ",7.7785358336
+"gain_esacci","natural","eSwatini","Eswatini","SWZ",0.1216570752
+"gain_esacci","natural","Burundi","Burundi","BDI",0.3918708992
+"gain_esacci","natural","Rwanda","Rwanda","RWA",0.1689229952
+"gain_esacci","natural","Myanmar","Myanmar","MMR",43.9097458688
+"gain_esacci","natural","Bangladesh","Bangladesh","BGD",0.624225792
+"gain_esacci","natural","Andorra","Andorra","AND",0.007027248
+"gain_esacci","natural","Afghanistan","Afghanistan","AFG",0.1407199744
+"gain_esacci","natural","Uganda","Uganda","UGA",3.9391830016
+"gain_esacci","natural","Cuba","Guantanamo Bay Naval Base","-99",0
+"gain_esacci","natural","Cuba","Cuba","CUB",3.1871115264
+"gain_esacci","natural","Honduras","Honduras","HND",6.4663547904
+"gain_esacci","natural","Ecuador","Ecuador","ECU",3.5754459136
+"gain_esacci","natural","Colombia","Colombia","COL",10.3462772736
+"gain_esacci","natural","Paraguay","Paraguay","PRY",8.1631371264
+"gain_esacci","natural","Brazilian Island","Brazilian Island","-99",0
+"gain_esacci","natural","Portugal","Portugal","PRT",1.7483218944
+"gain_esacci","natural","Turkmenistan","Turkmenistan","TKM",0.0028059156
+"gain_esacci","natural","Jordan","Jordan","JOR",0
+"gain_esacci","natural","Nepal","Nepal","NPL",2.846936064
+"gain_esacci","natural","Lesotho","Lesotho","LSO",0.0912100224
+"gain_esacci","natural","Cameroon","Cameroon","CMR",2.3525548032
+"gain_esacci","natural","Gabon","Gabon","GAB",1.4139631616
+"gain_esacci","natural","Niger","Niger","NER",0.0013967518
+"gain_esacci","natural","Burkina Faso","Burkina Faso","BFA",0.5450089984
+"gain_esacci","natural","Togo","Togo","TGO",6.4101154816
+"gain_esacci","natural","Ghana","Ghana","GHA",11.1879233536
+"gain_esacci","natural","Guinea-Bissau","Guinea-Bissau","GNB",0.7107493888
+"gain_esacci","natural","United Kingdom","Gibraltar","GIB",0
+"gain_esacci","natural","United States of America","United States of America","USA",150.9874335744
+"gain_esacci","natural","Canada","Canada","CAN",214.3254216704
+"gain_esacci","natural","Mexico","Mexico","MEX",40.3432931328
+"gain_esacci","natural","Belize","Belize","BLZ",0.3794388736
+"gain_esacci","natural","Panama","Panama","PAN",1.352362496
+"gain_esacci","natural","Venezuela","Venezuela","VEN",9.151307776
+"gain_esacci","natural","Papua New Guinea","Papua New Guinea","PNG",10.7053408256
+"gain_esacci","natural","Egypt","Egypt","EGY",0.00039266005
+"gain_esacci","natural","Yemen","Yemen","YEM",0.124283456
+"gain_esacci","natural","Mauritania","Mauritania","MRT",0.0109075976
+"gain_esacci","natural","Equatorial Guinea","Equatorial Guinea","GNQ",0.1407371264
+"gain_esacci","natural","Gambia","The Gambia","GMB",0.4516240896
+"gain_esacci","natural","China","Hong Kong","HKG",0.0369103456
+"gain_esacci","natural","Vatican","Vatican City","VAT",0
+"gain_esacci","natural","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",0.1890420224
+"gain_esacci","natural","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",0.003925732
+"gain_esacci","natural","Kashmir","Siachen Glacier","-99",0
+"gain_esacci","natural","Kazakhstan","Baikonur","-99",0
+"gain_esacci","natural","United Kingdom","Akrotiri Sovereign Base Area","-99",0.000185361225
+"gain_esacci","natural","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0.0010861379
+"gain_esacci","natural","Bir Tawil","Bir Tawil","-99",0
+"gain_esacci","natural","Antarctica","Antarctica","ATA",0
+"gain_esacci","natural","Australia","Australia","AUS",54.086336512
+"gain_esacci","natural","Denmark","Greenland","GRL",0
+"gain_esacci","natural","Fiji","Fiji","FJI",0.128317312
+"gain_esacci","natural","New Zealand","New Zealand","NZL",3.2959414272
+"gain_esacci","natural","France","New Caledonia","NCL",1.1239335936
+"gain_esacci","natural","Madagascar","Madagascar","MDG",18.1090369536
+"gain_esacci","natural","Philippines","Philippines","PHL",9.8265112576
+"gain_esacci","natural","Sri Lanka","Sri Lanka","LKA",0.3216073216
+"gain_esacci","natural","Netherlands","Curaçao","CUW",8.689655e-05
+"gain_esacci","natural","Netherlands","Aruba","ABW",0
+"gain_esacci","natural","The Bahamas","The Bahamas","BHS",0.3484141312
+"gain_esacci","natural","United Kingdom","Turks and Caicos Islands","TCA",0.0073082656
+"gain_esacci","natural","Taiwan","Taiwan","TWN",0.0662688192
+"gain_esacci","natural","Japan","Japan","JPN",2.2781964288
+"gain_esacci","natural","France","Saint Pierre and Miquelon","SPM",0
+"gain_esacci","natural","Iceland","Iceland","ISL",0
+"gain_esacci","natural","United Kingdom","Pitcairn Islands","PCN",0
+"gain_esacci","natural","France","French Polynesia","PYF",0
+"gain_esacci","natural","France","French Southern and Antarctic Lands","ATF",0.000416909875
+"gain_esacci","natural","Seychelles","Seychelles","SYC",4.23212421875e-06
+"gain_esacci","natural","Kiribati","Kiribati","KIR",0
+"gain_esacci","natural","Marshall Islands","Marshall Islands","MHL",0
+"gain_esacci","natural","Trinidad and Tobago","Trinidad and Tobago","TTO",0.0242644368
+"gain_esacci","natural","Grenada","Grenada","GRD",0
+"gain_esacci","natural","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",0
+"gain_esacci","natural","Barbados","Barbados","BRB",0
+"gain_esacci","natural","Saint Lucia","Saint Lucia","LCA",0
+"gain_esacci","natural","Dominica","Dominica","DMA",0
+"gain_esacci","natural","United States of America","United States Minor Outlying Islands","UMI",0
+"gain_esacci","natural","United Kingdom","Montserrat","MSR",0
+"gain_esacci","natural","Antigua and Barbuda","Antigua and Barbuda","ATG",0.011806632
+"gain_esacci","natural","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",0.0009850757
+"gain_esacci","natural","United States of America","United States Virgin Islands","VIR",0.0222746448
+"gain_esacci","natural","France","Saint Barthélemy","BLM",0
+"gain_esacci","natural","United States of America","Puerto Rico","PRI",0.4351798784
+"gain_esacci","natural","United Kingdom","Anguilla","AIA",0.0008572267
+"gain_esacci","natural","United Kingdom","British Virgin Islands","VGB",0.0032636088
+"gain_esacci","natural","Jamaica","Jamaica","JAM",0.0852992512
+"gain_esacci","natural","United Kingdom","Cayman Islands","CYM",0
+"gain_esacci","natural","United Kingdom","Bermuda","BMU",0
+"gain_esacci","natural","Australia","Heard Island and McDonald Islands","HMD",0
+"gain_esacci","natural","United Kingdom","Saint Helena","SHN",0
+"gain_esacci","natural","Mauritius","Mauritius","MUS",0.0150448384
+"gain_esacci","natural","Comoros","Comoros","COM",0.0190459808
+"gain_esacci","natural","São Tomé and Principe","São Tomé and Príncipe","STP",0.0581014592
+"gain_esacci","natural","Cabo Verde","Cape Verde","CPV",0
+"gain_esacci","natural","Malta","Malta","MLT",0
+"gain_esacci","natural","United Kingdom","Jersey","JEY",9.718035e-05
+"gain_esacci","natural","United Kingdom","Guernsey","GGY",0
+"gain_esacci","natural","United Kingdom","Isle of Man","IMN",0.0004892566
+"gain_esacci","natural","Finland","Åland","ALA",0.0246307152
+"gain_esacci","natural","Denmark","Faroe Islands","FRO",0
+"gain_esacci","natural","Australia","Australian Indian Ocean Territories","-99",0
+"gain_esacci","natural","United Kingdom","British Indian Ocean Territory","IOT",0
+"gain_esacci","natural","Singapore","Singapore","SGP",0.0025343862
+"gain_esacci","natural","Australia","Norfolk Island","NFK",0
+"gain_esacci","natural","New Zealand","Cook Islands","COK",0
+"gain_esacci","natural","Tonga","Tonga","TON",0
+"gain_esacci","natural","France","Wallis and Futuna","WLF",0
+"gain_esacci","natural","Samoa","Samoa","WSM",0
+"gain_esacci","natural","Solomon Islands","Solomon Islands","SLB",0.1495836416
+"gain_esacci","natural","Tuvalu","Tuvalu","TUV",0
+"gain_esacci","natural","Maldives","Maldives","MDV",0
+"gain_esacci","natural","Nauru","Nauru","NRU",0
+"gain_esacci","natural","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"gain_esacci","natural","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"gain_esacci","natural","United Kingdom","Falkland Islands","FLK",0.0625253824
+"gain_esacci","natural","Vanuatu","Vanuatu","VUT",2.4906999808
+"gain_esacci","natural","New Zealand","Niue","NIU",0
+"gain_esacci","natural","United States of America","American Samoa","ASM",0
+"gain_esacci","natural","Palau","Palau","PLW",0.00010196945625
+"gain_esacci","natural","United States of America","Guam","GUM",0
+"gain_esacci","natural","United States of America","Northern Mariana Islands","MNP",0
+"gain_esacci","natural","Bahrain","Bahrain","BHR",3.4269775e-05
+"gain_esacci","natural","Australia","Coral Sea Islands","-99",0
+"gain_esacci","natural","Spratly Islands","Wake Island","-99",0
+"gain_esacci","natural","France","Clipperton Island","-99",0
+"gain_esacci","natural","China","Macau","MAC",0
+"gain_esacci","natural","Australia","Ashmore and Cartier Islands","-99",0
+"gain_esacci","natural","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"gain_esacci","natural","Serranilla Bank","Serranilla Bank","-99",0
+"gain_esacci","natural","Scarborough Reef","Scarborough Shoal","-99",0
+"gain_esacci","planted","Indonesia","Indonesia","IDN",12.5985701888
+"gain_esacci","planted","Malaysia","Malaysia","MYS",3.4561339392
+"gain_esacci","planted","Chile","Chile","CHL",7.798325248
+"gain_esacci","planted","Bolivia","Bolivia","BOL",0.035684944
+"gain_esacci","planted","Peru","Peru","PER",0.0992732416
+"gain_esacci","planted","Argentina","Argentina","ARG",3.5497005056
+"gain_esacci","planted","United Kingdom","Dhekelia Cantonment","-99",0.0007498612
+"gain_esacci","planted","Cyprus","Cyprus","CYP",0.0140053728
+"gain_esacci","planted","India","India","IND",4.1373687808
+"gain_esacci","planted","China","People's Republic of China","CHN",31.261016064
+"gain_esacci","planted","Israel","Israel","ISR",0.0282552288
+"gain_esacci","planted","Israel","Palestine","PSE",0
+"gain_esacci","planted","Lebanon","Lebanon","LBN",0.0096505336
+"gain_esacci","planted","Ethiopia","Ethiopia","ETH",8.9145188352
+"gain_esacci","planted","South Sudan","South Sudan","SSD",0.5175249408
+"gain_esacci","planted","Somalia","Somalia","SOM",0
+"gain_esacci","planted","Kenya","Kenya","KEN",0.4281963776
+"gain_esacci","planted","Malawi","Malawi","MWI",0.3912563712
+"gain_esacci","planted","United Republic of Tanzania","Tanzania","TZA",8.7867301888
+"gain_esacci","planted","Syria","Syria","SYR",0.0294854816
+"gain_esacci","planted","Somaliland","Somaliland","-99",0.000315423075
+"gain_esacci","planted","France","France","-99",3.0555840512
+"gain_esacci","planted","Suriname","Suriname","SUR",0.0143280528
+"gain_esacci","planted","Guyana","Guyana","GUY",0.0153079088
+"gain_esacci","planted","South Korea","South Korea","KOR",0.4399478784
+"gain_esacci","planted","North Korea","North Korea","PRK",0.1212026624
+"gain_esacci","planted","Morocco","Morocco","MAR",0.0416849056
+"gain_esacci","planted","Western Sahara","Western Sahara","ESH",0
+"gain_esacci","planted","Costa Rica","Costa Rica","CRI",1.1713056768
+"gain_esacci","planted","Nicaragua","Nicaragua","NIC",0.5610966528
+"gain_esacci","planted","Republic of the Congo","Republic of the Congo","COG",2.422822912
+"gain_esacci","planted","Democratic Republic of the Congo","Democratic Republic of the Congo","COD",1.5897739264
+"gain_esacci","planted","Bhutan","Bhutan","BTN",0.0042622356
+"gain_esacci","planted","Namibia","Namibia","NAM",0.0495115328
+"gain_esacci","planted","South Africa","South Africa","ZAF",0.8422059008
+"gain_esacci","planted","France","Saint Martin","MAF",1.07237e-05
+"gain_esacci","planted","Netherlands","Sint Maarten","SXM",0
+"gain_esacci","planted","Oman","Oman","OMN",0.0006104068
+"gain_esacci","planted","Uzbekistan","Uzbekistan","UZB",0.000748078
+"gain_esacci","planted","Kazakhstan","Kazakhstan","KAZ",0.9315699712
+"gain_esacci","planted","Tajikistan","Tajikistan","TJK",0.000179928
+"gain_esacci","planted","Lithuania","Lithuania","LTU",0.6942689792
+"gain_esacci","planted","Brazil","Brazil","BRA",19.4790391808
+"gain_esacci","planted","Uruguay","Uruguay","URY",3.9591460864
+"gain_esacci","planted","Mongolia","Mongolia","MNG",0.009175092
+"gain_esacci","planted","Czechia","Czech Republic","CZE",1.8078449664
+"gain_esacci","planted","Germany","Germany","DEU",7.4450755584
+"gain_esacci","planted","Estonia","Estonia","EST",0.0503714496
+"gain_esacci","planted","Latvia","Latvia","LVA",0.0545600448
+"gain_esacci","planted","Sweden","Sweden","SWE",1.0492713984
+"gain_esacci","planted","Finland","Finland","FIN",0.60463232
+"gain_esacci","planted","Vietnam","Vietnam","VNM",1.017739776
+"gain_esacci","planted","Cambodia","Cambodia","KHM",0.1416950144
+"gain_esacci","planted","Luxembourg","Luxembourg","LUX",0.0113240912
+"gain_esacci","planted","United Arab Emirates","United Arab Emirates","ARE",0.0082304232
+"gain_esacci","planted","Belgium","Belgium","BEL",0.1897425024
+"gain_esacci","planted","Georgia","Georgia","GEO",0.3730844928
+"gain_esacci","planted","Azerbaijan","Azerbaijan","AZE",0.1271586432
+"gain_esacci","planted","Turkey","Turkey","TUR",4.245495808
+"gain_esacci","planted","Spain","Spain","ESP",3.0303838208
+"gain_esacci","planted","Laos","Laos","LAO",0.0795477568
+"gain_esacci","planted","Kyrgyzstan","Kyrgyzstan","KGZ",0.003092266
+"gain_esacci","planted","Armenia","Armenia","ARM",0.001707114
+"gain_esacci","planted","Denmark","Denmark","DNK",0.7305524736
+"gain_esacci","planted","Libya","Libya","LBY",0
+"gain_esacci","planted","Tunisia","Tunisia","TUN",0.1298416896
+"gain_esacci","planted","Romania","Romania","ROU",0.8695148544
+"gain_esacci","planted","Hungary","Hungary","HUN",0.5931509248
+"gain_esacci","planted","Slovakia","Slovakia","SVK",0.1404880512
+"gain_esacci","planted","Poland","Poland","POL",7.6128935936
+"gain_esacci","planted","Ireland","Ireland","IRL",0.5222108672
+"gain_esacci","planted","United Kingdom","United Kingdom","GBR",3.9856439296
+"gain_esacci","planted","Greece","Greece","GRC",1.8343170048
+"gain_esacci","planted","Zambia","Zambia","ZMB",1.2702527488
+"gain_esacci","planted","Sierra Leone","Sierra Leone","SLE",0.1465123712
+"gain_esacci","planted","Guinea","Guinea","GIN",2.1264984064
+"gain_esacci","planted","Liberia","Liberia","LBR",0.0262289488
+"gain_esacci","planted","Central African Republic","Central African Republic","CAF",0.1375843584
+"gain_esacci","planted","Sudan","Sudan","SDN",0.0686702592
+"gain_esacci","planted","Djibouti","Djibouti","DJI",0
+"gain_esacci","planted","Eritrea","Eritrea","ERI",0.0099826816
+"gain_esacci","planted","Austria","Austria","AUT",0.6010323968
+"gain_esacci","planted","Iraq","Iraq","IRQ",0.0011188407
+"gain_esacci","planted","Italy","Italy","ITA",0.7283216896
+"gain_esacci","planted","Iran","Iran","IRN",0.1626783232
+"gain_esacci","planted","Netherlands","Netherlands","NLD",0.547398912
+"gain_esacci","planted","Liechtenstein","Liechtenstein","LIE",0
+"gain_esacci","planted","Ivory Coast","Ivory Coast","CIV",7.6862078976
+"gain_esacci","planted","Mali","Mali","MLI",0.2654582016
+"gain_esacci","planted","Senegal","Senegal","SEN",0.162519488
+"gain_esacci","planted","Nigeria","Nigeria","NGA",13.1451961344
+"gain_esacci","planted","Benin","Benin","BEN",2.764312576
+"gain_esacci","planted","Angola","Angola","AGO",2.6718185472
+"gain_esacci","planted","Croatia","Croatia","HRV",0.291185408
+"gain_esacci","planted","Slovenia","Slovenia","SVN",0.04074688
+"gain_esacci","planted","Qatar","Qatar","QAT",0.0017859178
+"gain_esacci","planted","Saudi Arabia","Saudi Arabia","SAU",0.003269156
+"gain_esacci","planted","Botswana","Botswana","BWA",0.0125365688
+"gain_esacci","planted","Zimbabwe","Zimbabwe","ZWE",0.523272704
+"gain_esacci","planted","Pakistan","Pakistan","PAK",0.0070005432
+"gain_esacci","planted","Bulgaria","Bulgaria","BGR",0.5382982144
+"gain_esacci","planted","Thailand","Thailand","THA",0.428125184
+"gain_esacci","planted","San Marino","San Marino","SMR",0
+"gain_esacci","planted","Haiti","Haiti","HTI",0.5182158336
+"gain_esacci","planted","Dominican Republic","Dominican Republic","DOM",1.2215228416
+"gain_esacci","planted","Chad","Chad","TCD",0.2081788544
+"gain_esacci","planted","Kuwait","Kuwait","KWT",0
+"gain_esacci","planted","El Salvador","El Salvador","SLV",0.511094784
+"gain_esacci","planted","Guatemala","Guatemala","GTM",0.9249067008
+"gain_esacci","planted","East Timor","East Timor","TLS",0.0488148608
+"gain_esacci","planted","Brunei","Brunei","BRN",0.0272322368
+"gain_esacci","planted","Monaco","Monaco","MCO",0
+"gain_esacci","planted","Algeria","Algeria","DZA",0.146769984
+"gain_esacci","planted","Mozambique","Mozambique","MOZ",4.9146970112
+"gain_esacci","planted","eSwatini","Eswatini","SWZ",0.0330001408
+"gain_esacci","planted","Burundi","Burundi","BDI",0.187834752
+"gain_esacci","planted","Rwanda","Rwanda","RWA",0.1257232768
+"gain_esacci","planted","Myanmar","Myanmar","MMR",0.2126935168
+"gain_esacci","planted","Bangladesh","Bangladesh","BGD",1.1151594496
+"gain_esacci","planted","Andorra","Andorra","AND",0
+"gain_esacci","planted","Afghanistan","Afghanistan","AFG",0
+"gain_esacci","planted","Uganda","Uganda","UGA",1.2130634752
+"gain_esacci","planted","Cuba","Guantanamo Bay Naval Base","-99",0
+"gain_esacci","planted","Cuba","Cuba","CUB",0.2634732544
+"gain_esacci","planted","Honduras","Honduras","HND",0.9051676672
+"gain_esacci","planted","Ecuador","Ecuador","ECU",0.3645075712
+"gain_esacci","planted","Colombia","Colombia","COL",3.8752350208
+"gain_esacci","planted","Paraguay","Paraguay","PRY",0.6185468416
+"gain_esacci","planted","Brazilian Island","Brazilian Island","-99",0
+"gain_esacci","planted","Portugal","Portugal","PRT",1.1636000768
+"gain_esacci","planted","Turkmenistan","Turkmenistan","TKM",0.0001150528
+"gain_esacci","planted","Jordan","Jordan","JOR",0
+"gain_esacci","planted","Nepal","Nepal","NPL",0.1824095488
+"gain_esacci","planted","Lesotho","Lesotho","LSO",5.58214e-05
+"gain_esacci","planted","Cameroon","Cameroon","CMR",0.565184256
+"gain_esacci","planted","Gabon","Gabon","GAB",0.1330588928
+"gain_esacci","planted","Niger","Niger","NER",0.0061062544
+"gain_esacci","planted","Burkina Faso","Burkina Faso","BFA",0.4350684672
+"gain_esacci","planted","Togo","Togo","TGO",1.5722288128
+"gain_esacci","planted","Ghana","Ghana","GHA",8.1025826816
+"gain_esacci","planted","Guinea-Bissau","Guinea-Bissau","GNB",0.0583467328
+"gain_esacci","planted","United Kingdom","Gibraltar","GIB",0
+"gain_esacci","planted","United States of America","United States of America","USA",10.1600862208
+"gain_esacci","planted","Canada","Canada","CAN",0.2793678848
+"gain_esacci","planted","Mexico","Mexico","MEX",1.8735396864
+"gain_esacci","planted","Belize","Belize","BLZ",0.0123380136
+"gain_esacci","planted","Panama","Panama","PAN",0.3096676096
+"gain_esacci","planted","Venezuela","Venezuela","VEN",1.0227311616
+"gain_esacci","planted","Papua New Guinea","Papua New Guinea","PNG",0.5875236352
+"gain_esacci","planted","Egypt","Egypt","EGY",0.0013087217
+"gain_esacci","planted","Yemen","Yemen","YEM",0.0524265728
+"gain_esacci","planted","Mauritania","Mauritania","MRT",0.0003249752
+"gain_esacci","planted","Equatorial Guinea","Equatorial Guinea","GNQ",0.0027048424
+"gain_esacci","planted","Gambia","The Gambia","GMB",0.0671828864
+"gain_esacci","planted","China","Hong Kong","HKG",0.189526784
+"gain_esacci","planted","Vatican","Vatican City","VAT",0
+"gain_esacci","planted","Northern Cyprus","Turkish Republic of Northern Cyprus","-99",0.01278658
+"gain_esacci","planted","Cyprus No Mans Area","United Nations Buffer Zone in Cyprus","-99",0.0008926902
+"gain_esacci","planted","Kashmir","Siachen Glacier","-99",0
+"gain_esacci","planted","Kazakhstan","Baikonur","-99",0
+"gain_esacci","planted","United Kingdom","Akrotiri Sovereign Base Area","-99",0.00061745425
+"gain_esacci","planted","Southern Patagonian Ice Field","Southern Patagonian Ice Field","-99",0
+"gain_esacci","planted","Bir Tawil","Bir Tawil","-99",0
+"gain_esacci","planted","Antarctica","Antarctica","ATA",0
+"gain_esacci","planted","Australia","Australia","AUS",3.191231488
+"gain_esacci","planted","Denmark","Greenland","GRL",0
+"gain_esacci","planted","Fiji","Fiji","FJI",0.0327626272
+"gain_esacci","planted","New Zealand","New Zealand","NZL",2.0405817344
+"gain_esacci","planted","France","New Caledonia","NCL",0.0394904544
+"gain_esacci","planted","Madagascar","Madagascar","MDG",1.2837916672
+"gain_esacci","planted","Philippines","Philippines","PHL",2.531802112
+"gain_esacci","planted","Sri Lanka","Sri Lanka","LKA",0.281756416
+"gain_esacci","planted","Netherlands","Curaçao","CUW",0
+"gain_esacci","planted","Netherlands","Aruba","ABW",0
+"gain_esacci","planted","The Bahamas","The Bahamas","BHS",0.1645570176
+"gain_esacci","planted","United Kingdom","Turks and Caicos Islands","TCA",0.000232617025
+"gain_esacci","planted","Taiwan","Taiwan","TWN",0.3045094144
+"gain_esacci","planted","Japan","Japan","JPN",3.5265323008
+"gain_esacci","planted","France","Saint Pierre and Miquelon","SPM",0
+"gain_esacci","planted","Iceland","Iceland","ISL",0
+"gain_esacci","planted","United Kingdom","Pitcairn Islands","PCN",0
+"gain_esacci","planted","France","French Polynesia","PYF",0
+"gain_esacci","planted","France","French Southern and Antarctic Lands","ATF",0
+"gain_esacci","planted","Seychelles","Seychelles","SYC",0
+"gain_esacci","planted","Kiribati","Kiribati","KIR",0
+"gain_esacci","planted","Marshall Islands","Marshall Islands","MHL",0
+"gain_esacci","planted","Trinidad and Tobago","Trinidad and Tobago","TTO",0.0736850944
+"gain_esacci","planted","Grenada","Grenada","GRD",0
+"gain_esacci","planted","Saint Vincent and the Grenadines","Saint Vincent and the Grenadines","VCT",0
+"gain_esacci","planted","Barbados","Barbados","BRB",0
+"gain_esacci","planted","Saint Lucia","Saint Lucia","LCA",0
+"gain_esacci","planted","Dominica","Dominica","DMA",0
+"gain_esacci","planted","United States of America","United States Minor Outlying Islands","UMI",0
+"gain_esacci","planted","United Kingdom","Montserrat","MSR",0
+"gain_esacci","planted","Antigua and Barbuda","Antigua and Barbuda","ATG",0.0042642072
+"gain_esacci","planted","Saint Kitts and Nevis","Saint Kitts and Nevis","KNA",0.000415630225
+"gain_esacci","planted","United States of America","United States Virgin Islands","VIR",0.0138367904
+"gain_esacci","planted","France","Saint Barthélemy","BLM",0
+"gain_esacci","planted","United States of America","Puerto Rico","PRI",0.5333606912
+"gain_esacci","planted","United Kingdom","Anguilla","AIA",0.0003116587
+"gain_esacci","planted","United Kingdom","British Virgin Islands","VGB",0
+"gain_esacci","planted","Jamaica","Jamaica","JAM",0.0689102784
+"gain_esacci","planted","United Kingdom","Cayman Islands","CYM",0
+"gain_esacci","planted","United Kingdom","Bermuda","BMU",0
+"gain_esacci","planted","Australia","Heard Island and McDonald Islands","HMD",0
+"gain_esacci","planted","United Kingdom","Saint Helena","SHN",0
+"gain_esacci","planted","Mauritius","Mauritius","MUS",0.0169841488
+"gain_esacci","planted","Comoros","Comoros","COM",0.01431248
+"gain_esacci","planted","São Tomé and Principe","São Tomé and Príncipe","STP",0.0041696084
+"gain_esacci","planted","Cabo Verde","Cape Verde","CPV",0
+"gain_esacci","planted","Malta","Malta","MLT",0
+"gain_esacci","planted","United Kingdom","Jersey","JEY",0
+"gain_esacci","planted","United Kingdom","Guernsey","GGY",0
+"gain_esacci","planted","United Kingdom","Isle of Man","IMN",0.0103047144
+"gain_esacci","planted","Finland","Åland","ALA",0.0577127168
+"gain_esacci","planted","Denmark","Faroe Islands","FRO",0
+"gain_esacci","planted","Australia","Australian Indian Ocean Territories","-99",0
+"gain_esacci","planted","United Kingdom","British Indian Ocean Territory","IOT",0
+"gain_esacci","planted","Singapore","Singapore","SGP",0.0007111912
+"gain_esacci","planted","Australia","Norfolk Island","NFK",0
+"gain_esacci","planted","New Zealand","Cook Islands","COK",0
+"gain_esacci","planted","Tonga","Tonga","TON",0
+"gain_esacci","planted","France","Wallis and Futuna","WLF",0
+"gain_esacci","planted","Samoa","Samoa","WSM",0
+"gain_esacci","planted","Solomon Islands","Solomon Islands","SLB",0.0068489768
+"gain_esacci","planted","Tuvalu","Tuvalu","TUV",0
+"gain_esacci","planted","Maldives","Maldives","MDV",0
+"gain_esacci","planted","Nauru","Nauru","NRU",0
+"gain_esacci","planted","Federated States of Micronesia","Federated States of Micronesia","FSM",0
+"gain_esacci","planted","United Kingdom","South Georgia and the South Sandwich Islands","SGS",0
+"gain_esacci","planted","United Kingdom","Falkland Islands","FLK",0
+"gain_esacci","planted","Vanuatu","Vanuatu","VUT",0.2069565312
+"gain_esacci","planted","New Zealand","Niue","NIU",0
+"gain_esacci","planted","United States of America","American Samoa","ASM",0
+"gain_esacci","planted","Palau","Palau","PLW",0
+"gain_esacci","planted","United States of America","Guam","GUM",0
+"gain_esacci","planted","United States of America","Northern Mariana Islands","MNP",0
+"gain_esacci","planted","Bahrain","Bahrain","BHR",8.91914875e-05
+"gain_esacci","planted","Australia","Coral Sea Islands","-99",0
+"gain_esacci","planted","Spratly Islands","Wake Island","-99",0
+"gain_esacci","planted","France","Clipperton Island","-99",0
+"gain_esacci","planted","China","Macau","MAC",0.0008260209
+"gain_esacci","planted","Australia","Ashmore and Cartier Islands","-99",0
+"gain_esacci","planted","Bajo Nuevo Bank (Petrel Is.)","Bajo Nuevo Bank","-99",0
+"gain_esacci","planted","Serranilla Bank","Serranilla Bank","-99",0
+"gain_esacci","planted","Scarborough Reef","Scarborough Shoal","-99",0
