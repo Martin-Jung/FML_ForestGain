@@ -77,7 +77,7 @@ g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
   theme(legend.position = c(.75, .35),legend.text = element_text(size = 16),legend.background = element_blank()) +
   labs(x = '', y = 'Treecover gain (in mill. ha)')
 g
-ggsave(filename = "figures/SIFigure1_overalltreecovergain.png",plot = g)
+#ggsave(filename = "figures/SIFigure1_overalltreecovergain.png",plot = g)
 
 # Add mean estimate above the plot
 gs <- ggplot(ex, aes(y = remapped, x = type, colour = type)) +
@@ -154,6 +154,12 @@ ts_stats$dataset <- factor(ts_stats$dataset,
 dd <- ts_stats %>% dplyr::filter(dataset %in% c('ESA CCI','MODIS'))
 ddh <- ts_stats %>% dplyr::filter(dataset %in% c('Hansen'))
 
+# Overall stats
+ts_stats %>% dplyr::filter(year>=2000) |> group_by(dataset,type) |>
+  summarise( avg = mean(millha,na.rm=T), sd = sd(millha,na.rm=T))
+ts_stats %>% dplyr::filter(year>=2000) |> group_by(type) |> 
+  summarise( avg = mean(millha,na.rm=T), sd = sd(millha,na.rm=T))
+
 # Calculate since year 2000
 gs <- ggplot(ts_stats %>% dplyr::filter(year>=2000), aes(y = millha, x = type, colour = type)) +
   theme_void(base_size = 18) +
@@ -186,7 +192,7 @@ g2 <- ggplot(dd,
   guides(colour = 'none', alpha = 'none',
          linetype = guide_legend(title = '',ncol = 1,keywidth = unit(1,'in'),label.position = 'bottom')) +
   theme(legend.position = c(.1,.75),legend.text = element_text(size = 16),legend.background = element_blank()) +
-  labs(x = '', y = 'Treecover gain (in mill. ha)')
+  labs(x = '', y = 'Cumulative tree-cover gain (in mill. ha)')
 g2
 ggsave(plot = g2,filename = 'figures/Figure_ts.png',width = 12,height = 6,dpi = 400)
 
@@ -293,11 +299,11 @@ ga0 <- ggplot(ex2, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill = type)) +
   geom_text( x=3.5, aes(y=labelPosition, label=label),colour = "white",size = 7) +
   # geom_label( x=3.5, aes(y=labelPosition, label=label), size=5, colour = "white") +
   scale_fill_manual(values = cols) +
-  facet_wrap(~layer,nrow = 2, switch = "x") + 
+  facet_wrap(~layer,nrow = 3, switch = "x") + 
   labs(title = "") +
   theme(legend.position = "none",title = element_text(hjust = 1))
 #ga0
-ggsave(plot = ga0,filename = "figures/Figure_pledgedonut.png",width = 8,height = 8,dpi = 400)
+ggsave(plot = ga0,filename = "figures/Figure_pledgedonut.png",width = 8,height = 12,dpi = 400)
 
 # ---- #
 # Load, format and plot naturemap coverage
@@ -323,15 +329,18 @@ df2$type <- factor(df2$type, levels = c("Outside", names(cols)))
 ga1 <- ggplot(df2, 
        aes(x = layer, y = prop, fill = type)) +
   theme_light(base_size = 20) +
-  coord_flip() +
+  # coord_flip() +
   geom_bar(stat = "identity", show.legend = TRUE, colour = "black") + 
     scale_y_continuous(breaks = pretty_breaks(7)) +
   scale_fill_manual(values = c("Outside" = "grey90", cols)) +
-  guides(fill = guide_legend(title = "") ) +
-  theme(axis.text.x.bottom = element_text(angle = 0, hjust = 1)) +
-  labs(tag = "d", x = "", y = "Proportion", title = "Tree cover gain in\nareas of high conservation value")
+    guides(fill = guide_legend(title = "",ncol = 1) ) + 
+    theme(legend.background = element_blank(),legend.direction = 'horizontal',
+          legend.text = element_text(angle = 90,margin = margin(.5, 0, .5, 0, "cm") )) +
+  theme(axis.text.x.bottom = element_text(angle = 0, hjust = .5), axis.ticks.x = element_line(size = 1),
+        axis.line.y = element_blank(), axis.ticks.y = element_blank() ) +
+  labs(tag = "", x = "", y = "Proportion", title = "Tree cover gain in the 30% areas\nof highest conservation value")
 ga1
-ggsave(plot = ga0,filename = "figures/Figure_pledgedonut.png",width = 8,height = 8,dpi = 400)
+ggsave(plot = ga1, filename = "figures/Figure_areabiodiv.png", width = 6,height = 8,dpi = 400)
 
 # ----- #
 # Load, format and plot foodproduction coverage
@@ -348,27 +357,36 @@ df <- read.csv("resSaves/OverlaySummary_foodintensity.csv") |>
 df$layer <- factor(df$layer, levels = c("modis_forestgainsum", "gain_esacci", "Hansen_forestgain"),
                    labels = c("MODIS", "ESA CCI", "Hansen"))
 df$type <- factor(df$type, levels = c("natural", "planted"), labels = names(cols))
-df$zone <- factor(df$zone, levels = c("Low", "Mixed","Intense", "Other"))
+df$zone <- factor(df$zone, levels = c("Low", "Mixed","Intense", "Other"), labels = c("Low", "Medium","Intense", "Other"))
 
+df |> filter(zone == "Medium")
+  
 ga2 <- ggplot(df, 
-              aes(x = layer, y = prop, fill = type)) +
+              aes(x = zone, y = prop, colour = type, shape = layer )) +
   theme_few(base_size = 20) +
-  coord_flip() +
-  geom_bar(stat = "identity", show.legend = FALSE, colour = "black") + 
-  scale_y_continuous(breaks = pretty_breaks(5)) +
-  scale_fill_manual(values = c("Outside" = "grey90", cols)) +
-  facet_grid(type~zone) +
-  guides(fill = guide_legend(title = "") ) +
-  theme(axis.text.x.bottom = element_text(angle = 0, hjust = 1)) +
-  labs(tag = "d", x = "", y = "Proportion", title = "Tree cover gain in food production areas")
+  geom_point(position = position_dodge(1), stroke = 2, size = 3,show.legend = FALSE) +
+  # Background fun
+  annotate(geom = "rect", xmin = 0.5, xmax = 1.5, ymin = 0, ymax = Inf,alpha = .25, fill = '#EAD2A8', color = "black") + # Low
+  annotate(geom = "rect", xmin = 1.5, xmax = 2.5, ymin = 0, ymax = Inf,alpha = .25, fill = '#FFE200', color = "black") + # Mid
+  annotate(geom = "rect", xmin = 2.5, xmax = 3.5, ymin = 0, ymax = Inf,alpha = .25, fill = '#F3041C', color = "black") + # Intense
+  annotate(geom = "rect", xmin = 3.5, xmax = 4.5, ymin = 0, ymax = Inf,alpha = .25, fill = 'white', color = "black") + # Other
+  # Draw again
+  geom_point(position = position_dodge(1), stroke = 2, size = 3,show.legend = TRUE) +
+  scale_y_continuous(breaks = pretty_breaks(5),expand = c(0,Inf),limits = c(0, .35)) +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_colour_manual(values = cols, guide = guide_legend(title = "")) +
+  guides(shape = guide_legend(title = "") ) + theme(legend.position = "bottom")  +
+  theme(axis.text.x.bottom = element_text(angle = 0, hjust = .5)) +
+  labs(tag = "", x = "Intensity of use", y = "Proportion", title = "Tree cover gain in food production areas")
 ga2
+ggsave(plot = ga2, filename = "figures/Figure_areafood.png", width = 12,height = 8,dpi = 400)
 
 # Stacked Waterfall plot! 
 # https://stackoverflow.com/questions/48259930/how-to-create-a-stacked-waterfall-chart-in-r
 # https://www.r-bloggers.com/2019/06/stacked-waterfall-graphs-in-r/
 # Going from total overall through each of the food production zones, filled by each
 
-#### SI Figure country analyses ####
+#### SI Figure/Table country analyses ####
 # Idea:
 # Extract of each country the proportion restored/planted/plantation
 # Plot via tenary diagram
@@ -490,29 +508,28 @@ ex %>% dplyr::group_by(layer) %>%
   dplyr::summarise(tot = sum(total_area_millha)) %>% 
   dplyr::summarise(m = mean(tot * 1e6),
                    sd = sd( tot * 1e6))
-  
-# Pledges fullfilled per dataset
 
-pf <- ex %>% 
+# Format pledges output for Supplementary information
+pf <- ex |> 
   # Get only pledging countries
-  tidyr::drop_na(pledge_ha) %>% 
+  tidyr::drop_na(pledge_ha) %>%
+  dplyr::group_by(country_sov, layer) |> 
+    dplyr::summarise(total_area_ha = sum(total_area_millha*1e6)) |> ungroup() |> 
+  # Join pledges in and check if exceeds or not
+  left_join(ex |> dplyr::select(country_sov, pledge_ha)) |> 
+  dplyr::mutate(pledge_fulfilled = if_else(total_area_ha>= pledge_ha, TRUE, FALSE) )
+
+# How many?
+pf |> dplyr::select(country_sov,layer, pledge_fulfilled) |> distinct() |> 
+  group_by(pledge_fulfilled,layer) |> summarise(N = n_distinct(country_sov) )
+
   dplyr::mutate(pledge_fulfilled = (total_area_millha*1e6) / pledge_ha ) %>% 
-  dplyr::group_by(country_sov, layer, type) %>% 
-  dplyr::summarise(pfprop = mean(min(1, pledge_fulfilled,na.rm = TRUE)))
+  dplyr::group_by(country_sov, layer) %>% 
+  dplyr::summarise(pfprop = mean(min(1, pledge_fulfilled,na.rm = TRUE)) )
 
 # Spread and check which ones are fullfilled
 pf_check <- pf %>% tidyr::spread(key = type,value = pfprop) %>% 
   dplyr::mutate(check = sum(natural,planted) >= 1)
-
-ggplot(pf_check, aes(x = income_grp, y = check) ) +
-  geom_bar(stat = 'identity')
-
-
-df %>% arrange(desc(natural)) %>% head(20)
-ggplot(ex, aes(x = type, y = value)) +
-  theme_classic() +
-  geom_bar(stat = 'identity') +
-  facet_wrap(~continent)
 
 # ---------- #
 # Figure Idea:
@@ -553,16 +570,16 @@ avg_area <- avg_area %>% dplyr::select(-sd) %>%
 
 # Now build new relative estimate
 for(r in 1:nrow(avg_area)){
-  if(sum(avg_area[r, c('natural','aided')] ) >= avg_area$pledge_ha[r] ){
+  if(sum(avg_area[r, c('natural')] ) >= avg_area$pledge_ha[r] ){
     # Goal reached
     avg_area$natural[r] <- min(1, avg_area$natural[r] / avg_area$pledge_ha[r])
     avg_area$aided[r] <- (1 - avg_area$natural[r])
     avg_area$planted[r] <- 0
-  } else if(sum(avg_area[r, c('natural','aided','planted')]) >= avg_area$pledge_ha[r] ){
-    avg_area[r, c('natural','aided')] <- (avg_area[r, c('natural','aided')] / avg_area$pledge_ha[r])
-    avg_area$planted[r] <- (1 - sum(avg_area[r, c('natural','aided')]) )
+  } else if(sum(avg_area[r, c('natural','planted')]) >= avg_area$pledge_ha[r] ){
+    avg_area[r, c('natural')] <- (avg_area[r, c('natural')] / avg_area$pledge_ha[r])
+    avg_area$planted[r] <- (1 - sum(avg_area[r, c('natural')]) )
   } else {
-    avg_area[r, c('natural','aided','planted')] <- (avg_area[r, c('natural','aided','planted')] / avg_area$pledge_ha[r])
+    avg_area[r, c('natural','planted')] <- (avg_area[r, c('natural','planted')] / avg_area$pledge_ha[r])
   }
 }
 assertthat::assert_that(all(avg_area$natural<=1),all(avg_area$planted<=1))
@@ -571,7 +588,7 @@ avg_area <- tidyr::pivot_longer(avg_area, cols = aided:planted, names_to = 'type
 
 # Relabel
 avg_area$type <- factor(avg_area$type,
-                        levels = c('natural','aided','planted'),
+                        levels = c('natural','planted'),
                         labels = names(cols)
 )
 # Join in codes
