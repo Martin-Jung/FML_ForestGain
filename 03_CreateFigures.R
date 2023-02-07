@@ -517,7 +517,28 @@ pf <- ex |>
     dplyr::summarise(total_area_ha = sum(total_area_millha*1e6)) |> ungroup() |> 
   # Join pledges in and check if exceeds or not
   left_join(ex |> dplyr::select(country_sov, pledge_ha)) |> 
-  dplyr::mutate(pledge_fulfilled = if_else(total_area_ha>= pledge_ha, TRUE, FALSE) )
+  dplyr::mutate(pledge_fulfilled = if_else(total_area_ha>= pledge_ha, TRUE, FALSE) ) |> distinct()
+
+# Tidy up and estimate pledges fullfilled for each country
+full <- left_join(pf |> dplyr::select(country_sov, pledge_ha) |> dplyr::distinct(),
+          pf |> tidyr::pivot_wider(id_cols = country_sov,names_from = layer,values_from = pledge_fulfilled) |> 
+            rename(pledge_hansen = Hansen_forestgain, pledge_modis = modis_forestgainsum, pledge_esacci = gain_esacci),
+          by = "country_sov") |> 
+  left_join(
+    # Get values per type
+    ex |> tidyr::drop_na(pledge_ha) |> dplyr::group_by(country_sov, layer,type) |> 
+      dplyr::summarise(total_area_ha = sum(total_area_millha*1e6)) |> ungroup() |> 
+      tidyr::pivot_wider(id_cols = country_sov, names_from = c(layer, type), values_from = total_area_ha)
+  )
+full$pledge_esacci <- ifelse(full$pledge_esacci, "yes", "no")
+full$pledge_modis <- ifelse(full$pledge_modis, "yes", "no")
+full$pledge_hansen <- ifelse(full$pledge_hansen, "yes", "no")
+full$pledge_ha <- full$pledge_ha /1e6
+full$hansen_amount <- paste0(round(full$Hansen_forestgain_natural /1e6, 4), " | ", round(full$Hansen_forestgain_planted / 1e6,4))
+full$esacci_amount <- paste0(round(full$gain_esacci_natural /1e6, 4), " | ", round(full$gain_esacci_planted / 1e6,4))
+full$modis_amount <- paste0(round(full$modis_forestgainsum_natural /1e6, 4), " | ", round(full$modis_forestgainsum_planted/ 1e6,4))
+write.csv(full |> dplyr::select(country_sov:pledge_modis, hansen_amount:modis_amount),
+          "figures/SITable2_countrypledges.csv", row.names = FALSE)
 
 # How many?
 pf |> dplyr::select(country_sov,layer, pledge_fulfilled) |> distinct() |> 
