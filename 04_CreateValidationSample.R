@@ -76,12 +76,27 @@ sub <- ras1
 sub[] <- NA
 sub[ex$cell] <- ex$cell
 
+sub <- rast(ncols=10, nrows=10)
+values(sub) <- 1:ncell(sub)
+
 # Vectorize by grid cell
-terra::as.polygons(x = sub, )
+subs <- terra::as.polygons(x = sub, trunc = FALSE,
+                           dissolve = FALSE, values = TRUE,
+                           na.rm = TRUE)
 
-as.polygons(x, trunc=TRUE, dissolve=TRUE, values=TRUE,
-            na.rm=TRUE, na.all=FALSE, extent=FALSE)
-
-# Extract border coordinates for each (ymin, ymax, xmin, xmax)
+# Loop over and extract border coordinates for each (ymin, ymax, xmin, xmax)
+pb <- progress::progress_bar$new(total = length(nrow(subs)))
+for(i in 1:nrow(subs)){
+  pb$tick()
+  s <- subs[i]
+  ex[which(ex$cell == s[[1]]), "xmin"] <- st_bbox(s)["xmin"]
+  ex[which(ex$cell == s[[1]]), "xmax"] <- st_bbox(s)["xmax"]
+  ex[which(ex$cell == s[[1]]), "ymax"] <- st_bbox(s)["ymax"]
+  ex[which(ex$cell == s[[1]]), "ymin"] <- st_bbox(s)["ymin"]
+  rm(s)
+}
+rm(pb)
 
 # Save the outputs to a csv file
+ex$cell <- NULL
+write.csv(ex, file = "resSaves/validation_sample_random.csv", row.names = TRUE)
