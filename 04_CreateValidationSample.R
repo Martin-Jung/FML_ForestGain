@@ -18,6 +18,7 @@ nr_points <- 1000
 # 1 stating natural and 3 planted forest
 fmlgain <- rast("extracts/combined_forestgain.tif")
 names(fmlgain) <- "fml_gain"
+fmlgain[fmlgain==0] <- NA
 
 # Get also the Agreement layer. This layers indicates for each grid cell
 # how many of the three datasets agree on whether there is forest gain
@@ -72,31 +73,50 @@ table(ex$Hansen_forestgain)
 table(ex$modis_forestgainsum)
 
 # Get only those cells with values globally
-sub <- ras1
-sub[] <- NA
-sub[ex$cell] <- ex$cell
-
-sub <- rast(ncols=10, nrows=10)
-values(sub) <- 1:ncell(sub)
-
+# sub <- ras1
+# sub[] <- NA
+# sub[ex$cell] <- ex$cell
 # Vectorize by grid cell
-subs <- terra::as.polygons(x = sub, trunc = FALSE,
-                           dissolve = FALSE, values = TRUE,
-                           na.rm = TRUE)
+# subs <- terra::as.polygons(x = sub, trunc = FALSE,
+#                            dissolve = FALSE, values = TRUE,
+#                            na.rm = TRUE)
+# 
+# # Loop over and extract border coordinates for each (ymin, ymax, xmin, xmax)
+# pb <- progress::progress_bar$new(total = length(nrow(subs)))
+# for(i in 1:nrow(subs)){
+#   pb$tick()
+#   s <- subs[i]
+#   ex[which(ex$cell == s[[1]]), "xmin"] <- st_bbox(s)["xmin"]
+#   ex[which(ex$cell == s[[1]]), "xmax"] <- st_bbox(s)["xmax"]
+#   ex[which(ex$cell == s[[1]]), "ymax"] <- st_bbox(s)["ymax"]
+#   ex[which(ex$cell == s[[1]]), "ymin"] <- st_bbox(s)["ymin"]
+#   rm(s)
+# }
+# rm(pb)
+# FIXME: This failed
 
-# Loop over and extract border coordinates for each (ymin, ymax, xmin, xmax)
-pb <- progress::progress_bar$new(total = length(nrow(subs)))
-for(i in 1:nrow(subs)){
-  pb$tick()
-  s <- subs[i]
-  ex[which(ex$cell == s[[1]]), "xmin"] <- st_bbox(s)["xmin"]
-  ex[which(ex$cell == s[[1]]), "xmax"] <- st_bbox(s)["xmax"]
-  ex[which(ex$cell == s[[1]]), "ymax"] <- st_bbox(s)["ymax"]
-  ex[which(ex$cell == s[[1]]), "ymin"] <- st_bbox(s)["ymin"]
-  rm(s)
+# Buffer each grid cell by a small amount
+sub <- ex |> sf::st_as_sf(coords = c("x", "y"),crs = st_crs(ss))
+sub$x <- st_coordinates(sub)[,1]
+sub$y <- st_coordinates(sub)[,2]
+# Transform to google mercator and buffer
+sub <- sub |> st_transform(st_crs("+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+sub <- st_buffer(sub, dist = 500)
+sub <- sub |> st_transform(st_crs(ss))
+# Loop through and save the boundaries
+for(i in 1:nrow(sub)){
+  subs <- sub[i,]
+  sub[i,"xmin"] <- st_bbox(subs)["xmin"]
+  sub[i,"ymin"] <- st_bbox(subs)["ymin"]
+  sub[i,"xmax"] <- st_bbox(subs)["xmax"]
+  sub[i,"ymax"] <- st_bbox(subs)["ymax"]
 }
-rm(pb)
-
+sub <- sub |> st_drop_geometry()
+sub$cell <- NULL
 # Save the outputs to a csv file
-ex$cell <- NULL
-write.csv(ex, file = "resSaves/validation_sample_random.csv", row.names = TRUE)
+write.csv(sub, file = "resSaves/validation_sample_random.csv", row.names = TRUE)
+
+# Also save a binary layer of the forestgain layers
+writeRaster(ras1, "resSaves/ESACCI_forestgainsum.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+writeRaster(ras2, "resSaves/Hansen_forestgain.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+writeRaster(ras3, "resSaves/modis_forestgainsum.tif", datatype = "INT1U",  gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
