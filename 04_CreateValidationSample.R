@@ -50,6 +50,36 @@ compareGeom(dissim,ras1)
 ss <- c(fmlgain, dissim, ras1, ras2, ras3)
 
 #### Random sample ####
+
+# Get about 1/5 of points at random with forest cover but no treecover gain
+# STOP: Check which layer to use here
+
+a1 <- rast("extracts/FML_natural.tif")
+a1 <- terra::resample(a1, dissim, method = "near")
+a2 <- rast("extracts/FML_planted.tif")
+a2 <- terra::resample(a2, dissim, method = "near")
+
+# Build a new layer where there is forest, but no forest gain
+new <- a1
+new[a2==1] <- 1 
+new[dissim>=1] <- 0
+new[new==0] <- NA
+names(new) <- "stableForest"
+
+# Now do a random sample of sites with stable tree cover
+ex_stable <- terra::spatSample(x = new,
+                        size = (nr_points * 1/5),
+                        method = "random",
+                        replace = FALSE, # No replacement
+                        na.rm = TRUE, # No grid cells that fall into the ocean 
+                        exhaustive = TRUE, # Try hard to reach the required number 
+                        as.df = TRUE, # Return a data.frame
+                        values = TRUE, # Also return cell values
+                        cells = TRUE, # Also return cell numbers (needed for extent)
+                        xy = TRUE, # Also return cell coordinates
+                        warn = TRUE
+)
+
 # Now do a weighted random sample
 ex <- terra::spatSample(x = ss,
                         size = nr_points,
@@ -63,6 +93,7 @@ ex <- terra::spatSample(x = ss,
                         xy = TRUE, # Also return cell coordinates
                         warn = TRUE
                         )
+ex <- dplyr::bind_rows(ex_stable, ex)
 write.csv(ex, "resSaves/validation_sample_random.csv", row.names = FALSE)
 
 # Make checks of coverage
