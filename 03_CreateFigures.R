@@ -655,7 +655,7 @@ ggsave(plot = g3,filename = 'Figure_ranks.png',width = 6,height = 15,dpi = 400)
 library(terra)
 library(RStoolbox)
 
-ras1 <- rast("extracts/ESACCI_forestgainsum.tif")
+ras1 <- rast("extracts/ESACCI_forestgainsum_2000onwards.tif")
 ras2 <- rast("extracts/Hansen_forestgain.tif")
 ras3 <- rast("extracts/modis_forestgainsum.tif")
 ras1[ras1>0] <- 1
@@ -667,7 +667,7 @@ ras3 <- terra::resample(ras3, ras1, method = "near")
 # Now sum them all
 o <- sum(ras1, ras2, ras3, na.rm = TRUE)
 o[o==0] <- NA
-terra::writeRaster(o,"resSaves/ForestGainAgreement.tif", datatype = "INT2U",overwrite = TRUE)
+terra::writeRaster(o,"resSaves/ForestGainAgreement_2000onwards.tif", datatype = "INT2U",overwrite = TRUE)
 o2 <- terra::aggregate(o,fact=10,fun = "modal")
 terra::writeRaster(o2,"resSaves/SIFigure1_ModeAgg.tif")
 

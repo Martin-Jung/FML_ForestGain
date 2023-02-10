@@ -16,14 +16,14 @@ nr_points <- 1000
 # any grid cell that has forest gain in one of the 3 datasets and
 # falls into a forest management class 
 # 1 stating natural and 3 planted forest
-fmlgain <- rast("extracts/combined_forestgain.tif")
+fmlgain <- rast("extracts/combined_forestgain_2000onwards.tif")
 names(fmlgain) <- "fml_gain"
 fmlgain[fmlgain==0] <- NA
 
 # Get also the Agreement layer. This layers indicates for each grid cell
 # how many of the three datasets agree on whether there is forest gain
 # Values rank from 1 to 3
-dissim <- rast("resSaves/ForestGainAgreement.tif")
+dissim <- rast("resSaves/ForestGainAgreement_2000onwards.tif")
 names(dissim) <- "Agreement"
 
 # And the individual raster layers of total forest gain per grid cell
@@ -34,6 +34,9 @@ ras2 <- rast("extracts/Hansen_forestgain.tif")
 ras2[ras2>0] <- 1
 ras3 <- rast("extracts/modis_forestgainsum.tif")
 ras3[ras3>0] <- 1
+
+# Create cell boundary of 1km for each of the products
+ras1_bb <- terra::boundaries(ras1, classes = TRUE, directions = 8, falseval = 2)
 
 # Ensure that all layers perfectly align. They all have the same grid cell size,
 # but are slightly different in extent at the borders (180deg dateline, here resample)
