@@ -42,18 +42,21 @@ ras2 <- terra::resample(ras2, ras1, method = "near")
 compareGeom(ras1,ras2)
 compareGeom(ras1,dissim)
 
-
 fmlgain <- terra::resample(fmlgain, ras1, method = "near")
 compareGeom(dissim,ras1)
 
 # Add them all to a joint stack for easier sampling 
 # and value extraction
-ss <- c(fmlgain, dissim, ras1, ras2, ras3)
+
+# Make a combined version of any treecovergain
+o <- sum(ras1, ras2, ras3, na.rm = TRUE)
+o[o>0] <- 1; o[o==0] <- NA # Get any grid cell with tree-cover gain
+
+ss <- c(fmlgain, dissim, o)
 
 # #### Random sample ####
 # 
 # # Get about 1/5 of points at random with forest cover but no treecover gain
-# # STOP: Check which layer to use here
 # 
 # a1 <- rast("extracts/FML_natural.tif")
 # a1 <- terra::resample(a1, dissim, method = "near")
@@ -97,25 +100,37 @@ ras3_bb <- rast("MODIS_bin_boundary.tif")
 bb <- c(ras1_bb, ras2_bb, ras3_bb)
 bb_boundary <- sum(bb, na.rm = TRUE)
 bb_boundary[bb_boundary==0] <- NA
+bb_boundary[bb_boundary>0] <- 1
+bb2 <- mask(bb_boundary, o)
 
-ex_stable <- terra::spatSample(x = bb_boundary,
-                        size = 200,
-                        method = "random",
-                        replace = FALSE, # No replacement
-                        na.rm = TRUE, # No grid cells that fall into the ocean 
-                        exhaustive = TRUE, # Try hard to reach the required number 
-                        as.df = TRUE, # Return a data.frame
-                        values = FALSE, # Also return cell values
-                        cells = TRUE, # Also return cell numbers (needed for extent)
-                        xy = TRUE, # Also return cell coordinates
-                        warn = TRUE
-)
+# TODO:
+# Buffer the combined treecover gain dataset
+# Load in and extract again
+# Then do sampling
+writeRaster(o, "CombinedTreeCoverGain.tif")
+
+
+
+new_ss <- c(o, bb2)
+
+# ex_stable <- terra::spatSample(x = bb_boundary,
+#                         size = 200,
+#                         method = "random",
+#                         replace = FALSE, # No replacement
+#                         na.rm = TRUE, # No grid cells that fall into the ocean
+#                         exhaustive = TRUE, # Try hard to reach the required number
+#                         as.df = TRUE, # Return a data.frame
+#                         values = FALSE, # Also return cell values
+#                         cells = TRUE, # Also return cell numbers (needed for extent)
+#                         xy = TRUE, # Also return cell coordinates
+#                         warn = TRUE
+# )
 
 # --------------- #
 
 # Now do a weighted random sample on the remaining layers
-ex <- terra::spatSample(x = ss,
-                        size = nr_points-200,
+ex <- terra::spatSample(x = new_ss,
+                        size = nr_points,
                         method = "random",
                         replace = FALSE, # No replacement
                         na.rm = TRUE, # No grid cells that fall into the ocean 
@@ -126,10 +141,10 @@ ex <- terra::spatSample(x = ss,
                         xy = TRUE, # Also return cell coordinates
                         warn = TRUE
                         )
+# --- #
 
-ex <- rbind(ex_stable, ex)
 # Re-extract all values
-df <- terra::extract(c(ss,bb), y = ex[,c("x", "y")])
+df <- terra::extract(c(ras1, ras2, ras3, dissim), y = ex[,c("x", "y")])
 ex <- cbind(ex, df)
 
 write.csv(ex, "resSaves/validation_sample_random.csv", row.names = FALSE)
