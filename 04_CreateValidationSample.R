@@ -28,15 +28,12 @@ names(dissim) <- "Agreement"
 
 # And the individual raster layers of total forest gain per grid cell
 # Convert them to binary
-ras1 <- rast("extracts/ESACCI_forestgainsum.tif")
+ras1 <- rast("extracts/ESACCI_forestgainsum_2000onwards.tif")
 ras1[ras1>0] <- 1
 ras2 <- rast("extracts/Hansen_forestgain.tif")
 ras2[ras2>0] <- 1
 ras3 <- rast("extracts/modis_forestgainsum.tif")
 ras3[ras3>0] <- 1
-
-# Create cell boundary of 1km for each of the products
-ras1_bb <- terra::boundaries(ras1, classes = TRUE, directions = 8, falseval = 2)
 
 # Ensure that all layers perfectly align. They all have the same grid cell size,
 # but are slightly different in extent at the borders (180deg dateline, here resample)
@@ -45,6 +42,7 @@ ras2 <- terra::resample(ras2, ras1, method = "near")
 compareGeom(ras1,ras2)
 compareGeom(ras1,dissim)
 
+
 fmlgain <- terra::resample(fmlgain, ras1, method = "near")
 compareGeom(dissim,ras1)
 
@@ -52,51 +50,88 @@ compareGeom(dissim,ras1)
 # and value extraction
 ss <- c(fmlgain, dissim, ras1, ras2, ras3)
 
-#### Random sample ####
+# #### Random sample ####
+# 
+# # Get about 1/5 of points at random with forest cover but no treecover gain
+# # STOP: Check which layer to use here
+# 
+# a1 <- rast("extracts/FML_natural.tif")
+# a1 <- terra::resample(a1, dissim, method = "near")
+# a2 <- rast("extracts/FML_planted.tif")
+# a2 <- terra::resample(a2, dissim, method = "near")
+# 
+# # Build a new layer where there is forest, but no forest gain
+# new <- a1
+# new[a2==1] <- 1 
+# new[dissim>=1] <- 0
+# new[new==0] <- NA
+# names(new) <- "stableForest"
+# 
+# # Now do a random sample of sites with stable tree cover
+# ex_stable <- terra::spatSample(x = new,
+#                         size = (nr_points * 1/5),
+#                         method = "random",
+#                         replace = FALSE, # No replacement
+#                         na.rm = TRUE, # No grid cells that fall into the ocean 
+#                         exhaustive = TRUE, # Try hard to reach the required number 
+#                         as.df = TRUE, # Return a data.frame
+#                         values = TRUE, # Also return cell values
+#                         cells = TRUE, # Also return cell numbers (needed for extent)
+#                         xy = TRUE, # Also return cell coordinates
+#                         warn = TRUE
+# )
 
-# Get about 1/5 of points at random with forest cover but no treecover gain
-# STOP: Check which layer to use here
+# --------------- #
+# Baseline random raster
 
-a1 <- rast("extracts/FML_natural.tif")
-a1 <- terra::resample(a1, dissim, method = "near")
-a2 <- rast("extracts/FML_planted.tif")
-a2 <- terra::resample(a2, dissim, method = "near")
+# Create cell boundary of 1km for each of the products
+# NOW DONE EXTERNALLY. LOAD FILES CREATED IN QGIS BACK IN!
+# writeRaster(ras1, "ESACCI_bin.tif", datatype = "INT1U", overwrite = TRUE)
+# writeRaster(ras2, "Hansen_bin.tif", datatype = "INT1U", overwrite = TRUE)
+# writeRaster(ras3, "MODIS_bin.tif", datatype = "INT1U", overwrite = TRUE)
+ras1_bb <- rast("ESACCI_bin_boundary.tif")
+ras2_bb <- rast("Hansen_bin_boundary.tif")
+ras2_bb <- terra::resample(ras2_bb, ras1_bb, method = "near")
+ras3_bb <- rast("MODIS_bin_boundary.tif")
 
-# Build a new layer where there is forest, but no forest gain
-new <- a1
-new[a2==1] <- 1 
-new[dissim>=1] <- 0
-new[new==0] <- NA
-names(new) <- "stableForest"
+bb <- c(ras1_bb, ras2_bb, ras3_bb)
+bb_boundary <- sum(bb, na.rm = TRUE)
+bb_boundary[bb_boundary==0] <- NA
 
-# Now do a random sample of sites with stable tree cover
-ex_stable <- terra::spatSample(x = new,
-                        size = (nr_points * 1/5),
+ex_stable <- terra::spatSample(x = bb_boundary,
+                        size = 200,
                         method = "random",
                         replace = FALSE, # No replacement
                         na.rm = TRUE, # No grid cells that fall into the ocean 
                         exhaustive = TRUE, # Try hard to reach the required number 
                         as.df = TRUE, # Return a data.frame
-                        values = TRUE, # Also return cell values
+                        values = FALSE, # Also return cell values
                         cells = TRUE, # Also return cell numbers (needed for extent)
                         xy = TRUE, # Also return cell coordinates
                         warn = TRUE
 )
 
-# Now do a weighted random sample
+# --------------- #
+
+# Now do a weighted random sample on the remaining layers
 ex <- terra::spatSample(x = ss,
-                        size = nr_points,
+                        size = nr_points-200,
                         method = "random",
                         replace = FALSE, # No replacement
                         na.rm = TRUE, # No grid cells that fall into the ocean 
                         exhaustive = TRUE, # Try hard to reach the required number 
                         as.df = TRUE, # Return a data.frame
-                        values = TRUE, # Also return cell values
+                        values = FALSE, # Also return cell values
                         cells = TRUE, # Also return cell numbers (needed for extent)
                         xy = TRUE, # Also return cell coordinates
                         warn = TRUE
                         )
-ex <- dplyr::bind_rows(ex_stable, ex)
+
+ex <- rbind(ex_stable, ex)
+# Re-extract all values
+df <- terra::extract(c(ss,bb), y = ex[,c("x", "y")])
+ex <- cbind(ex, df)
+
 write.csv(ex, "resSaves/validation_sample_random.csv", row.names = FALSE)
 
 # Make checks of coverage
@@ -151,6 +186,6 @@ sub$cell <- NULL
 write.csv(sub, file = "resSaves/validation_sample_random.csv", row.names = TRUE)
 
 # Also save a binary layer of the forestgain layers
-writeRaster(ras1, "resSaves/ESACCI_forestgainsum.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
-writeRaster(ras2, "resSaves/Hansen_forestgain.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
-writeRaster(ras3, "resSaves/modis_forestgainsum.tif", datatype = "INT1U",  gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+# writeRaster(ras1, "resSaves/ESACCI_forestgainsum.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+# writeRaster(ras2, "resSaves/Hansen_forestgain.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+# writeRaster(ras3, "resSaves/modis_forestgainsum.tif", datatype = "INT1U",  gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
