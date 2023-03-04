@@ -92,26 +92,29 @@ ss <- c(fmlgain, dissim, o)
 # writeRaster(ras1, "ESACCI_bin.tif", datatype = "INT1U", overwrite = TRUE)
 # writeRaster(ras2, "Hansen_bin.tif", datatype = "INT1U", overwrite = TRUE)
 # writeRaster(ras3, "MODIS_bin.tif", datatype = "INT1U", overwrite = TRUE)
-ras1_bb <- rast("ESACCI_bin_boundary.tif")
-ras2_bb <- rast("Hansen_bin_boundary.tif")
-ras2_bb <- terra::resample(ras2_bb, ras1_bb, method = "near")
-ras3_bb <- rast("MODIS_bin_boundary.tif")
-
-bb <- c(ras1_bb, ras2_bb, ras3_bb)
-bb_boundary <- sum(bb, na.rm = TRUE)
-bb_boundary[bb_boundary==0] <- NA
-bb_boundary[bb_boundary>0] <- 1
-bb2 <- mask(bb_boundary, o)
+# ras1_bb <- rast("ESACCI_bin_boundary.tif")
+# ras2_bb <- rast("Hansen_bin_boundary.tif")
+# ras2_bb <- terra::resample(ras2_bb, ras1_bb, method = "near")
+# ras3_bb <- rast("MODIS_bin_boundary.tif")
+# 
+# bb <- c(ras1_bb, ras2_bb, ras3_bb)
+# bb_boundary <- sum(bb, na.rm = TRUE)
+# bb_boundary[bb_boundary==0] <- NA
+# bb_boundary[bb_boundary>0] <- 1
+# bb2 <- mask(bb_boundary, o)
 
 # TODO:
 # Buffer the combined treecover gain dataset
 # Load in and extract again
 # Then do sampling
-writeRaster(o, "CombinedTreeCoverGain.tif")
+o <- rast("CombinedTreeCoverGain.tif")
+bb <- rast("BoundaryForestGain.tif")
+fmlgain <- resample(fmlgain, bb, method = "near")
+bb <- mask(bb, fmlgain)
+bb[bb==0] <- NA; bb[bb>0] <- 1
 
-
-
-new_ss <- c(o, bb2)
+new_sampleboundary <- sum(bb, o, na.rm = TRUE)
+new_sampleboundary[new_sampleboundary==0] <- NA
 
 # ex_stable <- terra::spatSample(x = bb_boundary,
 #                         size = 200,
@@ -129,7 +132,7 @@ new_ss <- c(o, bb2)
 # --------------- #
 
 # Now do a weighted random sample on the remaining layers
-ex <- terra::spatSample(x = new_ss,
+ex <- terra::spatSample(x = new_sampleboundary,
                         size = nr_points,
                         method = "random",
                         replace = FALSE, # No replacement
@@ -143,9 +146,11 @@ ex <- terra::spatSample(x = new_ss,
                         )
 # --- #
 
-# Re-extract all values
-df <- terra::extract(c(ras1, ras2, ras3, dissim), y = ex[,c("x", "y")])
+# Re-extract all relevant values
+df <- terra::extract(c(ras1, ras2, ras3, dissim, bb), y = ex[,c("x", "y")])
 ex <- cbind(ex, df)
+
+ex$BoundaryForestGain[is.na(ex$BoundaryForestGain)] <- 0
 
 write.csv(ex, "resSaves/validation_sample_random.csv", row.names = FALSE)
 
@@ -180,13 +185,13 @@ table(ex$modis_forestgainsum)
 # FIXME: This failed
 
 # Buffer each grid cell by a small amount
-sub <- ex |> sf::st_as_sf(coords = c("x", "y"),crs = st_crs(ss))
+sub <- ex |> sf::st_as_sf(coords = c("x", "y"),crs = st_crs(ras1))
 sub$x <- st_coordinates(sub)[,1]
 sub$y <- st_coordinates(sub)[,2]
 # Transform to google mercator and buffer
 sub <- sub |> st_transform(st_crs("+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"))
 sub <- st_buffer(sub, dist = 500)
-sub <- sub |> st_transform(st_crs(ss))
+sub <- sub |> st_transform(st_crs(ras1))
 # Loop through and save the boundaries
 for(i in 1:nrow(sub)){
   subs <- sub[i,]
