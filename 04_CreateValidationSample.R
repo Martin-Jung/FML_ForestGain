@@ -184,17 +184,31 @@ table(ex$modis_forestgainsum)
 # rm(pb)
 # FIXME: This failed
 
+# --- #
+ss <- c( rast("/mnt/idrive/jung/forMartina/ESACCI_forestgainsum.tif"),
+         rast("/mnt/idrive/jung/forMartina/Hansen_forestgain.tif"),
+         rast("/mnt/idrive/jung/forMartina/modis_forestgainsum.tif")
+)
+ex <- read.csv("resSaves/validation_sample_random.csv")
+if(!hasName(ex, "X")) ex$X <- 1:nrow(ex)
+template <- ss[[1]]
+template[] <- NA
+
 # Buffer each grid cell by a small amount
-sub <- ex |> sf::st_as_sf(coords = c("x", "y"),crs = st_crs(ras1))
+sub <- ex |> sf::st_as_sf(coords = c("x", "y"),crs = st_crs(ss))
 sub$x <- st_coordinates(sub)[,1]
 sub$y <- st_coordinates(sub)[,2]
-# Transform to google mercator and buffer
-sub <- sub |> st_transform(st_crs("+proj=merc +lon_0=0 +lat_ts=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"))
-sub <- st_buffer(sub, dist = 500)
-sub <- sub |> st_transform(st_crs(ras1))
-# Loop through and save the boundaries
+
+template[terra::cellFromXY(template, ex[,c("x","y")])] <- ex$X
+# Vectorize the specific grid cell
+poly_rast <- as.polygons(template, values = TRUE, na.rm = TRUE)
+names(poly_rast) <- "value"
+poly_rast <- poly_rast |> sf::st_as_sf()
+
+# Loop through each observation
 for(i in 1:nrow(sub)){
-  subs <- sub[i,]
+  subs <- poly_rast |> dplyr::filter(value == i)
+
   sub[i,"xmin"] <- st_bbox(subs)["xmin"]
   sub[i,"ymin"] <- st_bbox(subs)["ymin"]
   sub[i,"xmax"] <- st_bbox(subs)["xmax"]
@@ -202,10 +216,13 @@ for(i in 1:nrow(sub)){
 }
 sub <- sub |> st_drop_geometry()
 sub$cell <- NULL
+
 # Save the outputs to a csv file
-write.csv(sub, file = "resSaves/validation_sample_random.csv", row.names = TRUE)
+write.csv(sub, file = "resSaves/validation_sample_random.csv", row.names = FALSE)
 
 # Also save a binary layer of the forestgain layers
 # writeRaster(ras1, "resSaves/ESACCI_forestgainsum.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
 # writeRaster(ras2, "resSaves/Hansen_forestgain.tif", datatype = "INT1U", gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
 # writeRaster(ras3, "resSaves/modis_forestgainsum.tif", datatype = "INT1U",  gdal=c("COMPRESS=DEFLATE"), overwrite = TRUE)
+
+
