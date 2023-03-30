@@ -305,7 +305,31 @@ ga0 <- ggplot(ex2, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill = type)) +
 #ga0
 ggsave(plot = ga0,filename = "figures/Figure_pledgedonut.png",width = 8,height = 12,dpi = 400)
 
+# --- #
+# Forest cover gains in countries not covered by Bonn
+ex2 <- ex |> 
+  mutate(pledged = is.na(pledge_ha)) |> 
+  group_by(layer, type, pledged) |> summarise(total_area_millha = sum(total_area_millha)) |> ungroup() |> 
+  group_by(layer) |> 
+  mutate( all_frac = total_area_millha / sum(total_area_millha)) 
+
+ex2$pledged2 <- ifelse(ex2$pledged, "Pledged", "Non-Pledged")
+ex2$group <- paste0(ex2$pledged2, " ", ex2$type)
+ex2$group <- factor(ex2$group, levels = c("Non-Pledged Managed forest", "Pledged Managed forest",
+                                          "Non-Pledged Natural forest", "Pledged Natural forest"))
+
+ga1 <- ggplot(ex2, aes(y = all_frac, x = layer, fill = group)) +
+  theme_few(base_size = 20) +
+  geom_bar(stat = "identity") +
+  scale_fill_canva() +
+    guides(fill = guide_legend(title = "", nrow = 2)) +
+  labs(title = "", y = "Fraction of forest cover gain (%)", x = "") +
+  theme(legend.position = "bottom")
+ga1
+ggsave(plot = ga1, filename = "figures/SIFigure2.png", width = 10, height = 8, dpi = 400)
+
 # ---- #
+#### Figure 2 - Overlays biodiversity summary #### 
 # Load, format and plot naturemap coverage
 df <- read.csv("resSaves/OverlaySummary_naturemap.csv") |> 
   # mutate(prop30_natural = nm30_natural_millha / total_natural_millha, 
@@ -338,7 +362,7 @@ ga1 <- ggplot(df2,
           legend.text = element_text(angle = 90,margin = margin(.5, 0, .5, 0, "cm") )) +
   theme(axis.text.x.bottom = element_text(angle = 0, hjust = .5), axis.ticks.x = element_line(size = 1),
         axis.line.y = element_blank(), axis.ticks.y = element_blank() ) +
-  labs(tag = "", x = "", y = "Proportion", title = "Tree cover gain in the 30% areas\nof highest conservation value")
+  labs(tag = "", x = "", y = "Proportion", title = "Forest cover gain in the\n30% areas of highest\nconservation value")
 ga1
 ggsave(plot = ga1, filename = "figures/Figure_areabiodiv.png", width = 6,height = 8,dpi = 400)
 
@@ -377,14 +401,9 @@ ga2 <- ggplot(df,
   scale_colour_manual(values = cols, guide = guide_legend(title = "")) +
   guides(shape = guide_legend(title = "") ) + theme(legend.position = "bottom")  +
   theme(axis.text.x.bottom = element_text(angle = 0, hjust = .5)) +
-  labs(tag = "", x = "Intensity of use", y = "Proportion", title = "Tree cover gain in food production areas")
+  labs(tag = "", x = "Intensity of use", y = "Proportion", title = "Forest cover gain in food production areas")
 ga2
 ggsave(plot = ga2, filename = "figures/Figure_areafood.png", width = 12,height = 8,dpi = 400)
-
-# Stacked Waterfall plot! 
-# https://stackoverflow.com/questions/48259930/how-to-create-a-stacked-waterfall-chart-in-r
-# https://www.r-bloggers.com/2019/06/stacked-waterfall-graphs-in-r/
-# Going from total overall through each of the food production zones, filled by each
 
 #### SI Figure/Table country analyses ####
 # Idea:
