@@ -70,7 +70,6 @@ table(check_df$TreeGain, check_df$TreeTypeGain, useNA = "ifany")
 
 fmlgain <- rast("extracts/combined_forestgain_2000onwards.tif")
 names(fmlgain) <- "fml_gain"
-fmlgain <- terra::as.factor(fmlgain)
 
 # Get also the Agreement layer. This layers indicates for each grid cell
 # how many of the three datasets agree on whether there is forest gain
@@ -90,6 +89,9 @@ ex <- data.frame(sampleid = check_df$sampleid)
 
 # Extract the values
 ex$fml <- terra::extract(fmlgain, check_df, method = "simple", fun = max)[,2]
+# Alternative, use nearest neighbor
+# fml2 <- raster("extracts/combined_forestgain_2000onwards.tif")
+# val <- ibis.iSDM::get_ngbvalue(coords = sf::st_coordinates(check_df), as.data.frame(fml2))
 
 ex$val_esacci <- terra::extract(ras1, check_df)[,2]
 ex$val_hansen <- terra::extract(ras2, check_df)[,2]
@@ -118,6 +120,12 @@ tt2 <- table(o$TreeGain, ifelse(o$val_modis>0, 1,0)) |> caret::confusionMatrix(p
 # Validate Hansen
 tt3 <- table(o$TreeGain, ifelse(o$val_hansen>0, 1,0)) |> caret::confusionMatrix(positive = "1",mode = "everything")
 
-oo <- o |> dplyr::filter(fml != "Not sure") 
-table(o$TreeType, o$fml) |> caret::confusionMatrix()
+# Test overall gain classification
+oo <- o |> dplyr::filter(TreeGain >0, fml != "Not sure", TreeTypeGain != "Not sure")
+table(o$TreeTypeGain, o$fml) |> caret::confusionMatrix(positive = "plantation")
 
+
+# --- #
+#### 4 - Export the validation dataset as part of the article ----
+# Export the dataset to be used as appendix
+sf::st_write(check_df, "Validation/geowiki_formatted_validationdata.gpkg")

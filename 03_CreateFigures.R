@@ -192,7 +192,7 @@ g2 <- ggplot(dd,
   guides(colour = 'none', alpha = 'none',
          linetype = guide_legend(title = '',ncol = 1,keywidth = unit(1,'in'),label.position = 'bottom')) +
   theme(legend.position = c(.1,.75),legend.text = element_text(size = 16),legend.background = element_blank()) +
-  labs(x = '', y = 'Cumulative tree-cover gain (in mill. ha)')
+  labs(x = '', y = 'Cumulative forest-cover gain (in mill. ha)')
 g2
 ggsave(plot = g2,filename = 'figures/Figure_ts.png',width = 12,height = 6,dpi = 400)
 

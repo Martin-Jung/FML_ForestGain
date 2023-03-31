@@ -54,56 +54,6 @@ o[o>0] <- 1; o[o==0] <- NA # Get any grid cell with tree-cover gain
 
 ss <- c(fmlgain, dissim, o)
 
-# #### Random sample ####
-# 
-# # Get about 1/5 of points at random with forest cover but no treecover gain
-# 
-# a1 <- rast("extracts/FML_natural.tif")
-# a1 <- terra::resample(a1, dissim, method = "near")
-# a2 <- rast("extracts/FML_planted.tif")
-# a2 <- terra::resample(a2, dissim, method = "near")
-# 
-# # Build a new layer where there is forest, but no forest gain
-# new <- a1
-# new[a2==1] <- 1 
-# new[dissim>=1] <- 0
-# new[new==0] <- NA
-# names(new) <- "stableForest"
-# 
-# # Now do a random sample of sites with stable tree cover
-# ex_stable <- terra::spatSample(x = new,
-#                         size = (nr_points * 1/5),
-#                         method = "random",
-#                         replace = FALSE, # No replacement
-#                         na.rm = TRUE, # No grid cells that fall into the ocean 
-#                         exhaustive = TRUE, # Try hard to reach the required number 
-#                         as.df = TRUE, # Return a data.frame
-#                         values = TRUE, # Also return cell values
-#                         cells = TRUE, # Also return cell numbers (needed for extent)
-#                         xy = TRUE, # Also return cell coordinates
-#                         warn = TRUE
-# )
-
-# --------------- #
-# Baseline random raster
-
-# Create cell boundary of 1km for each of the products
-# NOW DONE EXTERNALLY. LOAD FILES CREATED IN QGIS BACK IN!
-# writeRaster(ras1, "ESACCI_bin.tif", datatype = "INT1U", overwrite = TRUE)
-# writeRaster(ras2, "Hansen_bin.tif", datatype = "INT1U", overwrite = TRUE)
-# writeRaster(ras3, "MODIS_bin.tif", datatype = "INT1U", overwrite = TRUE)
-# ras1_bb <- rast("ESACCI_bin_boundary.tif")
-# ras2_bb <- rast("Hansen_bin_boundary.tif")
-# ras2_bb <- terra::resample(ras2_bb, ras1_bb, method = "near")
-# ras3_bb <- rast("MODIS_bin_boundary.tif")
-# 
-# bb <- c(ras1_bb, ras2_bb, ras3_bb)
-# bb_boundary <- sum(bb, na.rm = TRUE)
-# bb_boundary[bb_boundary==0] <- NA
-# bb_boundary[bb_boundary>0] <- 1
-# bb2 <- mask(bb_boundary, o)
-
-# TODO:
 # Buffer the combined treecover gain dataset
 # Load in and extract again
 # Then do sampling
@@ -115,19 +65,6 @@ bb[bb==0] <- NA; bb[bb>0] <- 1
 
 new_sampleboundary <- sum(bb, o, na.rm = TRUE)
 new_sampleboundary[new_sampleboundary==0] <- NA
-
-# ex_stable <- terra::spatSample(x = bb_boundary,
-#                         size = 200,
-#                         method = "random",
-#                         replace = FALSE, # No replacement
-#                         na.rm = TRUE, # No grid cells that fall into the ocean
-#                         exhaustive = TRUE, # Try hard to reach the required number
-#                         as.df = TRUE, # Return a data.frame
-#                         values = FALSE, # Also return cell values
-#                         cells = TRUE, # Also return cell numbers (needed for extent)
-#                         xy = TRUE, # Also return cell coordinates
-#                         warn = TRUE
-# )
 
 # --------------- #
 
@@ -160,29 +97,6 @@ table(ex$Agreement)
 table(ex$ESACCI_forestgainsum)
 table(ex$Hansen_forestgain)
 table(ex$modis_forestgainsum)
-
-# Get only those cells with values globally
-# sub <- ras1
-# sub[] <- NA
-# sub[ex$cell] <- ex$cell
-# Vectorize by grid cell
-# subs <- terra::as.polygons(x = sub, trunc = FALSE,
-#                            dissolve = FALSE, values = TRUE,
-#                            na.rm = TRUE)
-# 
-# # Loop over and extract border coordinates for each (ymin, ymax, xmin, xmax)
-# pb <- progress::progress_bar$new(total = length(nrow(subs)))
-# for(i in 1:nrow(subs)){
-#   pb$tick()
-#   s <- subs[i]
-#   ex[which(ex$cell == s[[1]]), "xmin"] <- st_bbox(s)["xmin"]
-#   ex[which(ex$cell == s[[1]]), "xmax"] <- st_bbox(s)["xmax"]
-#   ex[which(ex$cell == s[[1]]), "ymax"] <- st_bbox(s)["ymax"]
-#   ex[which(ex$cell == s[[1]]), "ymin"] <- st_bbox(s)["ymin"]
-#   rm(s)
-# }
-# rm(pb)
-# FIXME: This failed
 
 # --- #
 ss <- c( rast("/mnt/idrive/jung/forMartina/ESACCI_forestgainsum.tif"),
