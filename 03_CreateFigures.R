@@ -1,5 +1,5 @@
 library(raster)
-library(gdalUtils)
+# library(gdalUtils)
 library(ggplot2)
 library(ggthemes)
 library(data.table)
@@ -320,7 +320,7 @@ ex2$group <- factor(ex2$group, levels = c("Non-Pledged Managed forest", "Pledged
 
 ga1 <- ggplot(ex2, aes(y = all_frac, x = layer, fill = group)) +
   theme_few(base_size = 20) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity",position = position_dodge()) +
   scale_fill_canva() +
     guides(fill = guide_legend(title = "", nrow = 2)) +
   labs(title = "", y = "Fraction of forest cover gain (%)", x = "") +
@@ -553,10 +553,19 @@ full$pledge_esacci <- ifelse(full$pledge_esacci, "yes", "no")
 full$pledge_modis <- ifelse(full$pledge_modis, "yes", "no")
 full$pledge_hansen <- ifelse(full$pledge_hansen, "yes", "no")
 full$pledge_ha <- full$pledge_ha /1e6
-full$hansen_amount <- paste0(round(full$Hansen_forestgain_natural /1e6, 4), " | ", round(full$Hansen_forestgain_planted / 1e6,4))
-full$esacci_amount <- paste0(round(full$gain_esacci_natural /1e6, 4), " | ", round(full$gain_esacci_planted / 1e6,4))
-full$modis_amount <- paste0(round(full$modis_forestgainsum_natural /1e6, 4), " | ", round(full$modis_forestgainsum_planted/ 1e6,4))
-write.csv(full |> dplyr::select(country_sov:pledge_modis, hansen_amount:modis_amount),
+
+# Update changes for revision
+full$Hansen_forestgain_natural <- round(full$Hansen_forestgain_natural /1e6, 3)
+full$Hansen_forestgain_planted <- round(full$Hansen_forestgain_planted / 1e6,3)
+full$gain_esacci_natural <- round(full$gain_esacci_natural /1e6, 3)
+full$gain_esacci_planted <- round(full$gain_esacci_planted / 1e6,3)
+full$modis_forestgainsum_natural <- round(full$modis_forestgainsum_natural /1e6, 3)
+full$modis_forestgainsum_planted <- round(full$modis_forestgainsum_planted/ 1e6, 3)
+
+# full$hansen_amount <- paste0(round(full$Hansen_forestgain_natural /1e6, 4), " | ", round(full$Hansen_forestgain_planted / 1e6,4))
+# full$esacci_amount <- paste0(round(full$gain_esacci_natural /1e6, 4), " | ", round(full$gain_esacci_planted / 1e6,4))
+# full$modis_amount <- paste0(round(full$modis_forestgainsum_natural /1e6, 4), " | ", round(full$modis_forestgainsum_planted/ 1e6,4))
+write.csv(full |> dplyr::select(country_sov:pledge_modis, Hansen_forestgain_natural:modis_forestgainsum_planted),
           "figures/SITable2_countrypledges.csv", row.names = FALSE)
 
 # How many?
@@ -671,6 +680,10 @@ ggsave(plot = g3,filename = 'Figure_ranks.png',width = 6,height = 15,dpi = 400)
 # Aggregate and visualize the different forest gain estimates to 
 # highlight agreement and disagreement among datasets
 # Aggregation was done in Google Earth Engine
+data("World")
+World <- World %>% dplyr::filter(continent != 'Antarctica')
+moll = "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+
 library(terra)
 library(RStoolbox)
 
@@ -701,10 +714,10 @@ levels(ras_dis) <- rat
 
 tm <- tm_shape(World,is.master = FALSE, projection = moll) +
   tm_style(style = 'natural') +
-  tm_borders(col = "grey20",lwd = .1) + tm_fill(col = 'white',zindex = 1) +
+  tm_borders(col = "grey30",lwd = .1) + tm_fill(col = 'grey95',zindex = 1) +
   tm_shape(ras_dis, projection = moll) +
   tm_raster("ESACCI_forestgainsum",  style = 'cat', labels = c("1","2","3"),
-            palette = c("lightblue","red","black"), title = "Agreement\n(nr datasets)",legend.hist = F) +
+            palette = c("#3C73BE","#EF0525","#C3C14E"), title = "Agreement\n(nr datasets)",legend.hist = F) +
   tm_layout(scale = .65,
             # main.title = "Tree cover gain until 2015",main.title.position = 'center',main.title.size = .75,
             earth.boundary = TRUE, earth.boundary.lwd = 1,
