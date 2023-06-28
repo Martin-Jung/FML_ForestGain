@@ -19,93 +19,6 @@ cols <- c("Natural forest" = "#2A9E00",
 
 # ---- #
 # -------- #
-#### Figure - part overall (old) ####
-# Idea:
-# Get statistics overall across datasets
-# Plot stacked bargraph with proportion 
-
-ex <- bind_rows(
-  # Hansen
-  read.csv('extracts/hansen_natural.csv') %>% rename(remapped = gain) %>% 
-    dplyr::mutate(type = 'natural', dataset = 'Hansen'),
-  read.csv('extracts/hansen_planted.csv') %>% rename(remapped = gain) %>% 
-    dplyr::mutate(type = 'planted', dataset = 'Hansen'),
- #  ESA CCI
- read.csv('extracts/esacci_natural.csv') %>%
-   dplyr::mutate(type = 'natural', dataset = 'ESACCI'),
- read.csv('extracts/esacci_planted.csv') %>%
-   dplyr::mutate(type = 'planted', dataset = 'ESACCI'),
- # MODIS
- read.csv('extracts/modis_natural.csv') %>%
-   dplyr::mutate(type = 'natural', dataset = 'MODIS'),
- read.csv('extracts/modis_planted.csv') %>%
-   dplyr::mutate(type = 'planted', dataset = 'MODIS')
-)
-
-# Convert to million ha
-ex$remapped <- (ex$remapped * (0.0001)) /1e6
-
-# “replanted forest” - forest is managed and there
-# are signs that the forest has been planted in the
-# 100 m pixel. Rotation time is relatively long (>15 years).
-
-# Short rotation plantations for timber
-# Tree plantations: “woody plantations” - short rotation (15 years max) timber plantations.
-
-ex$type <- factor(ex$type, levels = c('natural','planted'), labels = names(cols))
-
-scientific_10 <- function(x) {
-  parse(text=gsub("e", " %*% 10^", scales::scientific_format()(x)))
-}
-
-# Some stats
-ex <- left_join(ex, ex %>% dplyr::group_by(dataset) %>% summarise(tot = sum(remapped)) )  # Total per dataset
-ex %>% group_by(type) %>% 
-  summarise(prop_avg = mean(remapped / tot),
-            sd_avg = sd(remapped / tot),
-            min = min( remapped / tot),
-            max = max( remapped / tot)
-            )
-
-g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
-  theme_light(base_size = 18) +
-  coord_flip() +
-  geom_bar(stat = 'identity',colour='black', position = position_dodge(.5)) +
-  # scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5)) + #, labels = scientific_10 ) +
-  scale_fill_manual(values = cols) +
-  guides(fill = guide_legend(title = '')) +
-  theme(legend.position = c(.75, .35),legend.text = element_text(size = 16),legend.background = element_blank()) +
-  labs(x = '', y = 'Treecover gain (in mill. ha)')
-g
-#ggsave(filename = "figures/SIFigure1_overalltreecovergain.png",plot = g)
-
-# Add mean estimate above the plot
-gs <- ggplot(ex, aes(y = remapped, x = type, colour = type)) +
-  theme_void() +
-  # theme_classic(base_size = 18) +
-  coord_flip() +
-  stat_summary(fun = mean,
-               fun.min = function(x) mean(x) - sd(x), 
-               fun.max = function(x) mean(x) + sd(x), 
-               geom = "pointrange",size = 1.5) +
-  scale_colour_manual(values = cols) + 
-  scale_x_discrete( expand=c(1, 1) ) +
-  theme(axis.line.y = element_blank(),axis.text.y = element_blank(),axis.ticks.y = element_blank()) +
-  guides(colour = 'none')
-gs  
-
-gg <- cowplot::plot_grid(gs + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
-                   g ,#+ theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
-                   rel_heights = c(1,3),
-                   align = 'hv',scale = TRUE, ncol = 1)
-gg
-# Alternative.
-# Annotate as grob
-g1 <- g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf)
-
-ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf),
-       filename = "figures/SIFigure1_overalltreecovergain.png",width = 10,height = 6,dpi = 400 )
-
 # -------- #
 #### Figure 1 - time series ####
 # Second:
@@ -160,8 +73,16 @@ ts_stats %>% dplyr::filter(year>=2000) |> group_by(dataset,type) |>
 ts_stats %>% dplyr::filter(year>=2000) |> group_by(type) |> 
   summarise( avg = mean(millha,na.rm=T), sd = sd(millha,na.rm=T))
 
-# Calculate since year 2000
-gs <- ggplot(ts_stats %>% dplyr::filter(year>=2000), aes(y = millha, x = type, colour = type)) +
+write.csv(ts_stats, "resSaves/Statistics_Fig1b.csv")
+
+# Calculate estimate for latest data
+subs <- bind_rows(
+  ts_stats |> dplyr::filter(dataset == "ESA CCI", year == 2015),
+  ts_stats |> dplyr::filter(dataset == "MODIS", year == 2015),
+  ts_stats |> dplyr::filter(dataset == "Hansen", year == 2012)
+)
+
+gs <- ggplot(subs, aes(y = millha, x = type, colour = type)) +
   theme_void(base_size = 18) +
   stat_summary(fun = mean,
                fun.min = function(x) mean(x) - sd(x), 
@@ -290,6 +211,7 @@ ex2$labelPosition <- (ex2$ymax + ex2$ymin) / 2
 ex2$label <- paste0(round(ex2$all_frac*100), "%")
 #ex2 |> group_by(layer,type) |> summarise(prop = sum(all_frac))
 
+write.csv(ex2 |> dplyr::select(layer:total_area_millha), "resSaves/Statistics_Fig1c.csv")
 # Make the plot
 ga0 <- ggplot(ex2, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill = type)) +
   theme_void(base_size = 20) +
@@ -346,9 +268,11 @@ df$type <- factor(df$type, levels = c("natural", "planted"), labels = names(cols
 # Fill missing data with grey
 df2 <- df |> filter(what=="nm30") 
 df2 <- bind_rows(df2,
-                 df2 |> group_by(layer, what) |> summarise(prop = 1 - sum(prop)) |> mutate(type = "Outside")
+                 df2 |> group_by(layer, what) |> summarise(prop = 1 - sum(prop,na.rm = TRUE)) |> mutate(type = "Outside")
   )
 df2$type <- factor(df2$type, levels = c("Outside", names(cols)))
+
+write.csv(df2,file = "resSaves/Data_Fig2a.csv")
 
 ga1 <- ggplot(df2, 
        aes(x = layer, y = prop, fill = type)) +
@@ -385,6 +309,7 @@ df$zone <- factor(df$zone, levels = c("Low", "Mixed","Intense", "Other"), labels
 
 df |> filter(zone == "Medium")
   
+write.csv(df, "resSaves/Data_Fig2b.csv")
 ga2 <- ggplot(df, 
               aes(x = zone, y = prop, colour = type, shape = layer )) +
   theme_few(base_size = 20) +
@@ -405,91 +330,6 @@ ga2 <- ggplot(df,
 ga2
 ggsave(plot = ga2, filename = "figures/Figure_areafood.png", width = 12,height = 8,dpi = 400)
 
-#### SI Figure/Table country analyses ####
-# Idea:
-# Extract of each country the proportion restored/planted/plantation
-# Plot via tenary diagram
-# Then focus link on certain outliers and show them in insets
-# library(exactextractr)
-# data("World",package = 'tmap')
-# 
-# if(!file.exists('resSaves/country_modalgain.rds')){
-#   # Instead of consensus, extract per type and zone a new layer from GEE
-#   # Thus averaging the individual area estimates
-#   # fml_consensus <- raster('extracts/consensus_forestgain.tif')
-#   fml_modis <- raster('extracts/modisgain_zones.tif')
-#   fml_area <- raster::area(fml_modis) # km2
-#   fml_area <- fml_area * 100 # Convert to ha
-#   fml1 <- fml_modis == 1
-#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
-#   fml2 <- fml_modis == 2
-#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
-#   fml3 <- fml_modis == 3
-#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
-#   ex_modis <- bind_rows(
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
-#   ) %>% dplyr::mutate(dataset = 'modis')
-#   
-#   # ESA CCI
-#   fml_esacci <- raster('extracts/esaccigain_zones.tif')
-#   fml_area <- raster::area(fml_esacci) # km2
-#   fml_area <- fml_area * 100 # Convert to ha
-#   fml1 <- fml_esacci == 1
-#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
-#   fml2 <- fml_esacci == 2
-#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
-#   fml3 <- fml_esacci == 3
-#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
-#   ex_esacci <- bind_rows(
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
-#   ) %>% dplyr::mutate(dataset = 'esacci')
-#   
-#   # Hansen
-#   fml_hansen <- raster('extracts/hansengain_zones.tif')
-#   fml_area <- raster::area(fml_hansen) # km2
-#   fml_area <- fml_area * 100 # Convert to ha
-#   fml1 <- fml_hansen == 1
-#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
-#   fml2 <- fml_hansen == 2
-#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
-#   fml3 <- fml_hansen == 3
-#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
-#   ex_hansen <- bind_rows(
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
-#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
-#                income_grp = World$income_grp,
-#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
-#   ) %>% dplyr::mutate(dataset = 'hansen')
-#   
-#   # Combine all
-#   ex <- bind_rows(ex_modis, ex_esacci, ex_hansen)
-#   
-#   gc();raster::removeTmpFiles(.1)
-#   dir.create('resSaves',showWarnings = FALSE)
-#   saveRDS(ex, 'resSaves/country_modalgain.rds')
-# }
-
 # --- #
 data("World")
 # ex <- readRDS('resSaves/country_modalgain.rds')
@@ -503,10 +343,6 @@ pledge$country[pledge$country=='Scotland'] <- 'United Kingdom'
 pledge$country[pledge$country=="C\u00f4te d'Ivoire"] <- "Ivory Coast"
 pledge$country[pledge$country=="Republic of Sudan"] <- "Sudan"
 pledge$country[pledge$country=="Tanzania"] <- "United Republic of Tanzania"
-# pledge$country[pledge$country=='Central African Republic'] <- 'Central African Rep.'
-# pledge$country[pledge$country=="Republic of the Congo"] <- 'Dem. Rep. Congo'
-# pledge$country[pledge$country=="Democratic Republic of the Congo"] <- 'Congo'
-# pledge$country[pledge$country=="Dominican Republic"] <- 'Dominican Rep.'
 pledge$country[pledge$country=="Eswatini"] <- "eSwatini"
 
 assertthat::assert_that(
@@ -599,19 +435,6 @@ avg_area <- ex %>% dplyr::mutate(prop = if_else(is.nan(prop), 0, prop),
   ) %>% ungroup() %>% 
   # Join in pledges again
   dplyr::left_join(., pledge, by = c('name' = 'country') )
-
-# Check for each countries and summarize as follows
-# If the combined natural and aided vegetation has reached bonn pledge, set to new status 'reached'
-# otherwise show as
-# avg_area <-
-#   dplyr::left_join(
-#     avg_area, avg_area %>% 
-#     dplyr::group_by(name) %>% 
-#     dplyr::summarise(
-#       reached = sum(mean[type=='natural'], mean[type=='aided']) >= pledge_ha,
-#       reached_artif = sum(mean) >= pledge_ha
-#     ) %>% distinct() %>% ungroup()
-# )
 
 # Split up for formatting
 avg_area <- avg_area %>% dplyr::select(-sd) %>% 
@@ -727,3 +550,178 @@ tm <- tm_shape(World,is.master = FALSE, projection = moll) +
             frame = FALSE, inner.margins = 0, outer.margins = 0, asp = 0, legend.width = 400
   )# + tm_legend(legend.outside=T, legend.outside.position="right")
 tmap_save(tm,filename = 'figures/SIFigure_dissimilaritymap.png',width = 1400,height = 900,dpi = 400)
+
+# ------------------------------- #
+# Older scripts not used anymore # 
+#### SI Figure/Table country analyses ###
+# Idea:
+# Extract of each country the proportion restored/planted/plantation
+# Plot via tenary diagram
+# Then focus link on certain outliers and show them in insets
+# library(exactextractr)
+# data("World",package = 'tmap')
+# 
+# if(!file.exists('resSaves/country_modalgain.rds')){
+#   # Instead of consensus, extract per type and zone a new layer from GEE
+#   # Thus averaging the individual area estimates
+#   # fml_consensus <- raster('extracts/consensus_forestgain.tif')
+#   fml_modis <- raster('extracts/modisgain_zones.tif')
+#   fml_area <- raster::area(fml_modis) # km2
+#   fml_area <- fml_area * 100 # Convert to ha
+#   fml1 <- fml_modis == 1
+#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+#   fml2 <- fml_modis == 2
+#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+#   fml3 <- fml_modis == 3
+#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+#   ex_modis <- bind_rows(
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+#   ) %>% dplyr::mutate(dataset = 'modis')
+#   
+#   # ESA CCI
+#   fml_esacci <- raster('extracts/esaccigain_zones.tif')
+#   fml_area <- raster::area(fml_esacci) # km2
+#   fml_area <- fml_area * 100 # Convert to ha
+#   fml1 <- fml_esacci == 1
+#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+#   fml2 <- fml_esacci == 2
+#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+#   fml3 <- fml_esacci == 3
+#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+#   ex_esacci <- bind_rows(
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+#   ) %>% dplyr::mutate(dataset = 'esacci')
+#   
+#   # Hansen
+#   fml_hansen <- raster('extracts/hansengain_zones.tif')
+#   fml_area <- raster::area(fml_hansen) # km2
+#   fml_area <- fml_area * 100 # Convert to ha
+#   fml1 <- fml_hansen == 1
+#   ex1 <- exactextractr::exact_extract(fml1*fml_area, World, fun = 'sum')
+#   fml2 <- fml_hansen == 2
+#   ex2 <- exactextractr::exact_extract(fml2*fml_area, World, fun = 'sum')
+#   fml3 <- fml_hansen == 3
+#   ex3 <- exactextractr::exact_extract(fml3*fml_area, World, fun = 'sum')
+#   ex_hansen <- bind_rows(
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex1), prop = ex1 / (ex1+ex2+ex3), type = 'natural'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex2), prop = ex2 / (ex1+ex2+ex3), type = 'aided'),
+#     data.frame(name = World$name,continent = World$continent, economy = World$economy,
+#                income_grp = World$income_grp,
+#                value = (ex3), prop = ex3 / (ex1+ex2+ex3), type = 'planted')
+#   ) %>% dplyr::mutate(dataset = 'hansen')
+#   
+#   # Combine all
+#   ex <- bind_rows(ex_modis, ex_esacci, ex_hansen)
+#   
+#   gc();raster::removeTmpFiles(.1)
+#   dir.create('resSaves',showWarnings = FALSE)
+#   saveRDS(ex, 'resSaves/country_modalgain.rds')
+# }
+
+# #### Figure - part overall (old) ###
+# # Idea:
+# # Get statistics overall across datasets
+# # Plot stacked bargraph with proportion 
+# 
+# ex <- bind_rows(
+#   # Hansen
+#   read.csv('extracts/hansen_natural.csv') %>% rename(remapped = gain) %>% 
+#     dplyr::mutate(type = 'natural', dataset = 'Hansen'),
+#   read.csv('extracts/hansen_planted.csv') %>% rename(remapped = gain) %>% 
+#     dplyr::mutate(type = 'planted', dataset = 'Hansen'),
+#   #  ESA CCI
+#   read.csv('extracts/esacci_natural.csv') %>%
+#     dplyr::mutate(type = 'natural', dataset = 'ESACCI'),
+#   read.csv('extracts/esacci_planted.csv') %>%
+#     dplyr::mutate(type = 'planted', dataset = 'ESACCI'),
+#   # MODIS
+#   read.csv('extracts/modis_natural.csv') %>%
+#     dplyr::mutate(type = 'natural', dataset = 'MODIS'),
+#   read.csv('extracts/modis_planted.csv') %>%
+#     dplyr::mutate(type = 'planted', dataset = 'MODIS')
+# )
+# 
+# # Convert to million ha
+# ex$remapped <- (ex$remapped * (0.0001)) /1e6
+# 
+# # “replanted forest” - forest is managed and there
+# # are signs that the forest has been planted in the
+# # 100 m pixel. Rotation time is relatively long (>15 years).
+# 
+# # Short rotation plantations for timber
+# # Tree plantations: “woody plantations” - short rotation (15 years max) timber plantations.
+# 
+# ex$type <- factor(ex$type, levels = c('natural','planted'), labels = names(cols))
+# 
+# scientific_10 <- function(x) {
+#   parse(text=gsub("e", " %*% 10^", scales::scientific_format()(x)))
+# }
+# 
+# # Some stats
+# ex <- left_join(ex, ex %>% dplyr::group_by(dataset) %>% summarise(tot = sum(remapped)) )  # Total per dataset
+# ex %>% group_by(type) %>% 
+#   summarise(prop_avg = mean(remapped / tot),
+#             sd_avg = sd(remapped / tot),
+#             min = min( remapped / tot),
+#             max = max( remapped / tot)
+#   )
+# 
+# g <- ggplot(ex, aes(y = remapped, x = dataset, group = type, fill = type)) +
+#   theme_light(base_size = 18) +
+#   coord_flip() +
+#   geom_bar(stat = 'identity',colour='black', position = position_dodge(.5)) +
+#   # scale_y_continuous(expand = c(0,0),breaks = pretty_breaks(5)) + #, labels = scientific_10 ) +
+#   scale_fill_manual(values = cols) +
+#   guides(fill = guide_legend(title = '')) +
+#   theme(legend.position = c(.75, .35),legend.text = element_text(size = 16),legend.background = element_blank()) +
+#   labs(x = '', y = 'Treecover gain (in mill. ha)')
+# g
+# #ggsave(filename = "figures/SIFigure1_overalltreecovergain.png",plot = g)
+# 
+# # Add mean estimate above the plot
+# gs <- ggplot(ex, aes(y = remapped, x = type, colour = type)) +
+#   theme_void() +
+#   # theme_classic(base_size = 18) +
+#   coord_flip() +
+#   stat_summary(fun = mean,
+#                fun.min = function(x) mean(x) - sd(x), 
+#                fun.max = function(x) mean(x) + sd(x), 
+#                geom = "pointrange",size = 1.5) +
+#   scale_colour_manual(values = cols) + 
+#   scale_x_discrete( expand=c(1, 1) ) +
+#   theme(axis.line.y = element_blank(),axis.text.y = element_blank(),axis.ticks.y = element_blank()) +
+#   guides(colour = 'none')
+# gs  
+# 
+# gg <- cowplot::plot_grid(gs + theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
+#                          g ,#+ theme(plot.margin = grid::unit(c(0, 0, 0, 0), "cm")),
+#                          rel_heights = c(1,3),
+#                          align = 'hv',scale = TRUE, ncol = 1)
+# gg
+# # Alternative.
+# # Annotate as grob
+# g1 <- g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf)
+# 
+# ggsave(plot = g + annotation_custom(grob = ggplotGrob(gs), xmin = 3.3, xmax = 3.6, ymin = 0, ymax = Inf),
+#        filename = "figures/SIFigure1_overalltreecovergain.png",width = 10,height = 6,dpi = 400 )
+# 

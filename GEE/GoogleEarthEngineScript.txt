@@ -1,0 +1,611 @@
+var ESACCI = ee.Image("users/Uploads/ESALC"),
+    ESACCI_2016 = ee.Image("users/Uploads/ESA_CCI_300m_2016_v211"),
+    ESACCI_2017 = ee.Image("users/Uploads/ESA_CCI_300m_2017_v211"),
+    ESACCI_2018 = ee.Image("users/Uploads/ESA_CCI_300m_2018_v211"),
+    modis = ee.ImageCollection("MODIS/006/MCD12Q1"),
+    biomes = ee.Image("users/Uploads/biomes_1km_expanded5km"),
+    globalgrid = ee.Image("users/Uploads/naturemap_otherdata/globalgrid_wgs84_1km"),
+    fml = ee.Image("users/Uploads/FML_v32"),
+    ESACCI_old = ee.ImageCollection("users/Uploads/ES_LC19922015"),
+    hansen = ee.Image("UMD/hansen/global_forest_change_2021_v1_9");
+    
+
+/*
+Idea is to broadly assess the amount of natural and managed forest gain globally since start of record
+in areas that are identified as plantations in the global forest management layer
+By focussing exclusively on forest gain in the last decades.
+We aggreggated each dataset to a ~1km grain size to harmonize the varying grains
+of datasets considered. 
+
+Author: Martin Jung | Email: jung@iiasa.ac.at
+
+// ------- //
+// Changes made to Revision
+- Update to newest version of the GFC product (ver1.9), previously v1.7 (Although tree cover gain remains unchanged)
+- Summarize to natural/planted only
+- Fixed some bug with reclassifying the fml layer (previously a few grid cells got doublecounted)
+- Now reducing by mean instead of mode, thus ensuring that now fractional amount of tree cover gets ignored
+*/
+
+var reduceTo1KM = true; // Harmonize all to target resolution
+var exportRegion = ee.Geometry.Rectangle([-180, -90, 180, 90], null, false);
+var exportLayers = true;
+var outfolder = 'FML_export';
+var scale = globalgrid.projection().nominalScale().getInfo();
+print(scale);
+
+// -------------------------------------------------------------------- //
+// Reprojection function
+// Function to coarsen an input raster based on a supplied template raster
+var reprojectImage = function(image, reducer){
+   var targProj = globalgrid.projection();
+   var inProj = image.projection();
+  // image = image.reproject({crs: inProj});
+   var res = image.reproject(image.projection())
+    // Force the next reprojection to aggregate instead of resampling.
+    .reduceResolution({
+      reducer: reducer, 
+      // bestEffort: true,
+      maxPixels: 65536 // Number of pixels inside the larger grid cell
+    })
+    // Request the data at the scale and projection
+    .reproject({
+      crs: targProj
+  });
+  return(res);
+};
+
+// New function to assess forest gain
+var calcForestGain = function(img, first){
+  // Set the very first image as baseline
+  // Then subtract each image from the baseline
+  return first.subtract(img);
+};
+
+var makeFeature = function(stats){
+  // Make a feature without geometry and set the properties to the dictionary of means.
+  var feature = ee.Feature(null, stats);
+
+  // Wrap the Feature in a FeatureCollection for export.
+  var featureCollection = ee.FeatureCollection([feature]);
+  
+  return(featureCollection);
+};
+
+// -------------------------------------------------------------------- //
+// #################################################################### //
+//                      Data preperation
+// #################################################################### //
+// -------------------------------------------------------------------- //
+// Prepare the FML layer
+/*
+11 - Naturally regenerating forest without any signs of human activities, e.g., primary forests.  
+20 - Naturally regenerating forest with signs of human activities, e.g., logging, clear cuts etc.  
+31 - Planted forest.  ( Rotation time is relatively long (>15 years). )
+32 - Short rotation plantations for timber.  ( “woody plantations” - short rotation (15 years max) timber plantations )
+40 - Oil palm plantations.  
+53 - Agroforestry. (Trees on farms and )
+*/
+var newfml = fml.expression(
+  "(fml >10 && fml <= 20) ? 1" +
+  ": (fml >= 31 && fml <= 53) ? 2" +
+  ": 0",
+  {
+    'fml': fml.select(0)
+  });
+newfml = newfml.setDefaultProjection(fml.projection()); // Reset projection
+var fml_overall = newfml.selfMask();
+
+if(reduceTo1KM){
+  var fml_overall = reprojectImage(fml_overall, ee.Reducer.mode());
+}
+var fml_natural = fml_overall.expression('b(0)==1').selfMask();
+var fml_planted = fml_overall.expression('b(0)==2').selfMask();
+print('Forest management reprojected');
+Map.addLayer(fml_overall.randomVisualizer(),{},'Mode overall',false);
+Map.addLayer(fml_natural.randomVisualizer(),{},'natural',false);
+Map.addLayer(fml_planted.randomVisualizer(),{},'planted',false);
+if(exportLayers){
+  // Export
+  Export.image.toDrive({
+    image: fml_overall,
+    description: 'FML_overallmode',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });  
+  Export.image.toDrive({
+    image: fml_natural,
+    description: 'FML_natural',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });  
+  // Export
+  Export.image.toDrive({
+    image: fml_planted,
+    description: 'FML_planted',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+
+}
+
+// ---- //
+// Prepare the ESA data
+// Reclassify function to map ESA land cover to forest only
+var reclassify = function(image) {
+  return image.remap(
+//    [0,10,11,12,20,30,40,50,60,61,62,70,71,72,80,81,82,90,100,110,120,121,122,130,140,150,151,152,153,160,170,180,190,200,201,202,210,220],
+//    [10,5,4,5,5,5,5,1,1,1,1,1,1,1,1,1,1,1,1,3,2,2,2,3,4,4,4,4,4,1,1,8,6,7,7,7,9,10]);
+[50,60,61,62,70,71,72,80,81,82,90,100,160,170],
+[1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1,  1,  1, 1 ]
+)};
+
+// Assemble image collection  
+var ESACCI = ee.ImageCollection.fromImages(
+  [
+    ESACCI.select(0).rename('1992'),
+    ESACCI.select(1).rename('1993'),
+    ESACCI.select(2).rename('1994'),
+    ESACCI.select(3).rename('1995'),
+    ESACCI.select(4).rename('1996'),
+    ESACCI.select(5).rename('1997'),
+    ESACCI.select(6).rename('1998'),
+    ESACCI.select(7).rename('1999'),
+    ESACCI.select(8).rename('2000'),
+    ESACCI.select(9).rename('2001'),
+    ESACCI.select(10).rename('2002'),
+    ESACCI.select(11).rename('2003'),
+    ESACCI.select(12).rename('2004'),
+    ESACCI.select(13).rename('2005'),
+    ESACCI.select(14).rename('2006'),
+    ESACCI.select(15).rename('2007'),
+    ESACCI.select(16).rename('2008'),
+    ESACCI.select(17).rename('2009'),    
+    ESACCI.select(18).rename('2010'),    
+    ESACCI.select(19).rename('2011'),
+    ESACCI.select(20).rename('2012'),
+    ESACCI.select(21).rename('2013'),    
+    ESACCI.select(22).rename('2014'),
+    ESACCI.select(23).rename('2015')
+    ]);
+
+// Reclassify to forest only
+var ESACCI_forestonly = ESACCI.map(reclassify);
+
+// Calculate forest gain
+var ESACCI_forestonly = ESACCI_forestonly.map(function(image){
+  // Subtracts the second value from the first
+  // 0-1 == -1 --> Forest gain
+  // 1-1 == 0 --> Forest stable
+  // 1-0 == 1 --> Forest loss
+  var x1 = ESACCI_forestonly.first().unmask();
+  var x2 = image.unmask();
+  var out = x1.subtract(x2);
+  return(out.expression('b(0) < 0').selfMask()); // Return only forest gain
+  });
+
+var ov_esacci = ESACCI_forestonly.sum().expression('b(0) > 0').unmask();
+Map.addLayer(ov_esacci.randomVisualizer(), {}, 'ESACCI tree gain', false);
+
+// Reduce for a 1km global grid. Use mean aggregation to capture all amounts
+if(reduceTo1KM){
+  var ESACCI_forestonly = ESACCI_forestonly.map(function(image) {
+    return reprojectImage(image.unmask(), ee.Reducer.mean()).multiply(ee.Image.pixelArea()) });
+}
+
+if(exportLayers){
+  // Export full time series per band
+  Export.image.toDrive({
+    image: ESACCI_forestonly.toBands(),
+    description: 'ESACCI_forestgain',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e13,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+  // Export the total amount across all years
+  Export.image.toDrive({
+    image: ESACCI_forestonly.sum(),
+    description: 'ESACCI_forestgainsum',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+}
+print('ESA CCI reprojected');
+
+// -------------- //
+// Load MODIS MCD landcover dataset and reclassify them into forest/non-forest
+// 2001 to 2015
+// https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD12Q1#description
+var modis_forest = modis.filter(ee.Filter.date('2001-01-01', '2015-12-31')).select('LC_Type1')
+// New reclassify function
+var reclassify = function(image) {
+  return image.remap(
+  [1,2,3,4,5,8,9],
+  [1,1,1,1,1,1,1]
+  )};
+// Reclassify to forest only
+var modis_forest = modis_forest.map(reclassify);
+var modis_forest = modis_forest.map(function(image){return image.reproject('EPSG:4326', null, 500);})
+
+var modis_forest = modis_forest.map(function(image){
+  // Subtracts the second value from the first
+  // 0-1 == -1 --> Forest gain
+  // 1-1 == 0 --> Forest stable
+  // 1-0 == 1 --> Forest loss
+  var x1 = modis_forest.first().unmask();
+  var x2 = image.unmask();
+  var out = x1.subtract(x2);
+  return(out.expression('b(0) < 0').selfMask()); // Return only forest gain
+  });
+
+var ov_modis = modis_forest.sum().expression('b(0) > 0').unmask();
+Map.addLayer(ov_modis.randomVisualizer(), {}, 'Modis tree gain', false);
+
+if(reduceTo1KM){
+  var modis_forest = modis_forest.map(function(image) {
+    return reprojectImage(image.unmask(), ee.Reducer.mean()).multiply(ee.Image.pixelArea()) });
+}
+
+if(exportLayers){
+  // Export
+  Export.image.toDrive({
+    image: modis_forest.toBands(),
+    description: 'MODIS_forestgain',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+  // Export modis forest sum mask
+  Export.image.toDrive({
+    image: modis_forest.sum(),
+    description: 'MODIS_forestgainsum',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+}
+print('MODIS Forests reprojected');
+
+// -------------- //
+// Finally process hansen
+// Note that in contrast to lossyear, the Hansen layer does not allow a differentiation by year
+// Thus the gain estimate is for last available one (2012), time of Hansen publication.
+var hansen_gain = hansen.select('gain').unmask();
+if(reduceTo1KM){
+  hansen_gain = reprojectImage(hansen_gain, ee.Reducer.mean()).multiply(ee.Image.pixelArea());
+}
+Map.addLayer(hansen_gain.randomVisualizer(), {}, 'Hansen tree gain', false);
+
+if(exportLayers){
+  // Export
+  Export.image.toDrive({
+    image: hansen_gain,
+    description: 'Hansen_forestgain',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e14,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+}
+print('Hansen forest gain reprojected');
+
+// Export also global land area
+var landarea = globalgrid.expression('b(0) >0');
+landarea = landarea.multiply(ee.Image.pixelArea());
+
+if(exportLayers){
+  Export.image.toDrive({
+    image: landarea,
+    description: 'landarea',
+    folder: outfolder,
+    scale: scale,
+    region: exportRegion,
+    fileFormat: 'GeoTIFF',
+    maxPixels: 1e12,
+    formatOptions: {
+      cloudOptimized: false
+    }
+  });
+}
+
+// -------------------------------------------------------------------- //
+// #################################################################### //
+//                      Analysis
+// #################################################################### //
+// -------------------------------------------------------------------- //
+// -- Overall summary -- //
+/*
+We summarize forest gain for each dataset, calculating for both types of 
+forest management (natural, planted) the total amount that has regrown since the start
+of recording. Estimates per year are summarized after export.
+*/
+
+// Reduce to area for each of summarized sets to get 
+// any forest gain that happend in the reduce pixel
+var ov_esacci = ESACCI_forestonly.sum();
+var ov_modis = modis_forest.sum();
+var ov_hansen = hansen_gain;
+
+ov_esacci = ov_esacci.setDefaultProjection(globalgrid.projection()); // Reset projection
+ov_modis = ov_modis.setDefaultProjection(globalgrid.projection()); // Reset projection
+ov_hansen = ov_hansen.setDefaultProjection(globalgrid.projection()); // Reset projection
+
+// -------------- //
+// Now mask with fml natural
+var stats_hansen_natural = ov_hansen.mask(fml_natural).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  maxPixels: 1e13,
+  tileScale: 16
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_hansen_natural),
+  fileNamePrefix: 'hansen_natural',
+  description: 'hansen_natural',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// FML planted
+var stats_hansen_planted = ov_hansen.mask(fml_planted).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  maxPixels: 1e13,
+  tileScale: 16
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_hansen_planted),
+  fileNamePrefix: 'hansen_planted',
+  description: 'hansen_planted',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+// ----- //
+
+var stats_modis_natural = ov_modis.mask(fml_natural).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  tileScale: 16,
+  maxPixels: 1e13
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_modis_natural),
+  fileNamePrefix: 'modis_natural',
+  description: 'modis_natural',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// FML planted
+var stats_modis_planted = ov_modis.mask(fml_planted).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  tileScale: 16,
+  maxPixels: 1e13
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_modis_planted),
+  fileNamePrefix: 'modis_planted',
+  description: 'modis_planted',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+// ----- //
+
+var stats_esacci_natural = ov_esacci.mask(fml_natural).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  tileScale: 16,
+  maxPixels: 1e13
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_esacci_natural),
+  fileNamePrefix: 'esacci_natural',
+  description: 'esacci_natural',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// FML planted
+var stats_esacci_planted = ov_esacci.mask(fml_planted).reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: exportRegion,
+  scale: scale,
+  tileScale: 16,
+  maxPixels: 1e16
+});
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stats_esacci_planted),
+  fileNamePrefix: 'esacci_planted',
+  description: 'esacci_planted',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// # # # # # # # # # # # # # # # # # #
+// Make a combined reduction
+/* 
+Here we create a combined mask that ensures any pixel with forest gain 
+across the datasets is included in the masking exercise. This works since we 
+summarize each estimate per dataset separately and only tree cover gain per dataset.
+*/
+
+var consgain = ee.ImageCollection.fromImages([
+  ee.Image(ESACCI_forestonly.sum().expression('b(0) > 0')).toByte(),
+  ee.Image(modis_forest.sum().expression('b(0) > 0')).toByte(),
+  ee.Image(hansen_gain.expression('b(0)>0')).rename('remapped').toByte()
+  ]
+).sum().rename('any');
+consgain = consgain.setDefaultProjection(globalgrid.projection()); // Reset projection
+//Map.addLayer(consgain.randomVisualizer(), {}, 'Any treecover gain', false);
+
+// Now add fml layer as band and use expression to reclassify
+var fml_proj = reprojectImage(fml, ee.Reducer.mode());
+var consgain = consgain.addBands(fml_proj.rename('fml'));
+
+// reclassify natural and planted forest
+var newfml = consgain.expression(
+  "(any >= 1) && (fml >10 && fml <= 20) ? 1" +
+  ": (any >= 1) && (fml >= 31 && fml <= 53) ? 3" +
+  ": 0",
+  {
+    'any': consgain.select('any'),
+    'fml': consgain.select('fml')
+  });
+newfml = newfml.setDefaultProjection(fml.projection()); // Reset projection
+
+// Export
+Export.image.toDrive({
+  image: newfml,
+  description: 'combined_forestgain',
+  folder: outfolder,
+  scale: scale,
+  region: exportRegion,
+  fileFormat: 'GeoTIFF',
+  maxPixels: 1e12,
+  formatOptions: {
+    cloudOptimized: false
+  }
+});
+
+// # # # # # # # # # # # # # # # # # #
+// Summarize time series into one chart
+
+// Multiply areas with mask. Divide with 10000 first to convert back to float
+var ts_esacci_natural = ESACCI_forestonly.map(function(image){ return image.mask(fml_natural) });
+var ts_esacci_planted = ESACCI_forestonly.map(function(image){ return image.mask(fml_planted) });
+var ts_modis_natural = modis_forest.map(function(image){ return image.mask(fml_natural) });
+var ts_modis_planted = modis_forest.map(function(image){ return image.mask(fml_planted) });
+
+// -------------- //
+// Now mask with fml natural
+var stat_esacci_natural = ts_esacci_natural.toBands().reduceRegion({
+    reducer: ee.Reducer.sum(),
+    geometry: exportRegion,
+    scale: scale,
+    tileScale: 16,
+    maxPixels: 1e13
+  });
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stat_esacci_natural),
+  fileNamePrefix: 'stats_esacci_natural',
+  description: 'stats_esacci_natural',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+var stat_esacci_planted = ts_esacci_planted.toBands().reduceRegion({
+    reducer: ee.Reducer.sum(),
+    geometry: exportRegion,
+    scale: scale,
+    tileScale: 16,
+    maxPixels: 1e13
+  });
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stat_esacci_planted),
+  fileNamePrefix: 'stats_esacci_planted',
+  description: 'stats_esacci_planted',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// --- MODIS --- //
+var stat_modis_natural = ts_modis_natural.toBands().reduceRegion({
+    reducer: ee.Reducer.sum(),
+    geometry: exportRegion,
+    scale: scale,
+    tileScale: 16,
+    maxPixels: 1e13
+  });
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stat_modis_natural),
+  fileNamePrefix: 'stats_modis_natural',
+  description: 'stats_modis_natural',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+var stat_modis_planted = ts_modis_planted.toBands().reduceRegion({
+    reducer: ee.Reducer.sum(),
+    geometry: exportRegion,
+    scale: scale,
+    tileScale: 16,
+    maxPixels: 1e13
+  });
+
+// Export the FeatureCollection.
+Export.table.toDrive({
+  collection: makeFeature(stat_modis_planted),
+  fileNamePrefix: 'stats_modis_planted',
+  description: 'stats_modis_planted',
+  folder: outfolder,
+  fileFormat: 'CSV'
+});
+
+// ############### //

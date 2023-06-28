@@ -1,0 +1,145 @@
+"","type","dataset","name","value","year","millha"
+"1","Natural forest","ESA CCI","year1992",0,1992,0
+"2","Natural forest","ESA CCI","year1993",0,1993,0
+"3","Natural forest","ESA CCI","year1994",0,1994,0
+"4","Natural forest","ESA CCI","year1995",102796308170.901,1995,10.2796308170901
+"5","Natural forest","ESA CCI","year1996",163221121552.266,1996,16.3221121552266
+"6","Natural forest","ESA CCI","year1997",214382107982.168,1997,21.4382107982168
+"7","Natural forest","ESA CCI","year1998",266817810126.263,1998,26.6817810126263
+"8","Natural forest","ESA CCI","year1999",433419944795.801,1999,43.3419944795801
+"9","Natural forest","ESA CCI","year2000",573151194215.786,2000,57.3151194215786
+"10","Natural forest","ESA CCI","year2001",694138785447.951,2001,69.4138785447951
+"11","Natural forest","ESA CCI","year2002",752662234589.93,2002,75.2662234589931
+"12","Natural forest","ESA CCI","year2003",830360597933.304,2003,83.0360597933304
+"13","Natural forest","ESA CCI","year2004",963638653902.08,2004,96.363865390208
+"14","Natural forest","ESA CCI","year2005",1017250399274.46,2005,101.725039927446
+"15","Natural forest","ESA CCI","year2006",1066954858165.92,2006,106.695485816592
+"16","Natural forest","ESA CCI","year2007",1135604703493.27,2007,113.560470349327
+"17","Natural forest","ESA CCI","year2008",1217599793298.44,2008,121.759979329844
+"18","Natural forest","ESA CCI","year2009",1288387313463.76,2009,128.838731346376
+"19","Natural forest","ESA CCI","year2010",1307305635493.09,2010,130.730563549309
+"20","Natural forest","ESA CCI","year2011",1326531159812.46,2011,132.653115981246
+"21","Natural forest","ESA CCI","year2012",1336503769272.11,2012,133.650376927211
+"22","Natural forest","ESA CCI","year2013",1351853725679.92,2013,135.185372567992
+"23","Natural forest","ESA CCI","year2014",1402670077345.39,2014,140.267007734539
+"24","Natural forest","ESA CCI","year2015",1402902598908.95,2015,140.290259890895
+"25","Managed forest","ESA CCI","year1992",0,1992,0
+"26","Managed forest","ESA CCI","year1993",0,1993,0
+"27","Managed forest","ESA CCI","year1994",0,1994,0
+"28","Managed forest","ESA CCI","year1995",18409378321.2537,1995,1.84093783212537
+"29","Managed forest","ESA CCI","year1996",28030194473.3888,1996,2.80301944733888
+"30","Managed forest","ESA CCI","year1997",35350490925.663,1997,3.5350490925663
+"31","Managed forest","ESA CCI","year1998",41861971154.5274,1998,4.18619711545274
+"32","Managed forest","ESA CCI","year1999",71513926238.5028,1999,7.15139262385028
+"33","Managed forest","ESA CCI","year2000",92394125119.385,2000,9.2394125119385
+"34","Managed forest","ESA CCI","year2001",106111984057.052,2001,10.6111984057052
+"35","Managed forest","ESA CCI","year2002",115020153004.001,2002,11.5020153004001
+"36","Managed forest","ESA CCI","year2003",125654779502.8,2003,12.56547795028
+"37","Managed forest","ESA CCI","year2004",154551611011.777,2004,15.4551611011777
+"38","Managed forest","ESA CCI","year2005",161563105997.012,2005,16.1563105997012
+"39","Managed forest","ESA CCI","year2006",166893232801.883,2006,16.6893232801883
+"40","Managed forest","ESA CCI","year2007",178845355326.24,2007,17.884535532624
+"41","Managed forest","ESA CCI","year2008",190629556447.604,2008,19.0629556447604
+"42","Managed forest","ESA CCI","year2009",199616688056.211,2009,19.9616688056211
+"43","Managed forest","ESA CCI","year2010",204109844712.754,2010,20.4109844712754
+"44","Managed forest","ESA CCI","year2011",208155109634.231,2011,20.8155109634231
+"45","Managed forest","ESA CCI","year2012",211062166232.153,2012,21.1062166232153
+"46","Managed forest","ESA CCI","year2013",214710383425.842,2013,21.4710383425842
+"47","Managed forest","ESA CCI","year2014",228344791855.856,2014,22.8344791855856
+"48","Managed forest","ESA CCI","year2015",228369973339.846,2015,22.8369973339846
+"49","Natural forest","MODIS","year1992",NA,1992,NA
+"50","Natural forest","MODIS","year1993",NA,1993,NA
+"51","Natural forest","MODIS","year1994",NA,1994,NA
+"52","Natural forest","MODIS","year1995",NA,1995,NA
+"53","Natural forest","MODIS","year1996",NA,1996,NA
+"54","Natural forest","MODIS","year1997",NA,1997,NA
+"55","Natural forest","MODIS","year1998",NA,1998,NA
+"56","Natural forest","MODIS","year1999",NA,1999,NA
+"57","Natural forest","MODIS","year2000",NA,2000,NA
+"58","Natural forest","MODIS","year2001",0,2001,0
+"59","Natural forest","MODIS","year2002",197465560734.647,2002,19.7465560734647
+"60","Natural forest","MODIS","year2003",346752721566.228,2003,34.6752721566228
+"61","Natural forest","MODIS","year2004",527072609329.215,2004,52.7072609329215
+"62","Natural forest","MODIS","year2005",690800932286.693,2005,69.0800932286693
+"63","Natural forest","MODIS","year2006",828643893262.37,2006,82.864389326237
+"64","Natural forest","MODIS","year2007",949690777427.435,2007,94.9690777427435
+"65","Natural forest","MODIS","year2008",1053032381292.04,2008,105.303238129204
+"66","Natural forest","MODIS","year2009",1160700761161.65,2009,116.070076116165
+"67","Natural forest","MODIS","year2010",1268496142447.95,2010,126.849614244795
+"68","Natural forest","MODIS","year2011",1375821200945.13,2011,137.582120094513
+"69","Natural forest","MODIS","year2012",1470969675034.58,2012,147.096967503458
+"70","Natural forest","MODIS","year2013",1558396382436.98,2013,155.839638243698
+"71","Natural forest","MODIS","year2014",1638064384585.78,2014,163.806438458578
+"72","Natural forest","MODIS","year2015",1692706906768.2,2015,169.27069067682
+"73","Managed forest","MODIS","year1992",NA,1992,NA
+"74","Managed forest","MODIS","year1993",NA,1993,NA
+"75","Managed forest","MODIS","year1994",NA,1994,NA
+"76","Managed forest","MODIS","year1995",NA,1995,NA
+"77","Managed forest","MODIS","year1996",NA,1996,NA
+"78","Managed forest","MODIS","year1997",NA,1997,NA
+"79","Managed forest","MODIS","year1998",NA,1998,NA
+"80","Managed forest","MODIS","year1999",NA,1999,NA
+"81","Managed forest","MODIS","year2000",NA,2000,NA
+"82","Managed forest","MODIS","year2001",0,2001,0
+"83","Managed forest","MODIS","year2002",81075014624.9156,2002,8.10750146249156
+"84","Managed forest","MODIS","year2003",137325836443.505,2003,13.7325836443505
+"85","Managed forest","MODIS","year2004",191432110336.748,2004,19.1432110336748
+"86","Managed forest","MODIS","year2005",241334483275.723,2005,24.1334483275723
+"87","Managed forest","MODIS","year2006",286282445261.576,2006,28.6282445261576
+"88","Managed forest","MODIS","year2007",324603861708.947,2007,32.4603861708947
+"89","Managed forest","MODIS","year2008",357719071173.499,2008,35.7719071173499
+"90","Managed forest","MODIS","year2009",391517721462.93,2009,39.151772146293
+"91","Managed forest","MODIS","year2010",424901226300.516,2010,42.4901226300516
+"92","Managed forest","MODIS","year2011",457441444603.087,2011,45.7441444603087
+"93","Managed forest","MODIS","year2012",484624443329.497,2012,48.4624443329497
+"94","Managed forest","MODIS","year2013",508657504627.11,2013,50.865750462711
+"95","Managed forest","MODIS","year2014",527555381691.967,2014,52.7555381691967
+"96","Managed forest","MODIS","year2015",540058689265.971,2015,54.0058689265971
+"97","Natural forest","Hansen","year1992",NA,1992,NA
+"98","Natural forest","Hansen","year1993",NA,1993,NA
+"99","Natural forest","Hansen","year1994",NA,1994,NA
+"100","Natural forest","Hansen","year1995",NA,1995,NA
+"101","Natural forest","Hansen","year1996",NA,1996,NA
+"102","Natural forest","Hansen","year1997",NA,1997,NA
+"103","Natural forest","Hansen","year1998",NA,1998,NA
+"104","Natural forest","Hansen","year1999",NA,1999,NA
+"105","Natural forest","Hansen","year2000",512154697457.401,2000,51.2154697457401
+"106","Natural forest","Hansen","year2001",512154697457.401,2001,51.2154697457401
+"107","Natural forest","Hansen","year2002",512154697457.401,2002,51.2154697457401
+"108","Natural forest","Hansen","year2003",512154697457.401,2003,51.2154697457401
+"109","Natural forest","Hansen","year2004",512154697457.401,2004,51.2154697457401
+"110","Natural forest","Hansen","year2005",512154697457.401,2005,51.2154697457401
+"111","Natural forest","Hansen","year2006",512154697457.401,2006,51.2154697457401
+"112","Natural forest","Hansen","year2007",512154697457.401,2007,51.2154697457401
+"113","Natural forest","Hansen","year2008",512154697457.401,2008,51.2154697457401
+"114","Natural forest","Hansen","year2009",512154697457.401,2009,51.2154697457401
+"115","Natural forest","Hansen","year2010",512154697457.401,2010,51.2154697457401
+"116","Natural forest","Hansen","year2011",512154697457.401,2011,51.2154697457401
+"117","Natural forest","Hansen","year2012",512154697457.401,2012,51.2154697457401
+"118","Natural forest","Hansen","year2013",NA,2013,NA
+"119","Natural forest","Hansen","year2014",NA,2014,NA
+"120","Natural forest","Hansen","year2015",NA,2015,NA
+"121","Managed forest","Hansen","year1992",NA,1992,NA
+"122","Managed forest","Hansen","year1993",NA,1993,NA
+"123","Managed forest","Hansen","year1994",NA,1994,NA
+"124","Managed forest","Hansen","year1995",NA,1995,NA
+"125","Managed forest","Hansen","year1996",NA,1996,NA
+"126","Managed forest","Hansen","year1997",NA,1997,NA
+"127","Managed forest","Hansen","year1998",NA,1998,NA
+"128","Managed forest","Hansen","year1999",NA,1999,NA
+"129","Managed forest","Hansen","year2000",290833338767.765,2000,29.0833338767765
+"130","Managed forest","Hansen","year2001",290833338767.765,2001,29.0833338767765
+"131","Managed forest","Hansen","year2002",290833338767.765,2002,29.0833338767765
+"132","Managed forest","Hansen","year2003",290833338767.765,2003,29.0833338767765
+"133","Managed forest","Hansen","year2004",290833338767.765,2004,29.0833338767765
+"134","Managed forest","Hansen","year2005",290833338767.765,2005,29.0833338767765
+"135","Managed forest","Hansen","year2006",290833338767.765,2006,29.0833338767765
+"136","Managed forest","Hansen","year2007",290833338767.765,2007,29.0833338767765
+"137","Managed forest","Hansen","year2008",290833338767.765,2008,29.0833338767765
+"138","Managed forest","Hansen","year2009",290833338767.765,2009,29.0833338767765
+"139","Managed forest","Hansen","year2010",290833338767.765,2010,29.0833338767765
+"140","Managed forest","Hansen","year2011",290833338767.765,2011,29.0833338767765
+"141","Managed forest","Hansen","year2012",290833338767.765,2012,29.0833338767765
+"142","Managed forest","Hansen","year2013",NA,2013,NA
+"143","Managed forest","Hansen","year2014",NA,2014,NA
+"144","Managed forest","Hansen","year2015",NA,2015,NA

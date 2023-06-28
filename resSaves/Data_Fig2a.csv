@@ -1,0 +1,10 @@
+"","layer","total_millha","what","type","unit","value","prop"
+"1","MODIS",2087.7791059883,"nm30","Natural forest","millha",601.165494167,0.287944971018581
+"2","MODIS",2087.7791059883,"nm30","Managed forest","millha",145.3571041027,0.0696228368632378
+"3","Hansen",80.639374687,"nm30","Natural forest","millha",30.1566349904,0.37396910761588
+"4","Hansen",80.639374687,"nm30","Managed forest","millha",13.5797424602,0.16840088992393
+"5","ESA CCI",2096.6961129406,"nm30","Natural forest","millha",915.0300546605,0.436415200568659
+"6","ESA CCI",2096.6961129406,"nm30","Managed forest","millha",77.6220193407,0.0370211109095041
+"7","MODIS",NA,"nm30","Outside",NA,NA,0.642432192118181
+"8","ESA CCI",NA,"nm30","Outside",NA,NA,0.526563688521837
+"9","Hansen",NA,"nm30","Outside",NA,NA,0.45763000246019

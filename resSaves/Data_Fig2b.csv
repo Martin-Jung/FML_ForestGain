@@ -1,0 +1,25 @@
+"","zone","layer","type","area","prop"
+"1","Other","Hansen","Natural forest",7.1084821861,0.089918790564089
+"2","Other","Hansen","Managed forest",0.6052309176,0.00765587233643244
+"3","Other","ESA CCI","Natural forest",317.0355144073,0.158439616908901
+"4","Other","ESA CCI","Managed forest",4.6762567226,0.0023369757961708
+"5","Other","MODIS","Natural forest",170.8619354438,0.0888977001773848
+"6","Other","MODIS","Managed forest",7.0916852803,0.00368973060127746
+"7","Intense","Hansen","Natural forest",3.2738795519,0.0414129601864924
+"8","Intense","Hansen","Managed forest",3.913712788,0.0495065347705745
+"9","Intense","ESA CCI","Natural forest",117.5191828475,0.0587306262663181
+"10","Intense","ESA CCI","Managed forest",53.7352302862,0.0268543709274139
+"11","Intense","MODIS","Natural forest",147.885522241,0.076943309711487
+"12","Intense","MODIS","Managed forest",137.7812137851,0.0716861423893489
+"13","Medium","Hansen","Natural forest",18.6537988345,0.235961346840528
+"14","Medium","Hansen","Managed forest",20.7326554773,0.262257857147921
+"15","Medium","ESA CCI","Natural forest",640.8733550578,0.32027872035822
+"16","Medium","ESA CCI","Managed forest",178.4635075161,0.0891877675468987
+"17","Medium","MODIS","Natural forest",490.9543095877,0.255438456208276
+"18","Medium","MODIS","Managed forest",292.1338214305,0.151994209838179
+"19","Low","Hansen","Natural forest",21.4703842359,0.27158976176567
+"20","Low","Hansen","Managed forest",3.2963243963,0.0416968763882933
+"21","Low","ESA CCI","Natural forest",657.4442638678,0.328560090502499
+"22","Low","ESA CCI","Managed forest",31.2390624793,0.0156118316935775
+"23","Low","MODIS","Natural forest",633.2524725196,0.329474720583108
+"24","Low","MODIS","Managed forest",42.0452907496,0.0218757304909397
